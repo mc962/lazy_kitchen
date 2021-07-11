@@ -31,6 +31,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Generate fake seed data
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -42,8 +46,18 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  # Data layer documentation
+
+  # Display better development errors page
+  gem 'better_errors'
+
+  # Evaluate code from bindings higher up in the call stack
+  gem 'binding_of_caller'
+
+  # Annotate database schema in database-related files
   gem 'annotate'
+
+  # Document Ruby code
+  gem 'yard'
 end
 
 group :test do
@@ -52,6 +66,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+
+  # Mocking and stubbing
+  gem 'mocha'
+
+  # Improve Minitest output
+  gem 'minitest-reporters'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
