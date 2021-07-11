@@ -1,0 +1,14 @@
+<h1>Listing Recipes</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'application/recipes/recipe', collection: @recipes %>
+  </tbody>
+</table>
+
+<span><%= link_to "New Recipe", new_recipe_path %></span>

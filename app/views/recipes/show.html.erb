@@ -1,0 +1,25 @@
+<h1 class='recipe-heading'><%= @recipe.name %></h1>
+
+<section id="recipe-bio">
+  <img src="<%= @recipe.image_url %>" alt="A display of <%= @recipe.name %>" class="recipe-profile-img"/>
+
+  <p aria-label="Recipe description"><%= @recipe.description %></p>
+</section>
+
+<section id="recipe_content">
+  <section id="recipe_ingredients" class="recipe-col">
+    <label for="ingredients">Ingredients</label>
+    <ul id="ingredients">
+      <% @recipe.steps.each do |step| %>
+        <%= render partial: 'application/recipes/step_ingredient', collection: step.step_ingredients %>
+    <% end %>
+    </ul>
+  </section>
+
+  <section id="recipe_steps" class="recipe-col">
+    <label for="steps">Steps</label>
+    <ol id="steps">
+      <%= render partial: 'application/recipes/step', collection: @recipe.steps %>
+    </ol>
+  </section>
+</section>
