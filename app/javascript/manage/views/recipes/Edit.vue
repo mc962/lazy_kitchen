@@ -18,18 +18,20 @@
       <section id="recipe_ingredients" class="recipe-col">
         <label for="ingredients">Ingredients</label>
         <ul id="ingredients">
-          <li class="ingredient" v-for="step_ingredient in step_ingredients" v-bind:id="this.stepIngredientId(step_ingredient)">
-            {{ step_ingredient.amount }}
-            {{ step_ingredient.unit }}
-            {{ step_ingredient_display_name }}
-          </li>
+          <template v-for="step in recipe.steps">
+            <li v-for="step_ingredient in step.ingredients" :key="step_ingredient.id" class="ingredient" v-bind:id="stepIngredientId(step_ingredient)">
+              {{ step_ingredient.amount }}
+              {{ step_ingredient.unit }}
+              {{ step_ingredient_display_name(step_ingredient) }}
+            </li>
+          </template>
         </ul>
       </section>
 
       <section id="recipe_steps" class="recipe-col">
         <label for="steps">Steps</label>
         <ol id="steps">
-          <li class="step" v-for="step in recipe.steps" v-bind:id="this.stepId(step)">
+          <li class="step" v-for="step in recipe.steps" v-bind:id="stepId(step)">
             {{ step.instruction }}
           </li>
         </ol>
@@ -39,30 +41,12 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "Edit",
-  mounted() {
-    this.$nextTick(async function () {
-      const _this = this;
-      try {
-        const response = await fetch(
-            `/recipes/1`,
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              }
-            }
-        );
+import { recipeAPIToClient, RecipeResponse } from "manage/recipes/mapper";
+import { defineComponent } from "vue";
 
-        const result = await response.json() as RecipeResponse;
-
-        _this.recipe = recipeAPIToClient(result);
-      } catch(err) {
-        console.error(err);
-      }
-    });
-  },
+export default defineComponent({
+  name: 'Edit',
+  components: {},
   data: function () {
     return {
       recipe: {
@@ -77,30 +61,43 @@ export default {
     image_url_alt: function () {
       return `A display of ${this.recipe.name}`
     },
-    step_ingredients: function () {
-      const step_ingredients = this.recipe.steps.reduce((all_ingredient_steps, ingredient_steps) => {
-        return [
-            ...all_ingredient_steps,
-            ...ingredient_steps
-        ];
-      }, []);
-
-      return step_ingredients.flat();
-    }
   },
 
-  method: {
+  methods: {
+    loadRecipe: async function(id: string) {
+      try {
+        const response = await fetch(
+            `/api/recipes/${id}`,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              }
+            }
+        );
+
+        const result = await response.json() as RecipeResponse;
+
+        this.recipe = recipeAPIToClient(result);
+
+      } catch(err) {
+        console.error(err);
+      }
+    },
     stepIngredientId: function (step_ingredient) {
-      return `ingredient_${step_ingredient.ingredient.id}`;
+      return `ingredient_${step_ingredient.id}`;
     },
     stepId: function (step) {
       return `step_${step.id}`;
     },
     step_ingredient_display_name: function (step_ingredient) {
-      return [step_ingredient.ingredient.name, step_ingredient.condition].join(', ')
+      return [step_ingredient.name, step_ingredient.condition].join(', ')
     }
-  }
-}
+  },
+  created: async function() {
+    await this.loadRecipe(this.$route.params.id.toString());
+  },
+});
 </script>
 
 <style scoped lang="scss">

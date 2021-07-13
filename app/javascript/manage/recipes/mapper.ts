@@ -1,4 +1,5 @@
 interface StepIngredient {
+    id: number;
     amount: number;
     condition: string;
     unit: string;
@@ -22,7 +23,7 @@ interface Recipe {
     steps: Array<Step>;
 }
 
-interface RecipeResponse {
+export interface RecipeResponse {
     name: string;
     image_url: string;
     description: string;
@@ -42,6 +43,7 @@ interface IngredientResponse {
 }
 
 interface StepIngredientResponse {
+    id: number;
     amount: number;
     condition: string;
     unit: string;
@@ -61,7 +63,7 @@ interface StepResponse {
     step_ingredients: Array<StepIngredientResponse>;
 }
 
-const recipeAPIToClient = (recipe: RecipeResponse): Recipe => {
+export const recipeAPIToClient = (recipe: RecipeResponse): Recipe => {
     return {
         name: recipe.name,
         description: recipe.description,
@@ -80,6 +82,7 @@ const stepAPIToClient = (step: StepResponse): Step => {
 
 const stepIngredientAPIToClient = (stepIngredient: StepIngredientResponse): StepIngredient => {
   return {
+      id: stepIngredient.id,
       amount: stepIngredient.amount,
       condition: stepIngredient.condition,
       unit: stepIngredient.unit,
