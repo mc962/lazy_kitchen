@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { recipeAPIToClient, RecipeResponse } from "manage/recipes/mapper";
+import { recipeAPIToClient, RecipeResponse } from "manage/types/recipes/mapper";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -70,7 +70,6 @@ export default defineComponent({
       return `/api/recipes/${this.$route.params.id}`
     }
   },
-
   methods: {
     loadRecipe: async function(id: string) {
       try {
