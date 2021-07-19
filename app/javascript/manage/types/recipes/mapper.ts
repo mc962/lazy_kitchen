@@ -1,4 +1,4 @@
-interface StepIngredient {
+export interface StepIngredient {
     id: number;
     amount: number;
     condition: string;
@@ -8,14 +8,14 @@ interface StepIngredient {
     description: string;
 }
 
-interface Step {
+export interface Step {
     instruction: string;
     order: number;
 
     ingredients: Array<StepIngredient>
 }
 
-interface Recipe {
+export interface Recipe {
     name: string;
     image_url: string;
     description: string;

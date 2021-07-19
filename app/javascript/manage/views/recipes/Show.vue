@@ -2,9 +2,11 @@
   <main id="page">
     <h1 class="recipe-heading">Update {{ recipe.name }}</h1>
 
-    <!-- TODO Slot -->
+    <!-- TODO consider just redirecting this to public page instead of maintaining separate view -->
     <section id="recipe-bio">
-      <img v-bind:src="recipe.image_url" v-bind:alt="imageURLAlt" class="recipe-profile-img"/>
+      <div class="recipe-profile-img-container">
+        <img v-bind:src="recipe.image_url" v-bind:alt="imageURLAlt" class="recipe-profile-img"/>
+      </div>
       <p aria-label="Recipe description" id="recipe_description">{{ recipe.description }}</p>
     </section>
 
