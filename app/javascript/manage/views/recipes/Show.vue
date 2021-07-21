@@ -83,7 +83,7 @@ export default {
     stepId: function (step) {
       return `step_${step.id}`;
     },
-    step_ingredient_display_name: function (step_ingredient) {
+    stepIngredientDisplayName: function (step_ingredient) {
       return [step_ingredient.name, step_ingredient.condition].join(', ')
     }
   },

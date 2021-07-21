@@ -29,7 +29,7 @@
             <li v-for="step_ingredient in step.ingredients" :key="step_ingredient.id" class="ingredient" v-bind:id="stepIngredientId(step_ingredient)">
               {{ step_ingredient.amount }}
               {{ step_ingredient.unit }}
-              {{ step_ingredient_display_name(step_ingredient) }}
+              {{ stepIngredientDisplayName(step_ingredient) }}
             </li>
           </template>
         </ul>
@@ -48,17 +48,21 @@
 
     <input type="submit" class="submit-btn" v-bind:value="submitBtnTxt" />
   </form>
-
+  <modal v-show="isModalVisible" @close="hideModal" />
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue'
 import { Recipe } from '../../types/recipes/mapper'
+import Modal from "manage/components/Modal.vue";
 
 export default defineComponent({
   name: 'ResourceForm',
+  components: {Modal},
   data: function () {
-    return {};
+    return {
+      isModalVisible: false
+    };
   },
   props: {
     loadedRecipe: Object as PropType<Recipe>,
@@ -86,7 +90,7 @@ export default defineComponent({
     handleUpdateStepsBtn: function (event) {
       event.preventDefault()
 
-      alert('Updating recipe steps is not implemented yet!');
+      this.showModal();
     },
     handleSubmit: async function (event) {
       event.preventDefault();
@@ -127,9 +131,15 @@ export default defineComponent({
     stepId: function (step) {
       return `step_${step.id}`;
     },
-    step_ingredient_display_name: function (step_ingredient) {
+    stepIngredientDisplayName: function (step_ingredient) {
     return [step_ingredient.name, step_ingredient.condition].join(', ')
-  }
+  },
+    showModal: function () {
+      this.isModalVisible = true;
+    },
+    hideModal: function () {
+      this.isModalVisible = false;
+    }
   }
 })
 </script>
