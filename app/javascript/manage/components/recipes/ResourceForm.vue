@@ -48,20 +48,23 @@
 
     <input type="submit" class="submit-btn" v-bind:value="submitBtnTxt" />
   </form>
-  <modal v-show="isModalVisible" @close="hideModal" />
+  <modal v-show="isModalVisible" @close="hideModal">
+    <form-steps v-bind:loaded-steps="loadedRecipe.steps" />
+  </modal>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue'
 import { Recipe } from '../../types/recipes/mapper'
 import Modal from "manage/components/Modal.vue";
+import FormSteps from "manage/components/recipes/FormSteps.vue";
 
 export default defineComponent({
   name: 'ResourceForm',
-  components: {Modal},
+  components: {FormSteps, Modal},
   data: function () {
     return {
-      isModalVisible: false
+      isModalVisible: true
     };
   },
   props: {

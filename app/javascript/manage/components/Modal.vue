@@ -4,12 +4,12 @@
       <div class="modal" role="dialog" aria-labelledby="modal_title" aria-describedby="modal_description">
         <header id="modal_title" class="modal-header">
           <slot name="header">
-            <p>Lazy Kitchen</p>
+            <h2>Lazy Kitchen</h2>
           </slot>
           <button type="button" class="btn-close" @click="close" aria-label="Close modal">X</button>
         </header>
         <section id="modal_description" class="modal-body">
-          <slot name="body"></slot>
+          <slot></slot>
         </section>
         <footer class="modal-footer">
           <slot name="footer"></slot>
@@ -52,6 +52,7 @@ export default {
   overflow-x: auto;
   display: flex;
   flex-direction: column;
+  width: 90%;
 }
 
 .modal-header,
@@ -74,6 +75,7 @@ export default {
 
 .modal-body {
   position: relative;
+  height: 60vh;
   padding: 20px 10px;
 }
 

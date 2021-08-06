@@ -1,5 +1,5 @@
 export interface StepIngredient {
-    id: number;
+    id?: number;
     amount: number;
     condition: string;
     unit: string;
@@ -9,6 +9,7 @@ export interface StepIngredient {
 }
 
 export interface Step {
+    id?: number;
     instruction: string;
     order: number;
 
@@ -16,6 +17,7 @@ export interface Step {
 }
 
 export interface Recipe {
+    id?: number;
     name: string;
     image_url: string;
     description: string;
@@ -24,6 +26,7 @@ export interface Recipe {
 }
 
 export interface RecipeResponse {
+    id?: number;
     name: string;
     image_url: string;
     description: string;
@@ -34,6 +37,7 @@ export interface RecipeResponse {
 }
 
 interface IngredientResponse {
+    id?: number;
     name: string;
     description: string;
     created_at: Date;
@@ -43,7 +47,7 @@ interface IngredientResponse {
 }
 
 interface StepIngredientResponse {
-    id: number;
+    id?: number;
     amount: number;
     condition: string;
     unit: string;
@@ -55,6 +59,7 @@ interface StepIngredientResponse {
 }
 
 interface StepResponse {
+    id?: number;
     instruction: string;
     order: number;
     created_at: Date;
@@ -74,6 +79,7 @@ export const recipeAPIToClient = (recipe: RecipeResponse): Recipe => {
 
 const stepAPIToClient = (step: StepResponse): Step => {
     return {
+        id: step.id,
         instruction: step.instruction,
         order: step.order,
         ingredients: step.step_ingredients.map((stepIngredient: StepIngredientResponse): StepIngredient => stepIngredientAPIToClient(stepIngredient))
