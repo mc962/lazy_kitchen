@@ -9,7 +9,7 @@
 <script lang="ts">
 import { recipeAPIToClient, RecipeResponse } from "manage/types/recipes/mapper";
 import { defineComponent } from "vue";
-import ResourceForm from "manage/components/recipes/ResourceForm.vue";
+import ResourceForm from "manage/components/recipes/form/ResourceForm.vue";
 
 export default defineComponent({
   name: 'Edit',

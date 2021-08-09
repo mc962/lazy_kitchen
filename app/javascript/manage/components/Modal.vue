@@ -3,9 +3,7 @@
     <div class="modal-backdrop">
       <div class="modal" role="dialog" aria-labelledby="modal_title" aria-describedby="modal_description">
         <header id="modal_title" class="modal-header">
-          <slot name="header">
-            <h2>Lazy Kitchen</h2>
-          </slot>
+          <slot name="header"></slot>
           <button type="button" class="btn-close" @click="close" aria-label="Close modal">X</button>
         </header>
         <section id="modal_description" class="modal-body">
@@ -13,9 +11,6 @@
         </section>
         <footer class="modal-footer">
           <slot name="footer"></slot>
-          <button type="button" class="btn-close-txt" aria-label="Close modal" @click="close">
-            Close
-          </button>
         </footer>
       </div>
     </div>
@@ -52,13 +47,16 @@ export default {
   overflow-x: auto;
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 .modal-header,
 .modal-footer {
   padding: 15px;
   display: flex;
+
+  height: 15%;
 }
 
 .modal-header {
@@ -75,7 +73,7 @@ export default {
 
 .modal-body {
   position: relative;
-  height: 60vh;
+  height: 70%;
   padding: 20px 10px;
 }
 
@@ -85,10 +83,10 @@ export default {
   right: 0;
   border: none;
   font-size: 20px;
-  padding: 10px;
+  padding: 2%;
   cursor: pointer;
   font-weight: bold;
-  color: #4AAE9B;
+  color: grey;
   background: transparent;
 }
 
@@ -97,6 +95,7 @@ export default {
   background: #4AAE9B;
   border: 1px solid #4AAE9B;
   border-radius: 2px;
+  width: 30%;
 }
 
 .modal-fade-enter,

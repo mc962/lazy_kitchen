@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import ResourceForm from "../../components/recipes/ResourceForm.vue";
+import ResourceForm from "../../components/recipes/form/ResourceForm.vue";
 import {defineComponent} from "vue";
 
 export default defineComponent({

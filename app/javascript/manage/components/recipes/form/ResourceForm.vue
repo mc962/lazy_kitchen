@@ -1,6 +1,5 @@
 <template>
   <form id="recipe_form" v-bind:action="submitURL" @submit="handleSubmit">
-    <!-- TODO Slot -->
     <section id="recipe-bio">
       <div class="form-ctrl-container">
         <label for="recipe_name" class="form-ctrl-lbl">Name: </label>
@@ -55,16 +54,16 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue'
-import { Recipe } from '../../types/recipes/mapper'
+import { Recipe } from 'manage/types/recipes/mapper'
 import Modal from "manage/components/Modal.vue";
-import FormSteps from "manage/components/recipes/FormSteps.vue";
+import FormSteps from "manage/components/recipes/form/FormSteps.vue";
 
 export default defineComponent({
   name: 'ResourceForm',
   components: {FormSteps, Modal},
   data: function () {
     return {
-      isModalVisible: true
+      isModalVisible: false
     };
   },
   props: {
@@ -136,7 +135,7 @@ export default defineComponent({
     },
     stepIngredientDisplayName: function (step_ingredient) {
     return [step_ingredient.name, step_ingredient.condition].join(', ')
-  },
+    },
     showModal: function () {
       this.isModalVisible = true;
     },
