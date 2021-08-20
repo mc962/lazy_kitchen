@@ -2,6 +2,7 @@
 #
 # Table name: step_ingredients
 #
+#  id            :bigint           not null, primary key
 #  amount        :decimal(, )      not null
 #  condition     :string
 #  unit          :string

@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_07_10_045909) do
     t.index ["name"], name: "index_recipes_on_name", unique: true
   end
 
-  create_table "step_ingredients", primary_key: ["step_id", "ingredient_id"], force: :cascade do |t|
+  create_table "step_ingredients", force: :cascade do |t|
     t.bigint "step_id", null: false
     t.bigint "ingredient_id", null: false
     t.decimal "amount", null: false
