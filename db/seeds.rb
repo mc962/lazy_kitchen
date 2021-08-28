@@ -61,10 +61,24 @@ instant_yeast =
     description: "Useful microbes for rising tasty breads"
   )
 
+citations = [
+  Citation.new(
+    origin: 'ADAPTED',
+    content_type: 'SITE',
+    publisher: 'King Arthur Baking Company',
+    publication_title: 'Honey Spelt Sourdough Bread',
+    last_accessed_at: Date.today,
+    site_title: 'King Arthur Baking',
+    site_link: 'www.kingarthurbaking.com/recipes/honey-spelt-sourdough-bread-recipe'
+  )
+]
+
 recipe = Recipe.new(
   name: "Pain au Levain",
   image_url: "https://seethings.s3.amazonaws.com/118810714_10157682000183652_1417595698238834363_n.jpg",
   description: "Delicious sourdough bread",
+  publicly_accessible: true,
+  citations: citations
 )
 
 steps = [
@@ -186,6 +200,7 @@ steps = [
     instruction: "Store bread at room temperature, for up to several days, and keep it well wrapped. Freeze if longer-term storage is desired."
   )
 ]
+
 
 
 recipe.save!

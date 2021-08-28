@@ -2,12 +2,13 @@
 #
 # Table name: recipes
 #
-#  id          :bigint           not null, primary key
-#  description :text
-#  image_url   :string
-#  name        :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                  :bigint           not null, primary key
+#  description         :text
+#  image_url           :string
+#  name                :string           not null
+#  publicly_accessible :boolean          default(FALSE), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 # Indexes
 #

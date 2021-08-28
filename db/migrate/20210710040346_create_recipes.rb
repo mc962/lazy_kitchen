@@ -4,6 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.string :image_url
       t.text :description
+      t.boolean :publicly_accessible, null: false, default: false
 
       t.timestamps
     end
