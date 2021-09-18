@@ -2,9 +2,11 @@
 
 - Citations
 - Authentication
+- Slugs
 
 ---
 
+- Maintenance Mode for Recipes Currently Undergoing Heavy Changes
 - Step and Ingredient Notes
 - Authorization
 - Personal Recipe Downloads

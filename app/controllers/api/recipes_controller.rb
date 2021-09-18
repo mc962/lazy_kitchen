@@ -1,4 +1,4 @@
-class API::RecipesController < ApplicationController
+class API::RecipesController < API::ApplicationController
   def index
     @recipes = Recipe.all
 
@@ -6,7 +6,7 @@ class API::RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.includes(:steps, :ingredients).find(params[:id])
+    @recipe = Recipe.includes(:steps, :ingredients, :citations).find(params[:id])
 
     render json: @recipe, include: {
       steps: {
@@ -15,20 +15,51 @@ class API::RecipesController < ApplicationController
             include: :ingredient
           }
         }
+      },
+      citations: {
+        include: :authors
       }
     }
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+
+    if @recipe.save
+      render json: {
+        path: recipe_path(@recipe)
+      }, status: :created
+    else
+      render json: {
+        errors: @recipe.errors.full_messages
+      }, status: :unprocessable_entity
+    end
   end
 
   def update
     @recipe = Recipe.find(params[:id])
 
     if @recipe.update(recipe_params)
-      redirect_to :show
+      render json: {
+        path: recipe_path(@recipe)
+      }
     else
       render json: {
         errors: @recipe.errors.full_messages
       }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    begin
+      Recipe.destroy(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      Rails.logger.warn("No Recipe to delete with id of #{params[:id]}")
+    end
+
+    render json: {
+      path: recipe_path(params[:recipe_id])
+    }
   end
 
   private
@@ -39,19 +70,11 @@ class API::RecipesController < ApplicationController
       :name,
       :image_url,
       :description,
+      :publicly_accessible,
       steps_attributes: [
         :id,
-        :instruction,
-        :order,
-        step_ingredients: [
-          :amount,
-          :condition,
-          :unit,
-          ingredients: [
-            :name,
-            :descriptionx
-          ]
-        ]
+        :name,
+        :description
       ]
     )
   end

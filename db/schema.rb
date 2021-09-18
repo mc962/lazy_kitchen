@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2021_08_28_033705) do
   create_table "citations", force: :cascade do |t|
     t.string "origin", null: false
     t.string "content_type", null: false
-    t.string "additional_contributors", array: true
     t.string "publication_title"
     t.string "publication_location"
     t.string "publisher"

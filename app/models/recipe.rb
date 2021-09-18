@@ -28,4 +28,6 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: true
 
   accepts_nested_attributes_for *[:steps, :citations]
+
+  MAX_STEPS = 100
 end

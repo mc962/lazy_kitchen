@@ -2,22 +2,21 @@
 #
 # Table name: citations
 #
-#  id                      :bigint           not null, primary key
-#  additional_contributors :string           is an Array
-#  content_location        :string
-#  content_type            :string           not null
-#  last_accessed_at        :date
-#  origin                  :string           not null
-#  publication_location    :string
-#  publication_title       :string
-#  published_at            :date
-#  publisher               :string
-#  site_link               :string
-#  site_title              :string
-#  version                 :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  recipe_id               :bigint           not null
+#  id                   :bigint           not null, primary key
+#  content_location     :string
+#  content_type         :string           not null
+#  last_accessed_at     :date
+#  origin               :string           not null
+#  publication_location :string
+#  publication_title    :string
+#  published_at         :date
+#  publisher            :string
+#  site_link            :string
+#  site_title           :string
+#  version              :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  recipe_id            :bigint           not null
 #
 # Indexes
 #

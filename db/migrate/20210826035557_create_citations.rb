@@ -4,7 +4,6 @@ class CreateCitations < ActiveRecord::Migration[6.1]
       t.string :origin, null: false
       t.string :content_type, null: false
 
-      t.string :additional_contributors, array: true
       t.string :publication_title
       t.string :publication_location
       t.string :publisher
