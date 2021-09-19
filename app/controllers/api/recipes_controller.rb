@@ -2,7 +2,11 @@ class API::RecipesController < API::ApplicationController
   def index
     @recipes = Recipe.all
 
-    render json: @recipes
+    render json: @recipes.map{|recipe| {
+      id: recipe.id,
+      name: recipe.name,
+      image_url: recipe.image_url
+    }}
   end
 
   def show
@@ -58,7 +62,7 @@ class API::RecipesController < API::ApplicationController
     end
 
     render json: {
-      path: recipe_path(params[:recipe_id])
+      path: recipes_path
     }
   end
 
