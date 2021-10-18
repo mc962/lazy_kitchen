@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2021_08_28_033705) do
     t.string "publisher"
     t.date "published_at"
     t.string "content_location"
-    t.string "site_title"
     t.string "version"
+    t.string "site_title"
     t.date "last_accessed_at"
     t.string "site_link"
     t.bigint "recipe_id", null: false
@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(version: 2021_08_28_033705) do
   end
 
   create_table "step_ingredients", force: :cascade do |t|
-    t.bigint "step_id", null: false
-    t.bigint "ingredient_id", null: false
     t.decimal "amount", null: false
     t.string "unit"
     t.string "condition"
+    t.bigint "step_id", null: false
+    t.bigint "ingredient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ingredient_id"], name: "index_step_ingredients_on_ingredient_id"
