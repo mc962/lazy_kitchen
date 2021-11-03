@@ -1,0 +1,72 @@
+<%= form_with model: @recipe do |recipe_form| %>
+  <h3 class="form-heading" id="recipe">Recipe</h3>
+  <div class="form-ctrl-container">
+    <%= recipe_form.label :name, class: "form-ctrl-lbl" %>
+    <%= recipe_form.text_field :name, class: "form-ctrl" %>
+    <%#= error_tag f, :name %>
+  </div>
+
+  <div class="recipe-profile-img-container">
+    <%= image_tag recipe_form.object.image_url || '', alt: "Main picture of recipe food", class: "recipe-profile-img synced-img recipe-picture" %>
+  </div>
+
+  <div class="form-ctrl-container">
+    <%= recipe_form.label :image_url, class: "form-ctrl-lbl" %>
+    <%= recipe_form.text_field :image_url, class: "synced-img-src recipe-picture form-ctrl", data: {image_selector: '.recipe-profile-img'} %>
+    <%#= error_tag f, :image_url %>
+  </div>
+
+  <div class="form-ctrl-container publicly-accessible-container">
+    <%= recipe_form.label :publicly_accessible, class: "form-ctrl-lbl" %>
+    <%= recipe_form.check_box :publicly_accessible, class: "form-ctrl-text" %>
+    <%#= error_tag f, :publicly_accessible %>
+  </div>
+
+  <div class="form-ctrl-container">
+    <%= recipe_form.label :description, class: "form-ctrl-lbl" %>
+    <%= recipe_form.text_area :description, class: "form-ctrl-text" %>
+    <%#= error_tag f, :description %>
+  </div>
+
+  <section class="resources">
+    <div class="col resource-col" id="recipe_steps_container">
+      <label for="recipe_steps">Steps</label>
+      <ol id="recipe_steps" class="draggable">
+        <%= recipe_form.fields_for :steps do |steps_form| %>
+              <li class="resource-item recipe-step">
+                <%= steps_form.hidden_field :order, class: "recipe-step-order" %>
+                <%= steps_form.object.instruction %>
+                <%= link_to "Edit", edit_manage_legacy_recipe_step_path(steps_form.object), class: "button" %>
+              </li>
+        <% end %>
+      </ol>
+      <% if http_method == :patch %>
+        <%= link_to "Add Step", new_manage_legacy_recipe_step_path(@recipe), class: "button" %>
+      <% else %>
+        <p>Steps may only be added to an existing Recipe.</p>
+      <% end %>
+    </div>
+
+    <div class="col resource-col" id="recipe_citations_container">
+      <label for="recipe_citations">Citations</label>
+      <ol id="recipe_citations">
+        <%= recipe_form.fields_for :citations do |citations_form| %>
+          <li class="resource-item">
+            <%= citations_form.object.publication_title %>
+            <%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citations_form.object), class: "button" %>
+          </li>
+        <% end %>
+      </ol>
+      <% if http_method == :patch %>
+        <%= link_to "Add Citation", new_manage_legacy_recipe_citation_path(@recipe), class: "button" %>
+      <% else %>
+        <p>Citations may only be added to an existing Recipe.</p>
+      <% end %>
+    </div>
+  </section>
+
+  <div class="submit-container">
+    <%= recipe_form.submit "Save", class: "button save-btn" %>
+  </div>
+<% end %>
+

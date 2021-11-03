@@ -12,12 +12,4 @@ class RecipesController < ApplicationController
 
     render :show
   end
-
-  def update; end
-
-  def destroy; end
-
-  def manage
-    render :manage
-  end
 end
