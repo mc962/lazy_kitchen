@@ -5,7 +5,7 @@ class CreateAuthors < ActiveRecord::Migration[6.1]
       t.string :last_name
       t.string :middle_name
 
-      t.references :citation, null: false, foreign_key: true, on_delete: :cascade
+      t.references :citation, null: false, foreign_key: true, on_delete: :nullify
 
       t.timestamps
     end
