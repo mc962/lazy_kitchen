@@ -1,5 +1,4 @@
-class Manage::Legacy::RecipesController < ApplicationController
-  # @todo Authenticate
+class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   def index
     @recipes = Recipe.all
     render :index
@@ -19,6 +18,9 @@ class Manage::Legacy::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+
+    # Associate Recipe created through Public Endpoints with currently authenticated user
+    @recipe.user = current_user
 
     if @recipe.save
       flash.notice = 'Recipe created successfully.'

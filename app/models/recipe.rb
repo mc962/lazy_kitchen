@@ -9,10 +9,16 @@
 #  publicly_accessible :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  user_id             :bigint
 #
 # Indexes
 #
-#  index_recipes_on_name  (name) UNIQUE
+#  index_recipes_on_name     (name) UNIQUE
+#  index_recipes_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 class Recipe < ApplicationRecord
   # Holds all information relating to an overall recipe itself
@@ -23,6 +29,7 @@ class Recipe < ApplicationRecord
   }, dependent: :destroy
   has_many :ingredients, through: :steps
   has_many :citations
+  belongs_to :user
 
   validates :name, presence: true
   validates :name, uniqueness: true

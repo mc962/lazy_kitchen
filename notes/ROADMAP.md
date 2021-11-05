@@ -5,7 +5,7 @@
 - GitHub Actions Workflows
 
 ---
-
+- Pagination and Query Limiting
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
 - Step and Ingredient Notes
 - Authorization

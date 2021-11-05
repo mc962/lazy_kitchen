@@ -1,5 +1,4 @@
-class Manage::Legacy::StepIngredientsController < ApplicationController
-  # @todo Authenticate
+class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationController
   def show
     @step_ingredient = StepIngredient.find(params[:id])
 

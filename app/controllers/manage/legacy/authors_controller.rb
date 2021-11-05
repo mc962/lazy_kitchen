@@ -1,5 +1,4 @@
-class Manage::Legacy::AuthorsController < ApplicationController
-  # @todo Authenticate
+class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
   def show
     @author = Author.find(params[:id])
 

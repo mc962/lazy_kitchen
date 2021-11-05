@@ -1,5 +1,4 @@
-class Manage::Legacy::StepsController < ApplicationController
-  # @todo Authenticate
+class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   def show
     @step = Step.find(params[:id])
 

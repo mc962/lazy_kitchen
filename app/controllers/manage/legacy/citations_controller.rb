@@ -1,5 +1,4 @@
-class Manage::Legacy::CitationsController < ApplicationController
-  # @todo Authenticate
+class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationController
   def show
     @citation = Citation.find(params[:id])
 
