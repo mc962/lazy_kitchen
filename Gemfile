@@ -38,6 +38,9 @@ group :development, :test do
   # Generate fake seed data
   gem 'factory_bot_rails'
   gem 'faker'
+
+  # Ruby code linting
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
