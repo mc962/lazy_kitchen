@@ -41,12 +41,12 @@ jobs:
           yarn install --pure-lockfile
       - name: Run linters
         run: |
-          bin/rubocop --parallel
-          bin/eslint
+          bundle exec rubocop --parallel
+          eslint
       - name: Run security checks
         run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
+          bundle exec bundler-audit --update
+          bundle exec brakeman -q -w2
 
   test:
     name: Test
