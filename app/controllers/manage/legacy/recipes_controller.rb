@@ -66,9 +66,9 @@ class Manage::Legacy::RecipesController < ApplicationController
       :description,
       :image_url,
       :publicly_accessible,
-      steps_attributes: [
-        :id,
-        :order
+      steps_attributes: %i[
+        id
+        order
       ]
     )
   end

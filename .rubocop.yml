@@ -8,3 +8,28 @@
 # where the inspected file is and continue its way up to the root directory.
 #
 # See https://docs.rubocop.org/rubocop/configuration
+
+AllCops:
+  Exclude:
+    - ".github/**/*"
+    - "bin/**/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "node_modules/**/*"
+    - "notes/**/*"
+    - "public/**/*"
+    - "storage/**/*"
+    - "test/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "config.ru"
+    - "Gemfile"
+    - "Rakefile"
+    - "lib/tasks/**/*"
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false

@@ -35,13 +35,12 @@ class Citation < ApplicationRecord
   ORIGINS = Set['ADAPTED', 'INSPIRED', 'ORIGINAL']
 
   belongs_to :recipe
-  has_many :authors, -> {
+  has_many :authors, lambda {
     # Citation's authors should be displayed sorted by last_name, first_name
     order(last_name: :asc, first_name: :asc)
   }
 
   # default_scope { includes(:authors) }
-
 
   validates :recipe, presence: true
 
@@ -76,7 +75,7 @@ class Citation < ApplicationRecord
 
     citation << ("#{authors.join(', ')}. ") if authors
 
-    citation << %Q{"#{publication_title}" } if publication_title
+    citation << %("#{publication_title}" ) if publication_title
 
     if site_title
       italicized_title = "<em>#{site_title}</em>, ".html_safe

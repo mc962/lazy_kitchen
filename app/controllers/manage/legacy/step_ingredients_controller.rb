@@ -60,10 +60,10 @@ class Manage::Legacy::StepIngredientsController < ApplicationController
       :amount,
       :condition,
       :unit,
-      ingredient_attributes: [
-        :id,
-        :name,
-        :description
+      ingredient_attributes: %i[
+        id
+        name
+        description
       ]
     )
   end

@@ -30,7 +30,6 @@ class StepIngredient < ApplicationRecord
 
   validates :amount, :step, :ingredient, presence: true
 
-
   accepts_nested_attributes_for :step
   accepts_nested_attributes_for :ingredient
 end

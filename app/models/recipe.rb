@@ -17,7 +17,7 @@
 class Recipe < ApplicationRecord
   # Holds all information relating to an overall recipe itself
 
-  has_many :steps, -> {
+  has_many :steps, lambda {
     # Recipe's steps should be displayed in order
     order(order: :asc)
   }, dependent: :destroy
@@ -27,7 +27,7 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  accepts_nested_attributes_for *[:steps, :citations]
+  accepts_nested_attributes_for(:steps, :citations)
 
   MAX_STEPS = 100
 end

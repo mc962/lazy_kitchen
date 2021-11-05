@@ -58,7 +58,7 @@ class Manage::Legacy::StepsController < ApplicationController
     params.require(:step).permit(
       :id,
       :instruction,
-      :order,
+      :order
     )
   end
 end
