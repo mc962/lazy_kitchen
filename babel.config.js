@@ -45,7 +45,7 @@ module.exports = function(api) {
       [
         '@babel/plugin-proposal-class-properties',
         {
-          loose: true
+          loose: false
         }
       ],
       [
@@ -66,7 +66,7 @@ module.exports = function(api) {
           async: false
         }
       ],
-      ["@babel/plugin-proposal-private-methods", { "loose": true }]
+      ["@babel/plugin-proposal-private-methods", { "loose": false }]
     ].filter(Boolean)
   }
 }
