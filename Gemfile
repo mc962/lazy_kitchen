@@ -64,6 +64,9 @@ group :development do
 
   # Document Ruby code
   gem 'yard'
+
+  # Ruby security checker
+  gem 'brakeman'
 end
 
 group :test do
