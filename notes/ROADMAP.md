@@ -1,8 +1,8 @@
 # Roadmap
 
-- Citations
 - Authentication
 - Slugs
+- GitHub Actions Workflows
 
 ---
 
@@ -10,9 +10,12 @@
 - Step and Ingredient Notes
 - Authorization
 - Personal Recipe Downloads
+- CookLang Support
 - Bulk Recipe Uploads
 - User Interaction Features
   - Comments
+- Recipe/User Ingredients vs. Canonical Ingredients
+  - Migration Notes: When the time comes to implement this feature, all existing ingredients would become Recipe/User Ingredients that may be linked to canonical ingredients as needed
 - Article Content
   - Tips
   - Tools
