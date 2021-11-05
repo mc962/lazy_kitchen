@@ -5,7 +5,8 @@ class API::RecipesController < API::ApplicationController
     render json: @recipes.map{|recipe| {
       id: recipe.id,
       name: recipe.name,
-      image_url: recipe.image_url
+      image_url: recipe.image_url,
+      _link: api_recipe_url(recipe)
     }}
   end
 

@@ -1,8 +1,8 @@
 <h1 class='recipe-heading'><%= @recipe.name %></h1>
 
-<section id="recipe-bio">
+<section class="recipe-content">
   <div class="recipe-profile-img-container">
-    <img src="<%= @recipe.image_url %>" alt="A display of <%= @recipe.name %>" class="recipe-profile-img"/>
+    <img src="<%= @recipe.image_url %>" alt="A display of <%= @recipe.name %>" class="recipe-profile-img" />
   </div>
 
   <p aria-label="Recipe description"><%= @recipe.description %></p>

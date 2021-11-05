@@ -1,13 +1,5 @@
-<h1>Welcome to the Lazy Kitchen</h1>
+<h1 class="landing-heading">Welcome to the Lazy Kitchen</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
+<ul id="landing_recipes">
   <%= render partial: 'application/recipes/recipe', collection: @recipes %>
-  </tbody>
-</table>
-
+</ul>
