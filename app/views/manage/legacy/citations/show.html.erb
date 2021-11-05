@@ -1,0 +1,36 @@
+<% case @citation.content_type %>
+<% when "BOOK" %>
+  <%= render partial: 'manage/legacy/citations/citations/book', citation: @citation %>
+<% when "SITE" %>
+  <%= render partial: 'manage/legacy/citations/citations/site', citation: @citation %>
+<% else %>
+    <%= "Content Type not supported: #{@citation.content_type}" %>
+<% end %>
+
+<div class="resources-container">
+  <section class="resources">
+    <div class="resource-list-container small-list-container">
+      <label for="citation_authors">Authors</label>
+      <ul id="citation_authors" class="resource-list">
+        <% @citation.authors.each do |author| %>
+          <li class="citation-author resource-item small-resource-item">
+            <p class="author-display-name resource-text"><%= "#{author.last_name}, #{author.first_name}" %></p>
+            <div class="citation-author-links manage-resource-links">
+              <span><%= link_to "Show", manage_legacy_recipe_citation_authors_path(author.citation.recipe, author.citation, author) %></span>
+              <span><%= link_to "Edit", edit_manage_legacy_recipe_citation_author_path(author.citation.recipe, author.citation, author) %></span>
+              <span><%= link_to "Delete", {action: :destroy, method: :delete, recipe_id: author.citation.recipe, citation_id: author.citation.id, id: author.id, data: {confirm: "Are you sure?"}} %></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<nav class="action-links-navbar">
+  <ul class="action-links">
+    <li class="action-link"><span><%= link_to "Edit", edit_manage_legacy_recipe_citation_path(@citation.recipe, @citation) %></span></li>
+    <li class="action-link"><span><%= link_to "Delete", {action: :destroy, method: :delete, recipe_id: @citation.recipe.id, id: @citation.id, data: [confirm: "Are you sure?"]} %></span></li>
+    <li class="action-link"><span><%= link_to "Back", manage_legacy_recipe_path(@citation.recipe) %></span></li>
+  </ul>
+</nav>

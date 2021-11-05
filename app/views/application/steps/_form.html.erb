@@ -1,4 +1,4 @@
-<%= form_with model: @step, url: action do |step_form| %>
+<%= form_with model: @step, class: 'resource-form', url: action do |step_form| %>
   <%= step_form.hidden_field :recipe_id, value: step_form.object.recipe.id %>
   <div class="form-ctrl-container">
     <label for="step_order" class="form-ctrl-label">Order: </label>
@@ -14,14 +14,16 @@
     </div>
   </div>
 
-
-  <div id="recipe_step_ingredients_container">
+<section class="resources">
+  <div class="resource-list-container small-list-container">
     <label for="recipe_step_ingredients">Step Ingredients</label>
-    <ul id="recipe_step_ingredients">
+    <ul id="recipe_step_ingredients" class="resource-list">
       <%= step_form.fields_for :step_ingredients do |step_ingredients_form| %>
         <li class="resource-item">
-          <%= step_ingredients_form.object.ingredient.name %>
-          <%= link_to "Edit", edit_manage_legacy_recipe_step_step_ingredient_path(step_ingredients_form.object.step.recipe.id, step_ingredients_form.object.step.id, step_ingredients_form.object), class: "button" %>
+          <p class="step-ingredient-name resoure-text"><%= step_ingredients_form.object.ingredient.name %></p>
+          <div class="manage-resource-links">
+            <%= link_to "Edit", edit_manage_legacy_recipe_step_step_ingredient_path(step_ingredients_form.object.step.recipe.id, step_ingredients_form.object.step.id, step_ingredients_form.object), class: "button" %>
+          </div>
         </li>
       <% end %>
     </ul>
@@ -31,6 +33,7 @@
       <p>Ingredients may only be added to an existing Step.</p>
     <% end %>
   </div>
+</section>
 
   <div class="submit-container">
     <%= step_form.submit "Save", class: "button save-btn" %>

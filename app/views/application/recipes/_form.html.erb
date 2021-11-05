@@ -1,4 +1,4 @@
-<%= form_with model: @recipe do |recipe_form| %>
+<%= form_with model: @recipe, class: 'resource-form' do |recipe_form| %>
   <h3 class="form-heading" id="recipe">Recipe</h3>
   <div class="form-ctrl-container">
     <%= recipe_form.label :name, class: "form-ctrl-lbl" %>
@@ -29,31 +29,37 @@
   </div>
 
   <section class="resources">
-    <div class="col resource-col" id="recipe_steps_container">
+    <div class="col resource-col resource-list-container" id="recipe_steps_container">
       <label for="recipe_steps">Steps</label>
-      <ol id="recipe_steps" class="draggable">
+      <ol id="recipe_steps" class="resource-list draggable">
         <%= recipe_form.fields_for :steps do |steps_form| %>
-              <li class="resource-item recipe-step">
-                <%= steps_form.hidden_field :order, class: "recipe-step-order" %>
-                <%= steps_form.object.instruction %>
-                <%= link_to "Edit", edit_manage_legacy_recipe_step_path(steps_form.object), class: "button" %>
-              </li>
+          <li class="resource-item recipe-step">
+            <%= steps_form.hidden_field :order, class: "recipe-step-order" %>
+            <p class="resource-text recipe-step-instruction"><%= steps_form.object.instruction %></p>
+            <div class="manage-resource-links">
+              <%= link_to "Edit", edit_manage_legacy_recipe_step_path(steps_form.object), class: "button" %>
+            </div>
+          </li>
         <% end %>
       </ol>
-      <% if http_method == :patch %>
-        <%= link_to "Add Step", new_manage_legacy_recipe_step_path(@recipe), class: "button" %>
-      <% else %>
-        <p>Steps may only be added to an existing Recipe.</p>
-      <% end %>
+      <div class="add-resource-container">
+        <% if http_method == :patch %>
+          <%= link_to "Add Step", new_manage_legacy_recipe_step_path(@recipe), class: "button" %>
+        <% else %>
+          <p>Steps may only be added to an existing Recipe.</p>
+        <% end %>
+      </div>
     </div>
 
-    <div class="col resource-col" id="recipe_citations_container">
+    <div class="col resource-col resource-list-container" id="recipe_citations_container">
       <label for="recipe_citations">Citations</label>
-      <ol id="recipe_citations">
+      <ol id="recipe_citations" class="resource-list">
         <%= recipe_form.fields_for :citations do |citations_form| %>
           <li class="resource-item">
-            <%= citations_form.object.publication_title %>
-            <%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citations_form.object), class: "button" %>
+            <p class="citation-publication-title resource-text"><%= citations_form.object.publication_title %></p>
+            <div class="manage-resource-links">
+              <%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citations_form.object), class: "button" %>
+            </div>
           </li>
         <% end %>
       </ol>

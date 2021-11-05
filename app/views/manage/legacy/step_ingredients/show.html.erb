@@ -1,0 +1,20 @@
+<h1 class="manage-resource-heading">Step Ingedient: <%= @step_ingredient.ingredient.name %></h1>
+
+<section class="step-ingredient-content">
+  <label for="amount">Amount: </label>
+  <p id="amount"><%= @step_ingredient.amount %></p>
+
+  <label for="unit">Unit: </label>
+  <p id="unit"><%= @step_ingredient.unit %></p>
+
+  <label for="condition">condition: </label>
+  <p id="condition"><%= @step_ingredient.condition %></p>
+</section>
+
+<nav class="action-links-navbar">
+  <ul class="action-links">
+    <li class="action-link"><span><%= link_to "Edit", edit_manage_legacy_recipe_step_step_ingredient_path(@step_ingredient.step.recipe, @step_ingredient.step, @step_ingredient) %></span></li>
+    <li class="action-link"><span><%= link_to "Delete", {action: :destroy, method: :delete, recipe_id: @step_ingredient.step.recipe.id, step_id: @step_ingredient.step.id, id: @step_ingredient.id, data: {confirm: "Are you sure?"}}  %></span></li>
+    <li class="action-link"><span><%= link_to "Back", manage_legacy_recipe_step_path(@step_ingredient.step.recipe, @step_ingredient.step) %></span></li>
+  </ul>
+</nav>

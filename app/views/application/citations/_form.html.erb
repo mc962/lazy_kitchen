@@ -1,4 +1,4 @@
-<%= form_with model: @citation, url: action do |citation_form| %>
+<%= form_with model: @citation, class: 'resource-form', url: action do |citation_form| %>
   <%= citation_form.hidden_field :recipe_id, value: citation_form.object.recipe.id %>
 
   <div class="form-ctrl-container">
@@ -13,17 +13,15 @@
   </div>
 
   <% if http_method == :patch %>
-    <div>
-      <div class="form-ctrl-container">
-        <%= citation_form.label :publication_title, class: "form-ctrl-lbl" %>
-        <%= citation_form.text_field :publication_title, class: "form-ctrl" %>
-        <%#= error_tag f, :publication_title %>
-      </div>
-      <div class="form-ctrl-container">
-        <%= citation_form.label :published_at, class: "form-ctrl-lbl" %>
-        <%= citation_form.date_field :published_at, class: "form-ctrl" %>
-        <%#= error_tag f, :published_at %>
-      </div>
+    <div class="form-ctrl-container">
+      <%= citation_form.label :publication_title, class: "form-ctrl-lbl" %>
+      <%= citation_form.text_field :publication_title, class: "form-ctrl" %>
+      <%#= error_tag f, :publication_title %>
+    </div>
+    <div class="form-ctrl-container">
+      <%= citation_form.label :published_at, class: "form-ctrl-lbl" %>
+      <%= citation_form.date_field :published_at, class: "form-ctrl form-ctrl-date" %>
+      <%#= error_tag f, :published_at %>
     </div>
 
     <section id="book_citation_fields" class="content-citation-fields">
@@ -67,18 +65,22 @@
       </div>
     </section>
 
-    <div id="citation_authors_container">
-      <label for="citation_authors">Authors</label>
-      <ol id="citation_authors">
-        <%= citation_form.fields_for :authors do |author_form| %>
-          <li class="resource-item">
-            <%= "#{author_form.object.last_name}, #{author_form.object.first_name}" %>
-            <%= link_to "Edit", edit_manage_legacy_recipe_citation_author_path(author_form.object.citation.recipe, author_form.object.citation, author_form.object), class: "button" %>
-          </li>
-        <% end %>
-      </ol>
-      <%= link_to "Add Author", new_manage_legacy_recipe_citation_author_path(citation_form.object.recipe, citation_form.object), class: "button" %>
-    </div>
+    <section class="resources">
+      <div class="resource-list-container citation-authors-container">
+        <label for="citation_authors">Authors</label>
+        <ol id="citation_authors" class="resource-list">
+          <%= citation_form.fields_for :authors do |author_form| %>
+            <li class="resource-item">
+              <p class="resource-text author-display-name"><%= "#{author_form.object.last_name}, #{author_form.object.first_name}" %></p>
+              <div class="manage-resource-links">
+                <%= link_to "Edit", edit_manage_legacy_recipe_citation_author_path(author_form.object.citation.recipe, author_form.object.citation, author_form.object), class: "button" %>
+              </div>
+            </li>
+          <% end %>
+        </ol>
+        <%= link_to "Add Author", new_manage_legacy_recipe_citation_author_path(citation_form.object.recipe, citation_form.object), class: "button" %>
+      </div>
+    </section>
   <% else %>
     <p>Further Citation data may only be updated on an existing Citation</p>
   <% end %>

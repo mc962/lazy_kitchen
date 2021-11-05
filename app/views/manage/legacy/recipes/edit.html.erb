@@ -1,0 +1,5 @@
+<h1 class="manage-resource-heading">Edit Recipe</h1>
+
+<%= render partial: "application/recipes/form", locals: {http_method: :patch, action: manage_legacy_recipe_path(@recipe)} %>
+
+<div class="return-link"><%= link_to "Back", manage_legacy_recipe_path(@recipe) %></div>

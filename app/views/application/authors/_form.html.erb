@@ -1,4 +1,4 @@
-<%= form_with model: @author, url: action do |author_form| %>
+<%= form_with model: @author, class: 'resource-form', url: action do |author_form| %>
   <%= author_form.hidden_field :citation_id, value: author_form.object.citation.id %>
 
   <div class="form-ctrl-container">

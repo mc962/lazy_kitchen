@@ -1,0 +1,15 @@
+<h1 class="recipes-heading">Listing Recipes</h1>
+
+<ul id="directory_recipes">
+  <% @recipes.each do |recipe| %>
+    <li class="directory-recipe">
+      <span><%= link_to recipe.name, manage_legacy_recipe_path(recipe) %></span>
+      <div class="recipe-links">
+        <span><%= link_to "Edit", edit_manage_legacy_recipe_path(recipe) %></span>
+        <span><%= link_to "Delete", {action: :destroy, method: :delete, id: recipe.id, data: {confirm: "Are you sure?"}} %></span>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<div class="new-recipe-link"><%= link_to "New Recipe", new_manage_legacy_recipe_path %></div>

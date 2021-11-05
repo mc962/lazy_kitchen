@@ -1,4 +1,4 @@
-<%= form_with model: @step_ingredient, url: action do |step_ingredient_form| %>
+<%= form_with model: @step_ingredient, class: 'resource-form', url: action do |step_ingredient_form| %>
   <%= step_ingredient_form.hidden_field :step_id, value: step_ingredient_form.object.step.id %>
 
   <div class="form-ctrl-container">

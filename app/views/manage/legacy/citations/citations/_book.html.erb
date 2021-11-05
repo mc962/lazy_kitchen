@@ -1,12 +1,12 @@
-<h1 class="citation-heading book-heading">Citation: <%= @citation.publication_title %></h1>
+<h1 class="citation-heading book-heading resource-heading">Citation: <%= @citation.publication_title %></h1>
 
-<p id="origin"><%= @citation.origin %></p>
-<p id="content_type"><%= @citation.content_type %></p>
+<section class="citation-content">
+  <p id="origin"><%= @citation.origin %></p>
+  <p id="content_type"><%= @citation.content_type %></p>
 
-<label for="publication_title">Title: </label>
-<p id="publication_title"><%= @citation.publication_title %></p>
+  <label for="publication_title">Title: </label>
+  <p id="publication_title"><%= @citation.publication_title %></p>
 
-<div class="citation-publisher-container">
   <label for="publisher">Published by: </label>
   <p id="publisher"><%= @citation.publisher %></p>
 
@@ -21,4 +21,4 @@
 
   <label for="version">Version: </label>
   <p id="version"><%= @citation.version %></p>
-</div>
+</section>
