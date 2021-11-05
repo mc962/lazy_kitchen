@@ -8,18 +8,16 @@ Rails.application.routes.draw do
           resources :step_ingredients, except: :index
         end
 
-        resources :citations do
-          resources :authors
+        resources :citations, except: :index do
+          resources :authors, except: :index
         end
       end
     end
   end
 
-  resources :recipes, except: [:new, :edit]
+  resources :recipes, only: [:index, :show]
 
   namespace :api do
     resources :recipes, only: [:index, :show]
-
-    resources :ingredients, only: [:index, :show]
   end
 end
