@@ -1,4 +1,4 @@
-<%= form_with model: @recipe, class: 'resource-form' do |recipe_form| %>
+<%= form_with model: @recipe, class: 'resource-form', url: manage_legacy_recipes_path do |recipe_form| %>
   <h3 class="form-heading" id="recipe">Recipe</h3>
   <div class="form-ctrl-container">
     <%= recipe_form.label :name, class: "form-ctrl-lbl" %>

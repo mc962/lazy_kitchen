@@ -37,4 +37,18 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for *[:steps, :citations]
 
   MAX_STEPS = 100
+
+  # Only query for publicly accessible recipes by default, to prevent inadvertently displaying private recipes publicly
+  #
+  # @return [ActiveRecord::Relation<Recipe>]
+  def self.default_scope
+    where(:publicly_accessible => true)
+  end
+
+  # Recipes for the main/root landing page
+  #
+  # @return [Recipe::ActiveRecord_Relation]
+  def self.root_recipes(limit: 10)
+    Recipe.limit(limit)
+  end
 end

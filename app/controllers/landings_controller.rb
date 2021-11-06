@@ -1,6 +1,6 @@
 class LandingsController < ApplicationController
   def home
-    @recipes = Recipe.all
+    @recipes = Recipe.root_recipes
 
     render :home
   end
