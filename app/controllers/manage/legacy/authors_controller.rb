@@ -18,7 +18,7 @@ class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
       flash.notice = 'Citation Author created successfully.'
       redirect_to manage_legacy_recipe_citation_author_path(@author)
     else
-      flash.now.error = @author.errors.full_messages
+      flash.now[:error] = @author.errors.full_messages
       render :new
     end
   end
@@ -36,7 +36,7 @@ class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
       flash.notice = 'Citation Author updated successfully.'
       redirect_to manage_legacy_recipe_citation_author_path(@author)
     else
-      flash.now.error = @author.errors.full_messages
+      flash.now[:error] = @author.errors.full_messages
       render :new
     end
   end

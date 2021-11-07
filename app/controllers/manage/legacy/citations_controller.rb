@@ -18,7 +18,7 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
       flash.notice = 'Citation created successfully.'
       redirect_to manage_legacy_recipe_citation_path(@citation)
     else
-      flash.now.error = @citation.errors.full_messages
+      flash.now[:error] = @citation.errors.full_messages
       render :new
     end
   end
@@ -36,7 +36,7 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
       flash.notice = 'Citation updated successfully.'
       redirect_to manage_legacy_recipe_citation_path(@citation)
     else
-      flash.now.error = @citation.errors.full_messages
+      flash.now[:error] = @citation.errors.full_messages
       render :new
     end
   end

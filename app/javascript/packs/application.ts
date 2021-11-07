@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import {setupFlashAlerts} from "alert";
+import {DRAGGABLE_LIST_SELECTOR, setupDraggableList, setupImageInputSync, SYNCED_IMG_SRC_SELECTOR} from "recipes";
 
 Rails.start()
 Turbolinks.start()
@@ -16,6 +17,8 @@ ActiveStorage.start()
 // Set up JS that depends on only DOM being fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     setupFlashAlerts();
+    setupImageInputSync(SYNCED_IMG_SRC_SELECTOR);
+    setupDraggableList(DRAGGABLE_LIST_SELECTOR);
 })
 
 // Set up JS that depends on site/window being fully loaded

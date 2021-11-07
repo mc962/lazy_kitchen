@@ -18,7 +18,6 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-
     # Associate Recipe created through Public Endpoints with currently authenticated user
     @recipe.user = current_user
 
@@ -26,7 +25,7 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       flash.notice = 'Recipe created successfully.'
       redirect_to manage_legacy_recipe_path(@recipe)
     else
-      flash.now.error = @recipe.errors.full_messages
+      flash.now[:error] = @recipe.errors.full_messages
       render :new
     end
   end
@@ -39,12 +38,14 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    # Associate Recipe created through Public Endpoints with currently authenticated user
+    @recipe.user = current_user
 
     if @recipe.update(recipe_params)
       flash.notice = 'Recipe updated successfully.'
       redirect_to manage_legacy_recipe_path(@recipe)
     else
-      flash.now.error = @recipe.errors.full_messages
+      flash.now[:error] = @recipe.errors.full_messages
       render :new
     end
   end
@@ -71,7 +72,8 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       steps_attributes: [
         :id,
         :order
-      ]
+      ],
+      citations_attributes: []
     )
   end
 end

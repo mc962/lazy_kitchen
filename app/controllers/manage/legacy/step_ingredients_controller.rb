@@ -18,7 +18,7 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
       flash.notice = 'Step Ingredient created successfully.'
       redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
     else
-      flash.now.error = @step_ingredient.errors.full_messages
+      flash.now[:error] = @step_ingredient.errors.full_messages
       render :new
     end
   end
@@ -36,7 +36,7 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
       flash.notice = 'Step Ingredient updated successfully.'
       redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
     else
-      flash.now.error = @step_ingredient.errors.full_messages
+      flash.now[:error] = @step_ingredient.errors.full_messages
       render :new
     end
   end

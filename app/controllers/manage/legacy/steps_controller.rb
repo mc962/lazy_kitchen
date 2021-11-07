@@ -18,7 +18,7 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
       flash.notice = 'Step created successfully.'
       redirect_to manage_legacy_recipe_step_path(@step)
     else
-      flash.now.error = @step.errors.full_messages
+      flash.now[:error] = @step.errors.full_messages
       render :new
     end
   end
@@ -36,7 +36,7 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
       flash.notice = 'Step updated successfully.'
       redirect_to manage_legacy_recipe_step_path(@step)
     else
-      flash.now.error = @step.errors.full_messages
+      flash.now[:error] = @step.errors.full_messages
       render :new
     end
   end
