@@ -29,7 +29,7 @@ class Recipe < ApplicationRecord
   }, dependent: :destroy
   has_many :ingredients, through: :steps
   has_many :citations
-  belongs_to :user
+  belongs_to :user#, optional: true
 
   validates :name, presence: true
   validates :name, uniqueness: true

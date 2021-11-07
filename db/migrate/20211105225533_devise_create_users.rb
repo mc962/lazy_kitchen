@@ -43,8 +43,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
 
-    # Associate Recipes with Users. Although not required, application logic should generally encourage Recipes to have a User,
-    # otherwise there is no easy way to make changes to the Recipe resources.
+    # Associate Recipes and Ingredients with Users. Although not required, application logic should generally encourage
+    # Recipes and Ingredients to have a User, otherwise there is no easy way to make changes to the Recipe resources.
     add_reference :recipes, :user, foreign_key: true
+    add_reference :ingredients, :user, foreign_key: true
   end
 end
