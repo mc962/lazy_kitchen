@@ -28,6 +28,9 @@ gem 'argon2', '>= 2'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Authorization framework
+gem "action_policy"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
