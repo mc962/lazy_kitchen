@@ -31,4 +31,6 @@ class Ingredient < ApplicationRecord
   validates :name, uniqueness: true
 
   accepts_nested_attributes_for :step_ingredients
+
+  scope :managed, -> { includes(:user) }
 end

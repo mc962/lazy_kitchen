@@ -27,4 +27,6 @@ class Step < ApplicationRecord
   validates :order, :instruction, :recipe, presence: true
 
   accepts_nested_attributes_for :step_ingredients
+
+  scope :managed, -> { includes(recipe: [:user]) }
 end

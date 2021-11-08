@@ -1,18 +1,21 @@
 class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationController
   def show
-    @step_ingredient = StepIngredient.find(params[:id])
+    @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
+    authorize! @step_ingredient
 
     render :show
   end
 
   def new
     @step_ingredient = StepIngredient.new(step_id: params[:step_id], ingredient: Ingredient.new)
+    authorize!
 
     render :new
   end
 
   def create
     @step_ingredient = StepIngredient.new(step_ingredient_params)
+    authorize! @step_ingredient
 
     if @step_ingredient.save
       flash.notice = 'Step Ingredient created successfully.'
@@ -24,13 +27,15 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
   end
 
   def edit
-    @step_ingredient = StepIngredient.find(params[:id])
+    @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
+    authorize! @step_ingredient
 
     render :edit
   end
 
   def update
-    @step_ingredient = StepIngredient.find(params[:id])
+    @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
+    authorize! @step_ingredient
 
     if @step_ingredient.update(step_ingredient_params)
       flash.notice = 'Step Ingredient updated successfully.'
@@ -42,13 +47,12 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
   end
 
   def destroy
-    begin
-      @step_ingredient.destroy(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      Rails.logger.warn("Record not found with id #{params[:id]}, deletion was skipped.")
-    end
+    @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
+    authorize! @step_ingredient
 
-    redirect_to manage_legacy_recipe_steps_step_ingredients_path
+    StepIngredient.destroy(@step_ingredient.id)
+
+    redirect_to manage_legacy_recipe_step_step_ingredients_path
   end
 
   private

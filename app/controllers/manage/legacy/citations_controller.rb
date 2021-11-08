@@ -1,18 +1,21 @@
 class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationController
   def show
-    @citation = Citation.find(params[:id])
+    @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
+    authorize! @citation
 
     render :show
   end
 
   def new
     @citation = Citation.new(recipe_id: params[:recipe_id])
+    authorize!
 
     render :new
   end
 
   def create
     @citation = Citation.new(citation_params)
+    authorize! @citation
 
     if @citation.save
       flash.notice = 'Citation created successfully.'
@@ -24,13 +27,15 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
   end
 
   def edit
-    @citation = Citation.find(params[:id])
+    @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
+    authorize @citation
 
     render :edit
   end
 
   def update
-    @citation = Citation.find(params[:id])
+    @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
+    authorize @citation
 
     if @citation.update(citation_params)
       flash.notice = 'Citation updated successfully.'
@@ -42,11 +47,10 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
   end
 
   def destroy
-    begin
-      @citation.destroy(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      Rails.logger.warn("Record not found with id #{params[:id]}, deletion was skipped.")
-    end
+    @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
+    authorize! @citation
+
+    Citation.destroy(@citation.id)
 
     redirect_to manage_legacy_recipe_citations_path
   end

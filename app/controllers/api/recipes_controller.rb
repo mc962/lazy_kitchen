@@ -1,6 +1,6 @@
 class API::RecipesController < API::ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user.id)
 
     render json: @recipes.map{|recipe| {
       id: recipe.id,
@@ -11,7 +11,7 @@ class API::RecipesController < API::ApplicationController
   end
 
   def show
-    @recipe = Recipe.includes(:steps, :ingredients, :citations).find(params[:id])
+    @recipe = Recipe.includes(:steps, :ingredients, :citations).where(user_id: current_user.id).find(params[:id])
 
     render json: @recipe, include: {
       steps: {

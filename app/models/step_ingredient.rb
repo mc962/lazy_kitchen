@@ -33,4 +33,6 @@ class StepIngredient < ApplicationRecord
 
   accepts_nested_attributes_for :step
   accepts_nested_attributes_for :ingredient
+
+  scope :managed, -> { includes(step: [recipe: [:user]]) }
 end

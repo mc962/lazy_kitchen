@@ -23,4 +23,6 @@ class Author < ApplicationRecord
   belongs_to :citation
 
   validates :citation, presence: true
+
+  scope :managed, -> { includes(citation: [recipe: [:user]]) }
 end

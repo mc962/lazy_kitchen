@@ -1,18 +1,21 @@
 class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
   def show
-    @author = Author.find(params[:id])
+    @author = Author.managed.where(citation_id: params[:citation_id]).find(params[:id])
+    authorize! @author
 
     render :show
   end
 
   def new
     @author = Author.new(citation_id: params[:citation_id])
+    authorize!
 
     render :new
   end
 
   def create
     @author = Author.new(author_params)
+    authorize! @author
 
     if @author.save
       flash.notice = 'Citation Author created successfully.'
@@ -24,13 +27,15 @@ class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
   end
 
   def edit
-    @author = Author.find(params[:id])
+    @author = Author.managed.where(citation_id: params[:citation_id]).find(params[:id])
+    authorize! @author
 
     render :edit
   end
 
   def update
-    @author = Author.find(params[:id])
+    @author = Author.managed.where(citation_id: params[:citation_id]).find(params[:id])
+    authorize! @author
 
     if @author.update(author_params)
       flash.notice = 'Citation Author updated successfully.'
@@ -42,13 +47,12 @@ class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
   end
 
   def destroy
-    begin
-      @author.destroy(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      Rails.logger.warn("Record not found with id #{params[:id]}, deletion was skipped.")
-    end
+    @author = Author.managed.where(citation_id: params[:citation_id]).find(params[:id])
+    authorize! @author
 
-    redirect_to manage_legacy_recipe_citations_authors_path
+    Author.destroy(@author.id)
+
+    redirect_to manage_legacy_recipe_citation_authors_path
   end
 
   private
