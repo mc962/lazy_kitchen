@@ -1,7 +1,5 @@
 # Roadmap
 
-- Basic Resource Authorization
-- Slugs
 - GitHub Actions Workflows
 
 ---

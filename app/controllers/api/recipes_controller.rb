@@ -11,7 +11,7 @@ class API::RecipesController < API::ApplicationController
   end
 
   def show
-    @recipe = Recipe.includes(:steps, :ingredients, :citations).where(user_id: current_user.id).find(params[:id])
+    @recipe = Recipe.includes(:steps, :ingredients, :citations).where(user_id: current_user.id).friendly.find(params[:id])
 
     render json: @recipe, include: {
       steps: {

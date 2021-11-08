@@ -34,6 +34,9 @@ gem "action_policy"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# User-friendly URL Slugs
+gem 'friendly_id', '~> 5.4.0'
+
 # CORS
 gem 'rack-cors'
 

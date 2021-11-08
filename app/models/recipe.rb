@@ -7,6 +7,7 @@
 #  image_url           :string
 #  name                :string           not null
 #  publicly_accessible :boolean          default(FALSE), not null
+#  slug                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  user_id             :bigint
@@ -14,6 +15,7 @@
 # Indexes
 #
 #  index_recipes_on_name     (name) UNIQUE
+#  index_recipes_on_slug     (slug) UNIQUE
 #  index_recipes_on_user_id  (user_id)
 #
 # Foreign Keys
@@ -22,6 +24,8 @@
 #
 class Recipe < ApplicationRecord
   # Holds all information relating to an overall recipe itself
+
+  extend FriendlyId
 
   has_many :steps, -> {
     # Recipe's steps should be displayed in order
@@ -35,6 +39,8 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: true
 
   accepts_nested_attributes_for *[:steps, :citations]
+
+  friendly_id :name, use: :slugged
 
   scope :managed, -> { includes(:user) }
   scope :publicly_accessible, -> { where(:publicly_accessible => true) }
