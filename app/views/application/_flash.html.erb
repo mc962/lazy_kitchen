@@ -1,0 +1,24 @@
+<%# Possible Values: primary, secondary, success, danger, warning, info, light, dark %>
+<% flash.each_with_index do |(name, message_content), _idx| %>
+  <div class="<%= "flash-container flash-#{name}" %>">
+    <% if message_content.is_a?(String) %>
+      <div class="flash-message-container">
+        <p class="flash-message"><%= message_content %></p>
+      </div>
+    <% elsif message_content.is_a?(Array) %>
+      <ul class="flash-messages">
+        <% message_content.each do |message| %>
+          <li class="flash-message-container">
+            <p class="flash-message">
+              <%= message %>
+            </p>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <button type="button" class="flash-close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>

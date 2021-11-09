@@ -7,32 +7,39 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
+  user = User.new({**Faker::Internet.user('username', 'email'), password: 'password'})
+
   spelt_flour =
     Ingredient.new(
+      user: user,
       name: "Spelt Flour",
       description: "Flour ground from primitive relative of modern wheat"
     )
 
   water =
     Ingredient.new(
+      user: user,
       name: "Water",
       description: "Plain water, H20"
     )
 
   starter =
     Ingredient.new(
+      user: user,
       name: "Sourdough Starter",
       description: "Starter used to make sourdough bread"
     )
 
   all_purpose_flour =
     Ingredient.new(
+      user: user,
       name: "All-Purpose Flour",
       description: "Generic flour that can be used in many recipes"
     )
 
   levain =
     Ingredient.new(
+      user: user,
       name: "Levain",
       description:
         "An offshoot of a sourdough starter that is mix of fresh flour, water, and maybe a little bit of starter."
@@ -40,24 +47,28 @@ ActiveRecord::Base.transaction do
 
   unsalted_butter =
     Ingredient.new(
+      user: user,
       name: "Unsalted Butter",
       description: "Butter, churned from dairy, the unsalted variety"
     )
 
   honey =
     Ingredient.new(
+      user: user,
       name: "Honey",
       description: "Sweet, sticky, and produced by bees"
     )
 
   salt =
     Ingredient.new(
+      user: user,
       name: "Salt",
       description: "Flavorful table salt"
     )
 
   instant_yeast =
     Ingredient.new(
+      user: user,
       name: "Instant Yeast",
       description: "Useful microbes for rising tasty breads"
     )
@@ -66,7 +77,8 @@ ActiveRecord::Base.transaction do
     name: "Pain au Levain",
     image_url: "https://seethings.s3.amazonaws.com/118810714_10157682000183652_1417595698238834363_n.jpg",
     description: "Delicious sourdough bread",
-    publicly_accessible: true
+    publicly_accessible: true,
+    user: user
   )
 
   steps = [

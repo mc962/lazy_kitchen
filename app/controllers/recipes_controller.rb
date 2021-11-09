@@ -2,13 +2,13 @@ class RecipesController < ApplicationController
   def create; end
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.publicly_accessible
 
     render :index
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.publicly_accessible.friendly.find(params[:id])
 
     render :show
   end

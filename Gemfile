@@ -19,11 +19,23 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
+# Authentication framework
+gem 'devise'
+# Argon2 gem for better password hashing
+gem 'argon2', '>= 2'
+
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Authorization framework
+gem "action_policy"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+
+# User-friendly URL Slugs
+gem 'friendly_id', '~> 5.4.0'
 
 # CORS
 gem 'rack-cors'
@@ -55,7 +67,6 @@ group :development do
 
   # Display better development errors page
   gem 'better_errors'
-
   # Evaluate code from bindings higher up in the call stack
   gem 'binding_of_caller'
 

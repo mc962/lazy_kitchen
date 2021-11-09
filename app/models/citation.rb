@@ -49,6 +49,8 @@ class Citation < ApplicationRecord
 
   accepts_nested_attributes_for :authors
 
+  scope :managed, -> { includes(recipe: [:user]) }
+
   # Generates an MLA-formatted Citation String, with exact output depending on type of content being cited
   #
   # @todo This should probably be done in a partial instead

@@ -18,5 +18,14 @@ module LazyKitchen
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Map ActionPolicy Forbidden errors to Rails error handling
+    config.action_dispatch.rescue_responses.merge!(
+      {
+        'ActionPolicy::Unauthorized' => :forbidden
+      }
+    )
+    # Allow custom error pages
+    config.exceptions_app = self.routes
   end
 end
