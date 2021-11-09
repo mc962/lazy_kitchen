@@ -29,7 +29,20 @@
 require "test_helper"
 
 class CitationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { FactoryBot.create(:citation) }
+
+  context 'associations' do
+    should belong_to(:recipe)
+    should have_many(:authors)
+
+    context 'nested models' do
+      should accept_nested_attributes_for(:authors)
+    end
+  end
+
+  context 'validations' do
+    should validate_presence_of(:recipe)
+    should validate_inclusion_of(:content_type).in_array(Citation::CONTENT_TYPES)
+    should validate_inclusion_of(:origin).in_array(Citation::ORIGINS)
+  end
 end

@@ -27,20 +27,27 @@ require "test_helper"
 class RecipeTest < ActiveSupport::TestCase
   subject { FactoryBot.create(:recipe) }
 
-  context :associations do
+  context 'associations' do
     should belong_to(:user)
-    should have_many(:steps)
+    should have_many(:steps).dependent(:destroy)
     should have_many(:ingredients).through(:steps)
     should have_many(:citations)
 
-    context :nested_models do
+    context 'nested models' do
       should accept_nested_attributes_for(:steps)
       should accept_nested_attributes_for(:citations)
     end
   end
 
-  context :validations do
+  context 'validations' do
     should validate_presence_of(:name)
     should validate_uniqueness_of(:name)
+  end
+
+  test 'publicly_accessible only get publicly accessible recipes' do
+    public_recipes = FactoryBot.create_list(:recipe, 2, publicly_accessible: true)
+    _private_recipes = FactoryBot.create_list(:recipe, 3, publicly_accessible: false)
+
+    assert Recipe.publicly_accessible.count == public_recipes.size
   end
 end

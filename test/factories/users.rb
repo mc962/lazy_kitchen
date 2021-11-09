@@ -28,5 +28,17 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     username { Faker::Internet.unique.username }
     password { 'password' }
+
+    factory :user_with_recipes do
+      transient do
+        recipes_count { 5 }
+      end
+
+      after(:create) do |user, evaluator|
+        FactoryBot.create_list(:recipe, evaluator.recipes_count, user: user)
+
+        user.reload
+      end
+    end
   end
 end

@@ -3,5 +3,8 @@ FactoryBot.define do
     amount { Faker::Number.between(from: 1, to: 10) }
     condition { Faker::Adjective.positive }
     unit { Faker::Food.metric_measurement }
+
+    association :step
+    association :ingredient
   end
 end

@@ -22,7 +22,14 @@
 require "test_helper"
 
 class AuthorTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { FactoryBot.create(:author) }
+
+  context 'associations' do
+    should belong_to(:citation)
+  end
+
+  context 'validations' do
+    should validate_presence_of(:first_name)
+    should validate_presence_of(:citation)
+  end
 end

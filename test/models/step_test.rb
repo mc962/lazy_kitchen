@@ -20,7 +20,21 @@
 require "test_helper"
 
 class StepTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { FactoryBot.create(:step) }
+
+  context 'associations' do
+    should belong_to(:recipe)
+    should have_many(:step_ingredients).dependent(:destroy)
+    should have_many(:ingredients).through(:step_ingredients)
+
+    context 'nested models' do
+      should accept_nested_attributes_for(:step_ingredients)
+    end
+  end
+
+  context 'validations' do
+    should validate_presence_of(:order)
+    should validate_presence_of(:instruction)
+    should validate_presence_of(:recipe)
+  end
 end
