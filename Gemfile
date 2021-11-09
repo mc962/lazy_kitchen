@@ -93,6 +93,9 @@ group :test do
 
   # Improve Minitest output
   gem 'minitest-reporters'
+
+  # Convenient one-line test statements
+  gem 'shoulda', '~> 4.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

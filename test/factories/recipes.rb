@@ -4,5 +4,7 @@ FactoryBot.define do
     image_url { Faker::Avatar.image }
     description { Faker::Food.description }
     publicly_accessible { Faker::Boolean.boolean }
+
+    association :user
   end
 end

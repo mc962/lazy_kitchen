@@ -25,7 +25,22 @@
 require "test_helper"
 
 class RecipeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { FactoryBot.create(:recipe) }
+
+  context :associations do
+    should belong_to(:user)
+    should have_many(:steps)
+    should have_many(:ingredients).through(:steps)
+    should have_many(:citations)
+
+    context :nested_models do
+      should accept_nested_attributes_for(:steps)
+      should accept_nested_attributes_for(:citations)
+    end
+  end
+
+  context :validations do
+    should validate_presence_of(:name)
+    should validate_uniqueness_of(:name)
+  end
 end
