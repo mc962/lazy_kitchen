@@ -1,23 +1,15 @@
 require "test_helper"
 
 class RecipesControllerTest < ApplicationControllerTestCase
-  test "should get new" do
-    get recipes_new_url
-    assert_response :success
-  end
-
   test "should get index" do
-    get recipes_index_url
+    get recipes_url
     assert_response :success
   end
 
   test "should get show" do
-    get recipes_show_url
-    assert_response :success
-  end
+    recipe = FactoryBot.create(:recipe_with_user, publicly_accessible: true)
 
-  test "should get edit" do
-    get recipes_edit_url
+    get recipe_url(recipe)
     assert_response :success
   end
 end

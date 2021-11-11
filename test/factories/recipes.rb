@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :recipe do
-    name { Faker::Food.unique.dish }
+    name { Faker::Food.dish + SecureRandom.uuid }
     image_url { Faker::Avatar.image }
     description { Faker::Food.description }
     publicly_accessible { Faker::Boolean.boolean }

@@ -28,14 +28,14 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   end
 
   def edit
-    @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
+    @step = Step.find(params[:id])
     authorize! @step
 
     render :edit
   end
 
   def update
-    @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
+    @step = Step.find(params[:id])
     authorize! @step
 
     if @step.update(step_params)

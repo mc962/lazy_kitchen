@@ -79,8 +79,7 @@ class Manage::Legacy::AuthorsControllerTest < ApplicationControllerTestCase
             params: {author: update_author_params}
       assert_response :found
 
-      author = Author.managed.where(first_name: update_author_params[:first_name]).last
-      assert_redirected_to manage_legacy_recipe_citation_author_url(author.citation.recipe.id, author.citation.id, author)
+      assert_redirected_to manage_legacy_recipe_citation_author_url(@author.citation.recipe.id, @author.citation.id, @author)
     end
 
     should"destroy author" do

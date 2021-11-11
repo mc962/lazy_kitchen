@@ -14,27 +14,21 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
   end
 
   def create
-    authorize_step_ingredient = StepIngredient.new(
-      step_ingredient_params
-    )
-
-    authorize_step_ingredient.step = Step.new(
-      authorize_step_ingredient.step.attributes.merge(Step.managed.find(authorize_step_ingredient.step.id).attributes)
-    )
-    authorize_step_ingredient.ingredient = Ingredient.managed.find_or_initialize_by(
+    step = Step.managed.find(params[:step_id])
+    @step_ingredient = StepIngredient.new(
       {
-        **authorize_step_ingredient.ingredient.attributes,
-        # Adding current_user here will have the effect of always searching for only the current user's ingredient,
-        # and if not then create a new ingredient owned by the user.
-        user: current_user
+        **step_ingredient_params,
+        step: step,
       }
     )
-    authorize! authorize_step_ingredient
+    ingredient = Ingredient.managed.find_or_initialize_by(user_id: current_user.id, name: @step_ingredient.ingredient.name)
+    @step_ingredient.ingredient.assign_attributes(ingredient.attributes)
 
-    @step_ingredient = StepIngredient.new(step_ingredient_params)
+    authorize! @step_ingredient
+
     if @step_ingredient.save
       flash.notice = 'Step Ingredient created successfully.'
-      redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
+      redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
     else
       flash.now[:error] = @step_ingredient.errors.full_messages
       render :new
@@ -50,14 +44,17 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
 
   def update
     @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
+    ingredient = Ingredient.managed.find_or_initialize_by(user_id: current_user.id, name: @step_ingredient.ingredient.name)
+    @step_ingredient.ingredient.assign_attributes(ingredient.attributes)
+
     authorize! @step_ingredient
 
     if @step_ingredient.update(step_ingredient_params)
       flash.notice = 'Step Ingredient updated successfully.'
-      redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
+      redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
     else
       flash.now[:error] = @step_ingredient.errors.full_messages
-      render :new
+      render :edit
     end
   end
 
