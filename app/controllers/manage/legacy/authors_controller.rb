@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::AuthorsController < Manage::Legacy::ApplicationController
   def show
     @author = Author.managed.where(citation_id: params[:citation_id]).find(params[:id])

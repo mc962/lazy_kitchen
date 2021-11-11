@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: recipes
@@ -27,23 +29,23 @@ class Recipe < ApplicationRecord
 
   extend FriendlyId
 
-  has_many :steps, -> {
+  has_many :steps, lambda {
     # Recipe's steps should be displayed in order
     order(order: :asc)
   }, dependent: :destroy
   has_many :ingredients, through: :steps
   has_many :citations
-  belongs_to :user#, optional: true
+  belongs_to :user # , optional: true
 
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  accepts_nested_attributes_for *[:steps, :citations]
+  accepts_nested_attributes_for(:steps, :citations)
 
   friendly_id :name, use: :slugged
 
   scope :managed, -> { includes(:user) }
-  scope :publicly_accessible, -> { where(:publicly_accessible => true) }
+  scope :publicly_accessible, -> { where(publicly_accessible: true) }
 
   MAX_STEPS = 100
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CitationPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 

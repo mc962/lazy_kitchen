@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class API::RecipesController < API::ApplicationController
   def index
     @recipes = Recipe.where(user_id: current_user.id)
@@ -13,7 +15,8 @@ class API::RecipesController < API::ApplicationController
   end
 
   def show
-    @recipe = Recipe.includes(:steps, :ingredients, :citations).where(user_id: current_user.id).friendly.find(params[:id])
+    @recipe = Recipe.includes(:steps, :ingredients,
+                              :citations).where(user_id: current_user.id).friendly.find(params[:id])
 
     render json: @recipe, include: {
       steps: {

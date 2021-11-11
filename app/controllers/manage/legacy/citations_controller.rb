@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationController
   def show
     @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
@@ -15,7 +17,7 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
 
   def create
     @recipe = Recipe.managed.find(params[:recipe_id])
-    @citation = Citation.new({ **citation_params, recipe: @recipe})
+    @citation = Citation.new({ **citation_params, recipe: @recipe })
     authorize! @citation
 
     if @citation.save

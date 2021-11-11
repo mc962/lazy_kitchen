@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ingredients
@@ -26,7 +28,7 @@ class Ingredient < ApplicationRecord
 
   extend FriendlyId
 
-  belongs_to :user#, optional: true
+  belongs_to :user # , optional: true
   has_many :step_ingredients, dependent: :destroy
   has_many :steps, through: :step_ingredients
   has_many :recipes, through: :steps

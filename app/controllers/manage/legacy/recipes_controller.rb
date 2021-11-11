@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   def index
     # Only show recipes for management owned by current user (including private recipes, so remove default `publicly_accessible` scope)
@@ -77,9 +79,9 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       :description,
       :image_url,
       :publicly_accessible,
-      steps_attributes: [
-        :id,
-        :order
+      steps_attributes: %i[
+        id
+        order
       ],
       citations_attributes: []
     )

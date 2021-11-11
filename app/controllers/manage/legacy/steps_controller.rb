@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   def show
     @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
