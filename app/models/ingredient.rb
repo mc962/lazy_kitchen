@@ -22,10 +22,10 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class Ingredient < ApplicationRecord
-  # Holds all information relating to an overall ingredient itself, not related directly to a Recipe that it might be
-  #   linked to
 
+# Holds all information relating to an overall ingredient itself, not related directly to a Recipe that
+#   it might be linked to
+class Ingredient < ApplicationRecord
   extend FriendlyId
 
   belongs_to :user # , optional: true

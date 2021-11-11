@@ -29,10 +29,9 @@
 #  fk_rails_...  (recipe_id => recipes.id)
 #
 
+# Handles data for any citations that need to be cited as having contributed in some way to the Recipe.
+#   In general, citations will follow and be displayed in the _`Modern Language Association`_ (*MLA*) format.
 class Citation < ApplicationRecord
-  # Handles data for any citations that need to be cited as having contributed in some way to the Recipe. In general,
-  #   citations will follow and be displayed in the _`Modern Language Association`_ (*MLA*) format.
-
   CONTENT_TYPES = %w[SITE BOOK].freeze
   ORIGINS = %w[ADAPTED INSPIRED ORIGINAL].freeze
 

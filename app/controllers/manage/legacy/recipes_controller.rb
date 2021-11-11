@@ -2,7 +2,8 @@
 
 class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   def index
-    # Only show recipes for management owned by current user (including private recipes, so remove default `publicly_accessible` scope)
+    # Only show recipes for management owned by
+    #   current user (including private recipes, so remove default `publicly_accessible` scope)
     @recipes = Recipe.where(user_id: current_user.id).all
     authorize!
 

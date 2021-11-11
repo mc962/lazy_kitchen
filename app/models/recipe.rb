@@ -24,9 +24,9 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class Recipe < ApplicationRecord
-  # Holds all information relating to an overall recipe itself
 
+# Holds all information relating to an overall recipe itself
+class Recipe < ApplicationRecord
   extend FriendlyId
 
   has_many :steps, lambda {

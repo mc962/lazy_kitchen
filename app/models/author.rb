@@ -21,6 +21,8 @@
 #
 #  fk_rails_...  (citation_id => citations.id)
 #
+
+# Represents Authors in the context of Recipe Citations
 class Author < ApplicationRecord
   belongs_to :citation
 

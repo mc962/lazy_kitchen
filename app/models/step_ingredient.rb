@@ -23,10 +23,10 @@
 #  fk_rails_...  (ingredient_id => ingredients.id)
 #  fk_rails_...  (step_id => steps.id)
 #
-class StepIngredient < ApplicationRecord
-  # Links an ingredient to a specific recipe step. Contains step specific information about an ingredient, such
-  #   as the condition of an ingredient (e.g. hot, cold, etc.) that is not a specific quality of that ingredient
 
+# Links an ingredient to a specific recipe step. Contains step specific information about an ingredient, such
+#   as the condition of an ingredient (e.g. hot, cold, etc.) that is not a specific quality of that ingredient
+class StepIngredient < ApplicationRecord
   belongs_to :step
   belongs_to :ingredient
 
