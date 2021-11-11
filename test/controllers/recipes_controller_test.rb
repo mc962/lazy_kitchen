@@ -1,6 +1,6 @@
 require "test_helper"
 
-class RecipesControllerTest < ActionDispatch::IntegrationTest
+class RecipesControllerTest < ApplicationControllerTestCase
   test "should get new" do
     get recipes_new_url
     assert_response :success

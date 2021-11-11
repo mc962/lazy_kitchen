@@ -37,14 +37,14 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   end
 
   def edit
-    @recipe = Recipe.where(user_id: current_user.id).friendly.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
     render :edit
   end
 
   def update
-    @recipe = Recipe.where(user_id: current_user.id).friendly.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
     # Associate Recipe created through Public Endpoints with currently authenticated user
@@ -60,7 +60,7 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.friendly.where(id: params[:id], user_id: current_user.id)
+    @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
     Recipe.destroy(@recipe.id)

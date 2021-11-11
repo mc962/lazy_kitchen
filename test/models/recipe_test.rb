@@ -44,10 +44,12 @@ class RecipeTest < ActiveSupport::TestCase
     should validate_uniqueness_of(:name)
   end
 
-  test 'publicly_accessible only get publicly accessible recipes' do
-    public_recipes = FactoryBot.create_list(:recipe, 2, publicly_accessible: true)
-    _private_recipes = FactoryBot.create_list(:recipe, 3, publicly_accessible: false)
+  context 'queries' do
+    should 'only get recipes that may be accessed publicly with #publicly_accessible' do
+      public_recipes = FactoryBot.create_list(:recipe, 2, publicly_accessible: true)
+      _private_recipes = FactoryBot.create_list(:recipe, 3, publicly_accessible: false)
 
-    assert Recipe.publicly_accessible.count == public_recipes.size
+      assert Recipe.publicly_accessible.count == public_recipes.size
+    end
   end
 end

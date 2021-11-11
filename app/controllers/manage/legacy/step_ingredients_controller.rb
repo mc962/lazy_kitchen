@@ -14,9 +14,24 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
   end
 
   def create
-    @step_ingredient = StepIngredient.new(step_ingredient_params)
-    authorize! @step_ingredient
+    authorize_step_ingredient = StepIngredient.new(
+      step_ingredient_params
+    )
 
+    authorize_step_ingredient.step = Step.new(
+      authorize_step_ingredient.step.attributes.merge(Step.managed.find(authorize_step_ingredient.step.id).attributes)
+    )
+    authorize_step_ingredient.ingredient = Ingredient.managed.find_or_initialize_by(
+      {
+        **authorize_step_ingredient.ingredient.attributes,
+        # Adding current_user here will have the effect of always searching for only the current user's ingredient,
+        # and if not then create a new ingredient owned by the user.
+        user: current_user
+      }
+    )
+    authorize! authorize_step_ingredient
+
+    @step_ingredient = StepIngredient.new(step_ingredient_params)
     if @step_ingredient.save
       flash.notice = 'Step Ingredient created successfully.'
       redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
@@ -52,17 +67,18 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
 
     StepIngredient.destroy(@step_ingredient.id)
 
-    redirect_to manage_legacy_recipe_step_step_ingredients_path
+    redirect_to manage_legacy_recipe_step_path(@step_ingredient.step.recipe.id, @step_ingredient.step)
   end
 
   private
-
+  # TODO ingredients_controller, acepts nested Ingredient, instead
   def step_ingredient_params
     params.require(:step_ingredient).permit(
       :id,
       :amount,
       :condition,
       :unit,
+      :step_id,
       ingredient_attributes: %i[
         id
         name

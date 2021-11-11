@@ -14,12 +14,13 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   end
 
   def create
-    @step = Step.new(step_params)
+    @recipe = Recipe.managed.find(params[:recipe_id])
+    @step = Step.new({ **step_params, recipe: @recipe })
     authorize! @step
 
     if @step.save
       flash.notice = 'Step created successfully.'
-      redirect_to manage_legacy_recipe_step_path(@step)
+      redirect_to manage_legacy_recipe_step_path(@recipe.id, @step)
     else
       flash.now[:error] = @step.errors.full_messages
       render :new
@@ -39,7 +40,7 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
 
     if @step.update(step_params)
       flash.notice = 'Step updated successfully.'
-      redirect_to manage_legacy_recipe_step_path(@step)
+      redirect_to manage_legacy_recipe_step_path(params[:recipe_id], @step)
     else
       flash.now[:error] = @step.errors.full_messages
       render :new
@@ -52,7 +53,7 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
 
     Step.destroy(@step.id)
 
-    redirect_to manage_legacy_recipe_steps_path
+    redirect_to manage_legacy_recipe_path(params[:recipe_id])
   end
 
   private

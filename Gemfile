@@ -92,6 +92,7 @@ group :test do
   gem 'mocha'
 
   # Improve Minitest output
+  # TODO Currently RubyMine does not appear to support minitest-reporters
   gem 'minitest-reporters'
 
   # Convenient one-line test statements

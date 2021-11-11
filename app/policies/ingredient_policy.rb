@@ -17,6 +17,10 @@ class IngredientPolicy < ApplicationPolicy
     user.id == record.user_id
   end
 
+  def edit?
+    allowed_to?(:edit?, record.user_id)
+  end
+
   def update?
     user.id == record.user_id
   end

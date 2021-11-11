@@ -13,8 +13,8 @@ FactoryBot.define do
       end
 
       after(:create) do |recipe, evaluator|
-        FactoryBot.create_list(:step, evaluator.steps_count, recipe: recipe)
-
+        recipe.reload
+        FactoryBot.create_list(:step_with_ingredients, evaluator.steps_count, recipe: recipe)
         recipe.reload
       end
     end

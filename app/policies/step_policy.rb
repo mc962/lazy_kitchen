@@ -17,6 +17,10 @@ class StepPolicy < ApplicationPolicy
     allowed_to?(:show?, record.recipe)
   end
 
+  def edit?
+    allowed_to?(:edit?, record.recipe)
+  end
+
   def update?
     allowed_to?(:update?, record.recipe)
   end
