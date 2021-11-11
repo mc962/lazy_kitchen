@@ -31,8 +31,8 @@ class Citation < ApplicationRecord
   # Handles data for any citations that need to be cited as having contributed in some way to the Recipe. In general,
   #   citations will follow and be displayed in the _`Modern Language Association`_ (*MLA*) format.
 
-  CONTENT_TYPES = Set['SITE', 'BOOK']
-  ORIGINS = Set['ADAPTED', 'INSPIRED', 'ORIGINAL']
+  CONTENT_TYPES = %w[SITE BOOK].freeze
+  ORIGINS = %w[ADAPTED INSPIRED ORIGINAL].freeze
 
   belongs_to :recipe
   has_many :authors, lambda {

@@ -3,12 +3,12 @@
 
   <div class="form-ctrl-container">
     <%= citation_form.label :origin, class: "form-ctrl-lbl" %>
-    <%= citation_form.select :origin, options_for_select(Citation::CONTENT_TYPES.map{|c| [c.capitalize, c]}), class: "form-ctrl" %>
+    <%= citation_form.select :origin, options_for_select(Citation::ORIGINS.map{|c| [c.capitalize, c]}), class: "form-ctrl" %>
     <%#= error_tag f, :origin %>
   </div>
   <div class="form-ctrl-container">
     <%= citation_form.label :content_type, class: "form-ctrl-lbl" %>
-    <%= citation_form.select :content_type, options_for_select(Citation::ORIGINS.map{|o| [o.capitalize, o]}, class: "form-ctrl") %>
+    <%= citation_form.select :content_type, options_for_select(Citation::CONTENT_TYPES.map{|o| [o.capitalize, o]}, class: "form-ctrl") %>
     <%#= error_tag f, :content_type %>
   </div>
 

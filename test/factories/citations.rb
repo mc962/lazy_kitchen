@@ -40,7 +40,7 @@ FactoryBot.define do
     site_title { Faker::Book.title }
     version { Faker::Number.between(from: 1, to: 20).to_s }
 
-    association :recipe
+    recipe { association :recipe_with_user }
 
     factory :citation_with_authors do
       transient do
