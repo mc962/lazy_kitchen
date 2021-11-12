@@ -42,7 +42,7 @@ jobs:
       - name: Run linters
         run: |
           bundle exec rubocop --parallel
-          eslint
+          npx eslint
       - name: Run security checks
         run: |
           bundle exec bundler-audit --update
