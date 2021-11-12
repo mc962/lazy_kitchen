@@ -55,15 +55,16 @@ jobs:
       db:
         image: postgres:13
         ports: [ '5432:5432' ]
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_DB: lazy_kitchen_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      redis:
+        image: redis
+        ports: [ '6379:6379' ]
+        options: --entrypoint redis-server
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -93,10 +94,17 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
         run: |
           bin/rails db:setup
 
       - name: Run tests
-        run: bin/rails test
         env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
           CI: true
+        run: |
+          bin/rails test
