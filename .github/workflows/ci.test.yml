@@ -58,6 +58,15 @@ jobs:
           POSTGRES_DB: lazy_kitchen_test
           POSTGRES_PASSWORD: ""
         ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports: [ '6379:6379' ]
+        options: --entrypoint redis-server
 
     steps:
       - name: Checkout code
@@ -93,12 +102,20 @@ jobs:
           PGUSER: postgres
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
         run: |
           bundle exec rails db:setup
 
       - name: Run tests
         timeout-minutes: 20
         run: bundle exec rails test
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
 #  test:
 #    name: Test
 #    runs-on: ubuntu-20.04
