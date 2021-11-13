@@ -92,6 +92,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install packages
+        timeout-minutes: 5
         run: |
           yarn install --pure-lockfile
       - name: Setup test database
@@ -112,5 +113,6 @@ jobs:
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
           CI: true
+        timeout-minutes: 20
         run: |
           bundle exec rails test
