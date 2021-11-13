@@ -19,7 +19,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include Capybara::Minitest::Assertions
 
   driven_by :selenium,
-            using: ENV['CI'] ? :headless_chrome : :chrome,
+            using: :headless_chrome,
             screen_size: [1400, 1400]
 end
 
