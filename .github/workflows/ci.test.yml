@@ -95,24 +95,40 @@ jobs:
         timeout-minutes: 5
         run: |
           yarn install --pure-lockfile
-      - name: Setup test database
+      - name: Build and run tests
         env:
-          RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
-          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
           PGUSER: postgres
-        run: |
-          bundle exec rails db:setup
-
-      - name: Run tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
-          REDIS_URL: redis://localhost:6379/0
-          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
           CI: true
-        timeout-minutes: 20
-        run: |
-          bundle exec rails test
+          run: |
+            sudo apt-get -yqq install libpq-dev
+            gem install bundler
+            bundle install --jobs 4 --retry 3
+            bundle exec rails db:prepare
+            bundle exec rails test
+
+#      - name: Setup test database
+#        env:
+#          RAILS_ENV: test
+#          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+#          REDIS_URL: redis://localhost:6379/0
+#          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+#          PGHOST: localhost
+#          PGUSER: postgres
+#        run: |
+#          bundle exec rails db:setup
+#
+#      - name: Run tests
+#        env:
+#          RAILS_ENV: test
+#          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+#          REDIS_URL: redis://localhost:6379/0
+#          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+#          CI: true
+#        timeout-minutes: 20
+#        run: |
+#          bundle exec rails test
