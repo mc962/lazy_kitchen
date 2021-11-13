@@ -104,7 +104,7 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
         run: |
-          bundle exec rails db:create db:schema:load
+          bundle exec rails db:schema:load
 
       - name: Run tests
         env:
