@@ -103,7 +103,7 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
         run: |
-          bin/rails db:setup
+          bundle exec rails db:setup
 
       - name: Run tests
         env:
@@ -113,4 +113,4 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
           CI: true
         run: |
-          bin/rails test
+          bundle exec rails test
