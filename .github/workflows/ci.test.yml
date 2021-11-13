@@ -47,6 +47,7 @@ jobs:
         run: |
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
+
   test:
     name: Test
     runs-on: ubuntu-20.04
@@ -94,22 +95,6 @@ jobs:
         timeout-minutes: 5
         run: |
           yarn install --pure-lockfile
-      - name: Build and run tests
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
-          REDIS_URL: redis://localhost:6379/0
-          RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          PGHOST: localhost
-          PGUSER: postgres
-          CI: true
-          run: |
-            sudo apt-get -yqq install libpq-dev
-            gem install bundler
-            bundle install --jobs 4 --retry 3
-            bundle exec rails db:prepare
-            bundle exec rails test
-
       - name: Setup test database
         env:
           RAILS_ENV: test
