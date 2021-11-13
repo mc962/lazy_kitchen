@@ -47,36 +47,27 @@ jobs:
         run: |
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
-
-  test:
-    name: Test
-    runs-on: ubuntu-20.04
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
     services:
-      db:
+      postgres:
         image: postgres:13
-        ports: [ '5432:5432' ]
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: lazy_kitchen_test
-      redis:
-        image: redis
-        ports: [ '6379:6379' ]
-        options: --entrypoint redis-server
+          POSTGRES_PASSWORD: ""
+        ports: ["5432:5432"]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
           bundler-cache: true
+
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
@@ -92,25 +83,85 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install packages
-        timeout-minutes: 5
         run: |
           yarn install --pure-lockfile
-      - name: Build and run tests
+
+      - name: Setup test database
         env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
-          REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
           PGUSER: postgres
-          CI: true
-          run: |
-            sudo apt-get -yqq install libpq-dev
-            gem install bundler
-            bundle install --jobs 4 --retry 3
-            bundle exec rails db:prepare
-            bundle exec rails test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+        run: |
+          bundle exec rails db:setup
 
+      - name: Run tests
+        timeout-minutes: 20
+        run: bundle exec rails test
+#  test:
+#    name: Test
+#    runs-on: ubuntu-20.04
+#    services:
+#      db:
+#        image: postgres:13
+#        ports: [ '5432:5432' ]
+#        options: >-
+#          --health-cmd pg_isready
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
+#        env:
+#          POSTGRES_USER: postgres
+#          POSTGRES_PASSWORD: postgres
+#          POSTGRES_DB: lazy_kitchen_test
+#      redis:
+#        image: redis
+#        ports: [ '6379:6379' ]
+#        options: --entrypoint redis-server
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#      - name: Setup Ruby and install gems
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: 3.0.2
+#          bundler-cache: true
+#      - name: Setup Node
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 16.13.0
+#      - name: Find yarn cache location
+#        id: yarn-cache
+#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#      - name: JS package cache
+#        uses: actions/cache@v1
+#        with:
+#          path: ${{ steps.yarn-cache.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-yarn-
+#      - name: Install packages
+#        timeout-minutes: 5
+#        run: |
+#          yarn install --pure-lockfile
+#      - name: Build and run tests
+#        env:
+#          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+#          REDIS_URL: redis://localhost:6379/0
+#          RAILS_ENV: test
+#          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+#          PGHOST: localhost
+#          PGUSER: postgres
+#          CI: true
+#          run: |
+#            sudo apt-get -yqq install libpq-dev
+#            gem install bundler
+#            bundle install --jobs 4 --retry 3
+#            bundle exec rails db:prepare
+#            bundle exec rails test
+#
 #      - name: Setup test database
 #        env:
 #          RAILS_ENV: test
