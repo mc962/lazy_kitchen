@@ -12,7 +12,7 @@ on:
 
 jobs:
   linters:
-    name: Linting
+    name: Linters
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
@@ -33,6 +33,18 @@ jobs:
         run: |
           bundle exec rubocop --parallel
           npx eslint
+
+  security_scanners:
+    name: Security Scanners
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.2
+          bundler-cache: true
       - name: Run security checks
         run: |
           bundle exec bundler-audit --update
