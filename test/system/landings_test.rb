@@ -4,7 +4,7 @@ class LandingsTest < ApplicationSystemTestCase
   test 'loads home page with limited selection of public recipes' do
     _private_recipes = FactoryBot.create_list(:recipe_with_user, 2, publicly_accessible: false)
     _public_recipes = FactoryBot.create_list(:recipe_with_user, LandingsController::MAX_HOME_RECIPES + 3, publicly_accessible: true)
-    raise 'uh oh'
+
     visit root_url
 
     within('#landing_recipes') do
