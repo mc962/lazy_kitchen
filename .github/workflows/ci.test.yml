@@ -136,4 +136,10 @@ jobs:
           CI: true
         timeout-minutes: 20
         run: |
-          bundle exec rails test
+          bundle exec rails test:models
+          bundle exec rails test:controllers
+          bundle exec rails test:integration
+          bundle exec rails test:helpers
+          bundle exec rails test:channels
+          bundle exec rails test:policies
+          bundle exec rails test:system
