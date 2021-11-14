@@ -49,31 +49,37 @@ jobs:
           bundle exec brakeman -q -w2
 
   test:
-    name: Tests
-    runs-on: ubuntu-latest
+    name: Test
+    runs-on: ubuntu-20.04
     services:
-      postgres:
-        image: postgres:11
-        env:
-          POSTGRES_USER: lazy_kitchen
-          POSTGRES_DB: lazy_kitchen_test
-          POSTGRES_PASSWORD: ""
-        ports: [ "5432:5432" ]
+      db:
+        image: postgres:13
+        ports: [ '5432:5432' ]
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lazy_kitchen_test
+      redis:
+        image: redis
+        ports: [ '6379:6379' ]
+        options: --entrypoint redis-server
 
     steps:
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get install google-chrome-stable
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: 3.0.2
           bundler-cache: true
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
@@ -89,28 +95,36 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install packages
+        timeout-minutes: 5
         run: |
           yarn install --pure-lockfile
-
+      - name: Setup chromedriver
+        run: |
+          # Install Chromedriver
+          CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
+          sudo wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
+          unzip ~/chromedriver_linux64.zip -d ~/
+          sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
+          sudo chown root:root /usr/local/bin/chromedriver
+          sudo chmod 0755 /usr/local/bin/chromedriver
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: lazy_kitchen
-          DATABASE_URL: postgres://lazy_kitchen:@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
-          CI: true
+          PGHOST: localhost
+          PGUSER: postgres
         run: |
-          bundle exec rails db:setup
+          bundle exec rails db:schema:load
 
       - name: Run tests
-        run: bundle exec rails test
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: lazy_kitchen
-          DATABASE_URL: postgres://lazy_kitchen:@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
           CI: true
+        timeout-minutes: 20
+        run: |
+          bundle exec rails test
