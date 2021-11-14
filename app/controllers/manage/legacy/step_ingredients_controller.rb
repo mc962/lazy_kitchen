@@ -34,9 +34,9 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
     if @step_ingredient.save
       flash.notice = 'Step Ingredient created successfully.'
       redirect_to manage_legacy_recipe_step_step_ingredient_path(
-                    @step_ingredient.step.recipe.id,
-                    @step_ingredient.step.id, @step_ingredient
-                  )
+        @step_ingredient.step.recipe.id,
+        @step_ingredient.step.id, @step_ingredient
+      )
     else
       flash.now[:error] = @step_ingredient.errors.full_messages
       render :new
@@ -63,9 +63,9 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
     if @step_ingredient.update(step_ingredient_params)
       flash.notice = 'Step Ingredient updated successfully.'
       redirect_to manage_legacy_recipe_step_step_ingredient_path(
-                    @step_ingredient.step.recipe.id,
-                    @step_ingredient.step.id, @step_ingredient
-                  )
+        @step_ingredient.step.recipe.id,
+        @step_ingredient.step.id, @step_ingredient
+      )
     else
       flash.now[:error] = @step_ingredient.errors.full_messages
       render :edit
@@ -79,9 +79,9 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
     StepIngredient.destroy(@step_ingredient.id)
 
     redirect_to manage_legacy_recipe_step_path(
-                  @step_ingredient.step.recipe.id,
-                  @step_ingredient.step
-                )
+      @step_ingredient.step.recipe.id,
+      @step_ingredient.step
+    )
   end
 
   private
