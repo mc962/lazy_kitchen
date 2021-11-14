@@ -70,6 +70,8 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
+      - name: Install System Dependencies
+        run: sudo apt-get install libpq-dev
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Ruby and install gems
