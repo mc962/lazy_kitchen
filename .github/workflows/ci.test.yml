@@ -141,5 +141,4 @@ jobs:
           bundle exec rails test:integration
           bundle exec rails test:helpers
           bundle exec rails test:channels
-          bundle exec rails test:policies
           bundle exec rails test:system
