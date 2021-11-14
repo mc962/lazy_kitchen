@@ -25,8 +25,8 @@ jobs:
       - name: Setup Node and Packages
         uses: actions/setup-node@v2
         with:
-          node-version: "16.13.0"
-          cache: "yarn"
+          node-version: 16.13.0
+          cache: yarn
       - run: yarn install --pure-lockfile
       - name: Run linters
         run: |
@@ -71,10 +71,6 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - name: Install System Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install google-chrome-stable
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Ruby and install gems
