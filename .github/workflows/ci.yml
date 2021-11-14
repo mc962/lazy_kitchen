@@ -64,8 +64,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         env:
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.PASSWORD }}
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: lazy_kitchen_test
       redis:
         image: redis
@@ -91,28 +91,28 @@ jobs:
       - name: Setup Test Database
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.PASSWORD }}@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
-          PGUSER: ${{ secrets.POSTGRES_USER }}
+          PGUSER: postgres
         run: |
           bundle exec rails db:schema:load
       - name: Build Test Assets
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.PASSWORD }}@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
-          PGUSER: ${{ secrets.POSTGRES_USER }}
+          PGUSER: postgres
         timeout-minutes: 10
         run: |
           bundle exec rails assets:precompile
       - name: Run Tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.PASSWORD }}@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           CI: true # Used in code for configuration when in test environment
