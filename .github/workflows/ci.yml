@@ -95,7 +95,7 @@ jobs:
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
-          PGUSER: postgres
+          PGUSER: ${{ secrets.POSTGRES_USER }}
         run: |
           bundle exec rails db:schema:load
       - name: Build Test Assets
@@ -105,7 +105,7 @@ jobs:
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
-          PGUSER: postgres
+          PGUSER: ${{ secrets.POSTGRES_USER }}
         timeout-minutes: 10
         run: |
           bundle exec rails assets:precompile
