@@ -88,15 +88,6 @@ jobs:
           node-version: "16.13.0"
           cache: "yarn"
       - run: yarn install --pure-lockfile
-      - name: Setup chromedriver
-        run: |
-          # Install Chromedriver
-          CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-          sudo wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
-          unzip ~/chromedriver_linux64.zip -d ~/
-          sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-          sudo chown root:root /usr/local/bin/chromedriver
-          sudo chmod 0755 /usr/local/bin/chromedriver
       - name: Setup test database
         env:
           RAILS_ENV: test
