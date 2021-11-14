@@ -92,8 +92,20 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: lazy_kitchen
+          DATABASE_URL: postgres://lazy_kitchen:@localhost:5432/lazy_kitchen_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          CI: true
         run: |
           bundle exec rails db:setup
 
       - name: Run tests
         run: bundle exec rails test
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: lazy_kitchen
+          DATABASE_URL: postgres://lazy_kitchen:@localhost:5432/lazy_kitchen_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          CI: true
