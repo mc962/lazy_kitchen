@@ -117,7 +117,16 @@ jobs:
           PGUSER: postgres
         run: |
           bundle exec rails db:schema:load
-
+      - name: Build test assets
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          PGHOST: localhost
+          PGUSER: postgres
+        run: |
+          bundle exec rails assets:precompile
       - name: Run tests
         env:
           RAILS_ENV: test
