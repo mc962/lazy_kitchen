@@ -1,7 +1,8 @@
 # Roadmap
 
-- GitHub Actions Workflows
 - Improve navigation and page linking
+- GitHub Actions Workflows
+- Production Settings and Credentials Setup
 
 ---
 - Pagination and Query Limiting

@@ -1,27 +1,24 @@
 <header class="header">
   <section class="container">
-    <nav role="navigation">
-      <ul>
-        <li>
-          <!-- link_to -->
-        </li>
+    <nav role="navigation" class="site-navigation">
+      <div class="site-nav-link home-nav-link">
+        <%= link_to 'Home', root_path %>
+      </div>
+
+      <ul class="site-nav-links">
         <% if user_signed_in? %>
-          <li class="header-link">
+          <li class="site-nav-link">
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
-          <li class="header-link">
+          <li class="site-nav-link">
             <%= link_to 'Sign Up', new_user_registration_path %>
           </li>
-          <li class="header-link">
+          <li class="site-nav-link">
             <%= link_to 'Sign In', new_user_session_path %>
           </li>
         <% end %>
       </ul>
     </nav>
-
-    <!-- <a href="/" class="logo">-->
-    <!--  <img src="" alt="Logo"/>-->
-    <!-- </a>-->
   </section>
 </header>
