@@ -15,36 +15,38 @@ jobs:
     name: Linters
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.0.2
-          bundler-cache: true
-      - name: Setup Node and Packages
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.13.0
-          cache: yarn
-      - run: yarn install --pure-lockfile
-      - name: Run linters
-        run: |
-          bundle exec rubocop --parallel
-          npx eslint
-
-  security_scanners:
-    name: Security Scanners
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
       - name: Setup Ruby and Gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.2
           bundler-cache: true
-      - name: Run security checks
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.13.0
+          cache: yarn
+      # NOTE: Unlike ruby/setup-ruby@v1 action, actions/setup-node@v2 does not have an option to install packages automatically
+      - name: Install JS Packages
+        run: yarn install --pure-lockfile
+      - name: Lint Ruby Code
+        run: bundle exec rubocop --parallel
+      - name: Lint JS Code
+        run: npx eslint
+
+  security_scanners:
+    name: Security Scanners
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Ruby and Gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.2
+          bundler-cache: true
+      - name: Run Security Checks
         run: |
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
@@ -62,8 +64,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.PASSWORD }}
           POSTGRES_DB: lazy_kitchen_test
       redis:
         image: redis
@@ -71,45 +73,48 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.2
           bundler-cache: true
-      - name: Setup Node and Packages
+      - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: "16.13.0"
-          cache: "yarn"
-      - run: yarn install --pure-lockfile
-      - name: Setup test database
+          node-version: 16.13.0
+          cache: yarn
+      # NOTE: Unlike ruby/setup-ruby@v1 action, actions/setup-node@v2 does not have an option to install packages automatically
+      - name: Install JS Packages
+        run: yarn install --pure-lockfile
+      - name: Setup Test Database
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.PASSWORD }}@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
-          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
           PGUSER: postgres
         run: |
           bundle exec rails db:schema:load
-      - name: Build test assets
+      - name: Build Test Assets
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.PASSWORD }}@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
-          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           PGHOST: localhost
           PGUSER: postgres
+        timeout-minutes: 10
         run: |
           bundle exec rails assets:precompile
-      - name: Run tests
+      - name: Run Tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.PASSWORD }}@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
-          RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           CI: true # Used in code for configuration when in test environment
         timeout-minutes: 20
         run: |
