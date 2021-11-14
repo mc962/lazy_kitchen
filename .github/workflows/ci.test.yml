@@ -73,6 +73,7 @@ jobs:
     steps:
       - name: Install System Dependencies
         run: |
+          sudo apt-get update
           sudo apt-get install google-chrome-stable
       - name: Checkout code
         uses: actions/checkout@v2
@@ -122,13 +123,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/lazy_kitchen_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_MASTER_KEY: ${{ secrets.LAZY_KITCHEN_RAILS_MASTER_KEY }}
-          CI: true
+          CI: true # Used in code for configuration when in test environment
         timeout-minutes: 20
         run: |
-          bundle exec rails test:models
-          bundle exec rails test:controllers
-          bundle exec rails test:integration
-          bundle exec rails test:helpers
-          bundle exec rails test:channels
-          bundle exec rails test:system
-#
+          bundle exec rails test:all
