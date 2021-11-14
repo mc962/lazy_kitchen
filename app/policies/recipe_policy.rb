@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecipePolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
@@ -14,6 +16,10 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def show?
+    user.id == record.user_id
+  end
+
+  def edit?
     user.id == record.user_id
   end
 

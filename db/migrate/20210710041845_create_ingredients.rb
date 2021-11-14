@@ -7,6 +7,6 @@ class CreateIngredients < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :ingredients, :name, unique: true
+    add_index :ingredients, :name, unique: true # TODO index on user id as well, only needs to be unique within user
   end
 end

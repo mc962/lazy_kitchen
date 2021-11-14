@@ -25,6 +25,21 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    email { Faker::Internet.unique.email }
+    username { Faker::Internet.unique.username }
+    password { 'password' }
+    # Default users to be confirmed so that tests may be performed using them
+    confirmed_at { DateTime.now }
+    factory :user_with_recipes do
+      transient do
+        recipes_count { 5 }
+      end
+
+      after(:create) do |user, evaluator|
+        FactoryBot.create_list(:recipe, evaluator.recipes_count, user: user)
+
+        user.reload
+      end
+    end
   end
 end

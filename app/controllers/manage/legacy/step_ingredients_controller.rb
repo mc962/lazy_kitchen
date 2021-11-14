@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationController
   def show
     @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
@@ -14,12 +16,27 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
   end
 
   def create
-    @step_ingredient = StepIngredient.new(step_ingredient_params)
+    step = Step.managed.find(params[:step_id])
+    @step_ingredient = StepIngredient.new(
+      {
+        **step_ingredient_params,
+        step: step
+      }
+    )
+    ingredient = Ingredient.managed.find_or_initialize_by(
+      user_id: current_user.id,
+      name: @step_ingredient.ingredient.name
+    )
+    @step_ingredient.ingredient.assign_attributes(ingredient.attributes)
+
     authorize! @step_ingredient
 
     if @step_ingredient.save
       flash.notice = 'Step Ingredient created successfully.'
-      redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
+      redirect_to manage_legacy_recipe_step_step_ingredient_path(
+        @step_ingredient.step.recipe.id,
+        @step_ingredient.step.id, @step_ingredient
+      )
     else
       flash.now[:error] = @step_ingredient.errors.full_messages
       render :new
@@ -35,14 +52,23 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
 
   def update
     @step_ingredient = StepIngredient.where(step_id: params[:step_id]).find(params[:id])
+    ingredient = Ingredient.managed.find_or_initialize_by(
+      user_id: current_user.id,
+      name: @step_ingredient.ingredient.name
+    )
+    @step_ingredient.ingredient.assign_attributes(ingredient.attributes)
+
     authorize! @step_ingredient
 
     if @step_ingredient.update(step_ingredient_params)
       flash.notice = 'Step Ingredient updated successfully.'
-      redirect_to manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)
+      redirect_to manage_legacy_recipe_step_step_ingredient_path(
+        @step_ingredient.step.recipe.id,
+        @step_ingredient.step.id, @step_ingredient
+      )
     else
       flash.now[:error] = @step_ingredient.errors.full_messages
-      render :new
+      render :edit
     end
   end
 
@@ -52,7 +78,10 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
 
     StepIngredient.destroy(@step_ingredient.id)
 
-    redirect_to manage_legacy_recipe_step_step_ingredients_path
+    redirect_to manage_legacy_recipe_step_path(
+      @step_ingredient.step.recipe.id,
+      @step_ingredient.step
+    )
   end
 
   private
@@ -63,10 +92,11 @@ class Manage::Legacy::StepIngredientsController < Manage::Legacy::ApplicationCon
       :amount,
       :condition,
       :unit,
-      ingredient_attributes: [
-        :id,
-        :name,
-        :description
+      :step_id,
+      ingredient_attributes: %i[
+        id
+        name
+        description
       ]
     )
   end

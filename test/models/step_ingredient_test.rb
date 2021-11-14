@@ -24,7 +24,19 @@
 require "test_helper"
 
 class StepIngredientTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  context 'associations' do
+    should belong_to(:step)
+    should belong_to(:ingredient)
+
+    context 'nested models' do
+      should accept_nested_attributes_for(:step)
+      should accept_nested_attributes_for(:ingredient)
+    end
+  end
+
+  context 'validations' do
+    should validate_presence_of(:amount)
+    should validate_presence_of(:step)
+    should validate_presence_of(:ingredient)
+  end
 end

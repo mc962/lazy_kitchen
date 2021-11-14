@@ -37,7 +37,7 @@
             <%= steps_form.hidden_field :order, class: "recipe-step-order" %>
             <p class="resource-text recipe-step-instruction"><%= steps_form.object.instruction %></p>
             <div class="manage-resource-links">
-              <%= link_to "Edit", edit_manage_legacy_recipe_step_path(steps_form.object), class: "button" %>
+              <%= link_to "Edit", edit_manage_legacy_recipe_step_path(steps_form.object.recipe, steps_form.object), class: "button" %>
             </div>
           </li>
         <% end %>

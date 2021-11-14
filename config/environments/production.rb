@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+LAZY_KITCHEN_HOST = 'alazykitchen.com'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -68,8 +70,20 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  #
+  # Settings for SMTP server to deliver email to (such as SendGrid)
+  config.action_mailer.smtp_settings = {
+    user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    password: ENV['SENDGRID_API_KEY'],
+    domain: LAZY_KITCHEN_HOST,
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
-  config.action_mailer.default_url_options = { host: raise NotImplementedError('Not yet configured!'), port: 3000 }
+  # Default URL options for used by Action Mailer for construction urls for emails
+  config.action_mailer.default_url_options = { host: LAZY_KITCHEN_HOST }
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

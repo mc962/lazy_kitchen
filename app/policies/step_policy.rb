@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StepPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
@@ -15,6 +17,10 @@ class StepPolicy < ApplicationPolicy
 
   def show?
     allowed_to?(:show?, record.recipe)
+  end
+
+  def edit?
+    allowed_to?(:edit?, record.recipe)
   end
 
   def update?

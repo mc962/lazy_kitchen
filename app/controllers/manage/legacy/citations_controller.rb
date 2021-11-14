@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationController
   def show
     @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
@@ -14,12 +16,13 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
   end
 
   def create
-    @citation = Citation.new(citation_params)
+    @recipe = Recipe.managed.find(params[:recipe_id])
+    @citation = Citation.new({ **citation_params, recipe: @recipe })
     authorize! @citation
 
     if @citation.save
       flash.notice = 'Citation created successfully.'
-      redirect_to manage_legacy_recipe_citation_path(@citation)
+      redirect_to manage_legacy_recipe_citation_path(@recipe.id, @citation)
     else
       flash.now[:error] = @citation.errors.full_messages
       render :new
@@ -28,18 +31,18 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
 
   def edit
     @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
-    authorize @citation
+    authorize! @citation
 
     render :edit
   end
 
   def update
     @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
-    authorize @citation
+    authorize! @citation
 
     if @citation.update(citation_params)
       flash.notice = 'Citation updated successfully.'
-      redirect_to manage_legacy_recipe_citation_path(@citation)
+      redirect_to manage_legacy_recipe_citation_path(params[:recipe_id], @citation)
     else
       flash.now[:error] = @citation.errors.full_messages
       render :new
@@ -52,7 +55,7 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
 
     Citation.destroy(@citation.id)
 
-    redirect_to manage_legacy_recipe_citations_path
+    redirect_to manage_legacy_recipe_path(params[:recipe_id])
   end
 
   private

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IngredientPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
@@ -15,6 +17,10 @@ class IngredientPolicy < ApplicationPolicy
 
   def show?
     user.id == record.user_id
+  end
+
+  def edit?
+    allowed_to?(:edit?, record.user_id)
   end
 
   def update?

@@ -26,7 +26,9 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { FactoryBot.create(:user) }
+
+  context 'associations' do
+    should have_many(:recipes)
+  end
 end

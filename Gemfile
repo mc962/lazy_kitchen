@@ -50,6 +50,9 @@ group :development, :test do
   # Generate fake seed data
   gem 'factory_bot_rails'
   gem 'faker'
+
+  # Ruby code linting
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
@@ -72,6 +75,10 @@ group :development do
 
   # Document Ruby code
   gem 'yard'
+
+  # Ruby security checkers
+  gem 'brakeman'
+  gem 'bundler-audit'
 end
 
 group :test do
@@ -85,7 +92,11 @@ group :test do
   gem 'mocha'
 
   # Improve Minitest output
+  # TODO Currently RubyMine does not appear to support minitest-reporters
   gem 'minitest-reporters'
+
+  # Convenient one-line test statements
+  gem 'shoulda', '~> 4.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

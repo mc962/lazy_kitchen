@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: citations
@@ -27,21 +29,19 @@
 #  fk_rails_...  (recipe_id => recipes.id)
 #
 
+# Handles data for any citations that need to be cited as having contributed in some way to the Recipe.
+#   In general, citations will follow and be displayed in the _`Modern Language Association`_ (*MLA*) format.
 class Citation < ApplicationRecord
-  # Handles data for any citations that need to be cited as having contributed in some way to the Recipe. In general,
-  #   citations will follow and be displayed in the _`Modern Language Association`_ (*MLA*) format.
-
-  CONTENT_TYPES = Set['SITE', 'BOOK']
-  ORIGINS = Set['ADAPTED', 'INSPIRED', 'ORIGINAL']
+  CONTENT_TYPES = %w[SITE BOOK].freeze
+  ORIGINS = %w[ADAPTED INSPIRED ORIGINAL].freeze
 
   belongs_to :recipe
-  has_many :authors, -> {
+  has_many :authors, lambda {
     # Citation's authors should be displayed sorted by last_name, first_name
     order(last_name: :asc, first_name: :asc)
   }
 
   # default_scope { includes(:authors) }
-
 
   validates :recipe, presence: true
 
@@ -78,7 +78,7 @@ class Citation < ApplicationRecord
 
     citation << ("#{authors.join(', ')}. ") if authors
 
-    citation << %Q{"#{publication_title}" } if publication_title
+    citation << %("#{publication_title}" ) if publication_title
 
     if site_title
       italicized_title = "<em>#{site_title}</em>, ".html_safe

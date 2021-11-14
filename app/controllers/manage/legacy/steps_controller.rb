@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   def show
     @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
@@ -14,12 +16,13 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   end
 
   def create
-    @step = Step.new(step_params)
+    @recipe = Recipe.managed.find(params[:recipe_id])
+    @step = Step.new({ **step_params, recipe: @recipe })
     authorize! @step
 
     if @step.save
       flash.notice = 'Step created successfully.'
-      redirect_to manage_legacy_recipe_step_path(@step)
+      redirect_to manage_legacy_recipe_step_path(@recipe.id, @step)
     else
       flash.now[:error] = @step.errors.full_messages
       render :new
@@ -27,19 +30,19 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
   end
 
   def edit
-    @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
+    @step = Step.find(params[:id])
     authorize! @step
 
     render :edit
   end
 
   def update
-    @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
+    @step = Step.find(params[:id])
     authorize! @step
 
     if @step.update(step_params)
       flash.notice = 'Step updated successfully.'
-      redirect_to manage_legacy_recipe_step_path(@step)
+      redirect_to manage_legacy_recipe_step_path(params[:recipe_id], @step)
     else
       flash.now[:error] = @step.errors.full_messages
       render :new
@@ -52,7 +55,7 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
 
     Step.destroy(@step.id)
 
-    redirect_to manage_legacy_recipe_steps_path
+    redirect_to manage_legacy_recipe_path(params[:recipe_id])
   end
 
   private
@@ -61,7 +64,7 @@ class Manage::Legacy::StepsController < Manage::Legacy::ApplicationController
     params.require(:step).permit(
       :id,
       :instruction,
-      :order,
+      :order
     )
   end
 end

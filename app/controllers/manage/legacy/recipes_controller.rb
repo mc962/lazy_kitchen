@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   def index
-    # Only show recipes for management owned by current user (including private recipes, so remove default `publicly_accessible` scope)
+    # Only show recipes for management owned by
+    #   current user (including private recipes, so remove default `publicly_accessible` scope)
     @recipes = Recipe.where(user_id: current_user.id).all
     authorize!
 
@@ -37,14 +40,14 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   end
 
   def edit
-    @recipe = Recipe.where(user_id: current_user.id).friendly.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
     render :edit
   end
 
   def update
-    @recipe = Recipe.where(user_id: current_user.id).friendly.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
     # Associate Recipe created through Public Endpoints with currently authenticated user
@@ -60,7 +63,7 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.friendly.where(id: params[:id], user_id: current_user.id)
+    @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
     Recipe.destroy(@recipe.id)
@@ -77,9 +80,9 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       :description,
       :image_url,
       :publicly_accessible,
-      steps_attributes: [
-        :id,
-        :order
+      steps_attributes: %i[
+        id
+        order
       ],
       citations_attributes: []
     )

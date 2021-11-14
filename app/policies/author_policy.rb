@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
@@ -14,7 +16,11 @@ class AuthorPolicy < ApplicationPolicy
   end
 
   def show?
-    record.present? && allowed_to?(:show?, record.citation)
+    allowed_to?(:show?, record.citation)
+  end
+
+  def edit?
+    allowed_to?(:edit?, record.citation)
   end
 
   def update?

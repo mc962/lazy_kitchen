@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: authors
@@ -19,10 +21,12 @@
 #
 #  fk_rails_...  (citation_id => citations.id)
 #
+
+# Represents Authors in the context of Recipe Citations
 class Author < ApplicationRecord
   belongs_to :citation
 
-  validates :citation, presence: true
+  validates :first_name, :citation, presence: true
 
   scope :managed, -> { includes(citation: [recipe: [:user]]) }
 end

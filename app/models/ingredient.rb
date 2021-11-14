@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ingredients
@@ -20,13 +22,13 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class Ingredient < ApplicationRecord
-  # Holds all information relating to an overall ingredient itself, not related directly to a Recipe that it might be
-  #   linked to
 
+# Holds all information relating to an overall ingredient itself, not related directly to a Recipe that
+#   it might be linked to
+class Ingredient < ApplicationRecord
   extend FriendlyId
 
-  belongs_to :user#, optional: true
+  belongs_to :user # , optional: true
   has_many :step_ingredients, dependent: :destroy
   has_many :steps, through: :step_ingredients
   has_many :recipes, through: :steps

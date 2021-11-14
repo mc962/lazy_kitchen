@@ -1,8 +1,8 @@
 require "test_helper"
 
-class LandingsControllerTest < ActionDispatch::IntegrationTest
+class LandingsControllerTest < ApplicationControllerTestCase
   test "should get home" do
-    get landings_home_url
+    get root_path
     assert_response :success
   end
 end

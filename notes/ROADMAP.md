@@ -1,6 +1,7 @@
 # Roadmap
 
 - GitHub Actions Workflows
+- Improve navigation and page linking
 
 ---
 - Pagination and Query Limiting
