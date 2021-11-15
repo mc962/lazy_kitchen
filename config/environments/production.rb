@@ -74,7 +74,7 @@ Rails.application.configure do
   # Settings for SMTP server to deliver email to (such as SendGrid)
   config.action_mailer.smtp_settings = {
     user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-    password: ENV['SENDGRID_API_KEY'],
+    password: Rails.application.credentials.sendgrid[:api_key],
     domain: LAZY_KITCHEN_HOST,
     address: 'smtp.sendgrid.net',
     port: 587,

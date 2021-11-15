@@ -5,6 +5,7 @@
 
 ---
 - Pagination and Query Limiting
+- Active Storage Integration
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
 - Step and Ingredient Notes
 - Personal Recipe Downloads
