@@ -1,3 +1,10 @@
-// Place all the styles related to the landings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.landing-heading {
+  text-align: center;
+}
+
+#landing_recipes {
+  width: 50%;
+  margin: 0 auto;
+  list-style: none;
+  padding-left: 0;
+}
