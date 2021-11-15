@@ -4,4 +4,10 @@
   <%= render partial: 'application/recipes/recipe', collection: @recipes %>
 </ul>
 
-<span><%= link_to "New Recipe", new_manage_legacy_recipe_path %></span>
+<div class="directory-actions-links">
+  <ul class="action-links">
+    <li class="directory-action-link">
+      <%= link_to "New Recipe", new_manage_legacy_recipe_path %>
+    </li>
+  </ul>
+</div>

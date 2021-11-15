@@ -29,6 +29,6 @@
   <ul class="action-links">
     <li class="action-link"><span><%= link_to "Edit", edit_manage_legacy_recipe_step_path(@step.recipe_id, @step) %></span></li>
     <li class="action-link"><span><%= link_to "Delete", {action: :destroy, method: :delete, recipe_id: @step.recipe.id, id: @step.id, data: {confirm: "Are you sure?"}} %></span></li>
-    <li class="action-link"><span><%= link_to "Back", manage_legacy_recipe_step_path(@step.recipe_id, @step) %></span></li>
+    <li class="action-link"><span><%= link_to "Back", manage_legacy_recipe_path(@step.recipe_id) %></span></li>
   </ul>
 </nav>
