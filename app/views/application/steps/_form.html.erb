@@ -1,5 +1,6 @@
 <%= form_with model: @step, class: 'resource-form', url: action do |step_form| %>
   <%= step_form.hidden_field :recipe_id, value: step_form.object.recipe.id %>
+  <%= step_form.hidden_field :order, value: new_step_order(http_method, step_form.object.order, step_form.object.recipe) %>
   <div class="form-ctrl-container">
     <label for="step_order" class="form-ctrl-label">Order: </label>
     <p id="step_order" class="form-ctrl"><%= step_form.object.order %></p>

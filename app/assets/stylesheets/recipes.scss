@@ -2,6 +2,56 @@
 Shared
  */
 
+.site-navigation {
+  width: 100%;
+  display: flex;
+
+  .home-nav-link {
+    width: 20%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .site-nav-links {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style: none;
+    padding-left: 0;
+    .site-nav-link {
+      width: 20%;
+      text-align: center;
+      padding: 1%;
+    }
+  }
+}
+
+.directory-actions-links {
+  margin: 0 auto;
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  .action-links {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 0;
+    list-style: none;
+    .directory-action-link {
+      padding: 2%;
+      text-align: center;
+      width: 20%;
+    }
+  }
+}
+
 .resource-heading {
   text-align: center;
 }
@@ -240,6 +290,15 @@ Steps
 
 .resource-list-container.small-list-container {
   width: 75%;
+}
+
+.recipe-step {
+  cursor: grab;
+  border: 1px solid black;
+  padding: 1%;
+  &:hover {
+    box-shadow: 6px 6px 2px 1px #2E2F30;
+  }
 }
 
 /**

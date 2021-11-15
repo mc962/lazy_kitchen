@@ -17,8 +17,8 @@
           <li class="recipe-step resource-item">
             <p class="recipe-step-instruction resource-text"><%= step.instruction %></p>
             <div class="recipe-step-links manage-resource-links">
-              <span><%= link_to "Show", manage_legacy_recipe_step_path(step) %></span>
-              <span><%= link_to "Edit", edit_manage_legacy_recipe_step_path(step) %></span>
+              <span><%= link_to "Show", manage_legacy_recipe_step_path(step.recipe.id, step) %></span>
+              <span><%= link_to "Edit", edit_manage_legacy_recipe_step_path(step.recipe.id, step) %></span>
             </div>
           </li>
         <% end %>
@@ -31,8 +31,8 @@
           <li class="recipe-citation resource-item">
             <p class="recipe-citation-publication-title resource-text"><%= citation.publication_title %></p>
             <div class="recipe-citation-links manage-resource-links">
-              <div><%= link_to "Show", manage_legacy_recipe_citation_path(citation) %></div>
-              <div><%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citation) %></div>
+              <div><%= link_to "Show", manage_legacy_recipe_citation_path(citation.recipe.id, citation) %></div>
+              <div><%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citation.recipe.id, citation) %></div>
             </div>
           </li>
         <% end %>

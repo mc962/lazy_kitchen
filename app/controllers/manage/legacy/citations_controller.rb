@@ -9,7 +9,7 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
   end
 
   def new
-    @citation = Citation.new(recipe_id: params[:recipe_id])
+    @citation = Citation.new(recipe: Recipe.managed.friendly.find(params[:recipe_id]))
     authorize!
 
     render :new
@@ -30,7 +30,7 @@ class Manage::Legacy::CitationsController < Manage::Legacy::ApplicationControlle
   end
 
   def edit
-    @citation = Citation.where(recipe_id: params[:recipe_id]).find(params[:id])
+    @citation = Citation.managed.find(params[:id])
     authorize! @citation
 
     render :edit
