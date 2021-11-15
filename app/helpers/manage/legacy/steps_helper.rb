@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Manage::Legacy::StepsHelper
-  # Get potential order of current step, based on number of existing steps on recipe (assumes steps are added to the end),
-  #   when adding a new step.
+  # Get potential order of current step, based on number of existing steps on recipe
+  #   (assumes steps are added to the end), when adding a new step.
   #   If step already exists, then simply use that step's order value.
   #
   # @param [Recipe]
