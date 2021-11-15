@@ -1,6 +1,7 @@
 # Roadmap
 
 - Production Settings and Credentials Setup
+- Changelog file
 - GitHub Actions Workflows
 
 ---
