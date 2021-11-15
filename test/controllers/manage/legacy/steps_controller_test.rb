@@ -55,7 +55,7 @@ class Manage::Legacy::StepsControllerTest < ApplicationControllerTestCase
     end
 
     should"create step" do
-      new_step_params = {order: Faker::Number.between(from: 1, to: 100), instruction: Faker::TvShows::DrWho.quote}
+      new_step_params = {order: Faker::Number.between(from: 1, to: 100), instruction: Faker::TvShows::DrWho.quote + SecureRandom.uuid}
       post manage_legacy_recipe_steps_url(@step.recipe.id), params: {step: new_step_params}
       assert_response :found
 

@@ -19,6 +19,8 @@ module LazyKitchen
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.application_version = '0.1.0'
+
     # Map ActionPolicy Forbidden errors to Rails error handling
     config.action_dispatch.rescue_responses.merge!(
       {
