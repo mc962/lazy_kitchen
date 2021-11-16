@@ -51,8 +51,8 @@ jobs:
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
 
-  test:
-    name: Test
+  tests:
+    name: Tests
     runs-on: ubuntu-20.04
     services:
       db:
