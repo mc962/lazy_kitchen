@@ -3,7 +3,7 @@
 
   <div class="form-ctrl-container">
     <%= step_ingredient_form.label :amount, class: "form-ctrl-lbl" %>
-    <%= step_ingredient_form.number_field :amount, class: "form-ctrl" %>
+    <%= step_ingredient_form.number_field :amount, min: 0, step: "any", class: "form-ctrl" %>
     <%#= error_tag f, :amount %>
   </div>
 

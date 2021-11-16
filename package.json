@@ -1,5 +1,6 @@
 {
   "name": "lazy-kitchen",
+  "version": "0.1.0",
   "license": "UNLICENSED",
   "engines": {
     "node": "16.13.0",
@@ -15,7 +16,6 @@
     "sortablejs": "^1.14.0",
     "turbolinks": "^5.2.0"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.16.0",

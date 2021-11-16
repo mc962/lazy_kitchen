@@ -1,13 +1,14 @@
 # Roadmap
 
 - GitHub Actions Workflows
-- Production Settings and Credentials Setup
 
 ---
+- Favicon
 - Pagination and Query Limiting
 - Active Storage Integration
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
 - Step and Ingredient Notes
+- Better Resource Management 
 - Personal Recipe Downloads
 - CookLang Support
 - Bulk Recipe Uploads
