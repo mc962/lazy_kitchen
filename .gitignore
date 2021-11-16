@@ -38,6 +38,9 @@ yarn-debug.log*
 .yarn-integrity
 .yarn/
 
+# OS Files
+.DS_Store
+
 # IDEs
 .idea/
 *.iml

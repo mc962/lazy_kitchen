@@ -37,6 +37,9 @@ gem "action_policy"
 # User-friendly URL Slugs
 gem 'friendly_id', '~> 5.4.0'
 
+# Pagination
+gem 'kaminari'
+
 # CORS
 gem 'rack-cors'
 

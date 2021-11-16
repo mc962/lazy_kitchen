@@ -55,4 +55,12 @@ class Recipe < ApplicationRecord
   def self.root_recipes(limit: 10)
     Recipe.publicly_accessible.limit(limit)
   end
+
+  # A basic paginated list of recipes, alphabetized by name, meant for a directory-like navigation of recipes
+  #
+  # @param [ActionController::Parameters<Integer>] page Current page used to fetch correct selection of recipes
+  # @return [Recipe::ActiveRecord_Relation]
+  def self.directory_recipes(page)
+    order(:name).page(page)
+  end
 end
