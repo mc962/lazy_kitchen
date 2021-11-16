@@ -154,3 +154,26 @@ Form
     justify-content: center;
   }
 }
+
+/**
+Pagination
+ */
+
+.paginated-resources-container {
+  display: flex;
+  flex-direction: column;
+
+  .page-entries-info {
+    width: 40%;
+    align-self: end;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    span {
+      margin: 0 0.5%;
+    }
+  }
+}

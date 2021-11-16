@@ -1,8 +1,16 @@
 <h1 class="recipes-heading">Listing Recipes</h1>
 
-<ul id="directory_recipes">
-  <%= render partial: 'application/recipes/recipe', collection: @recipes %>
-</ul>
+<div class="paginated-resources-container">
+  <p class="page-entries-info">
+    <%= page_entries_info @recipes %>
+  </p>
+
+  <ul id="directory_recipes">
+    <%= render partial: 'application/recipes/recipe', collection: @recipes %>
+  </ul>
+
+  <%= paginate @recipes %>
+</div>
 
 <div class="directory-actions-links">
   <ul class="action-links">
