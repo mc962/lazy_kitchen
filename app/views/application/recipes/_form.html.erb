@@ -7,11 +7,11 @@
   </div>
 
   <div class="recipe-profile-img-container">
-    <%= primary_picture(recipe_form.object) %>
+    <%= primary_picture(recipe_form.object, classes: "recipe-profile-img synced-img recipe-picture", alt_text: "Main picture of recipe food") %>
   </div>
 
-  <div class="form-ctrl-container">
-    <%= recipe_form.file_field :primary_picture %>
+  <div class="form-ctrl-container recipe-profile-img-input-container">
+    <%= recipe_form.file_field :primary_picture, class: "synced-img-src recipe-picture form-ctrl", data: {image_selector: '.recipe-profile-img'} %>
     <%#= error_tag f, :image_url %>
   </div>
 

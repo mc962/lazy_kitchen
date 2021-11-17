@@ -36,8 +36,6 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user # , optional: true
-  has_one_attached :primary_picture
-
 
   validates :name, presence: true
   validates :name, uniqueness: true

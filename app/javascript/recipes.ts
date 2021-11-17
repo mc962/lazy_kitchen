@@ -30,8 +30,20 @@ const syncInputImg = (element) => {
     if (imgTagSelector) {
         const imgTag = document.querySelector(`${imgTagSelector}.synced-img`) as HTMLImageElement;
         if (imgTag) {
-            element.addEventListener('input', () => {
-                imgTag.src = element.value;
+            element.addEventListener('input', (event: Event) => {
+                const fileInput = event.currentTarget as HTMLInputElement;
+                const imageFile = fileInput.files[0];
+                if (imageFile) {
+                    const currentImageUrl = imgTag.src;
+                    if (currentImageUrl.length) {
+                        // Ensure that any existing image urls are revoked before attaching a new one, for performance reasons.
+                        URL.revokeObjectURL(currentImageUrl);
+                    }
+
+                    imgTag.src = URL.createObjectURL(imageFile);
+                } else {
+                    console.warn('Image file was not attached to browser properly.');
+                }
             });
         } else {
             console.warn(`No img tag corresponding to ${imgTagSelector}`);

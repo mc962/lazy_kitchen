@@ -29,7 +29,6 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
     # Associate Recipe created through Public Endpoints with currently authenticated user
     @recipe.user = current_user
     authorize! @recipe
-    @recipe.primary_picture.attach(params[:primary_picture])
 
     if @recipe.save
       flash.notice = 'Recipe created successfully.'
@@ -50,7 +49,14 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   def update
     @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
-    @recipe.primary_picture.attach(params[:primary_picture])
+
+    @recipe.primary_picture.attach(
+      key: "#{RESOURCE_BUCKET_PREFIX}/recipes/#{recipe_params[:primary_picture].original_filename}",
+      io: recipe_params[:primary_picture],
+      content_type: recipe_params[:primary_picture].content_type,
+      filename: recipe_params[:primary_picture].original_filename
+    )
+    # @recipe.primary_picture.attach(params[:primary_picture])
 
     # Associate Recipe created through Public Endpoints with currently authenticated user
     # @recipe.user = current_user

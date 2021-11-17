@@ -5,13 +5,11 @@ module RecipesHelper
   #   then display a default fallback image.
   #
   # @param [Recipe] recipe Recipe to check for if there is a primary_picture
-  def primary_picture(recipe)
-    classes = "recipe-profile-img synced-img recipe-picture"
-    alt_text = "Main picture of recipe food"
+  def primary_picture(recipe, alt_text:, classes:)
     if recipe.primary_picture.attached?
       image_tag recipe.primary_picture, alt: alt_text, class: classes
     else
-      image_tag recipe_bucket_asset_url(Recipe::DEFAULT_PRIMARY_PICTURE_KEY)
+      image_tag recipe_bucket_asset_url(Recipe::DEFAULT_PRIMARY_PICTURE_KEY), alt: alt_text, class: classes
     end
   end
 end

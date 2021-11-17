@@ -34,6 +34,8 @@ gem "action_policy"
 # ActiveStorage
 gem 'image_processing', '~> 1.2'
 gem "aws-sdk-s3", require: false
+gem 'ruby-vips'
+gem "shrine", "~> 3.4"
 
 # User-friendly URL Slugs
 gem 'friendly_id', '~> 5.4.0'
