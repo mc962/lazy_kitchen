@@ -17,7 +17,7 @@ ActiveStorage.start()
 // Set up JS that depends on only DOM being fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     setupFlashAlerts();
-    setupImageInputSync(SYNCED_IMG_SRC_SELECTOR);
+    // setupImageInputSync(SYNCED_IMG_SRC_SELECTOR);
     setupDraggableList(DRAGGABLE_LIST_SELECTOR);
 })
 

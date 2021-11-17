@@ -5,7 +5,9 @@ module Manage::Legacy::StepsHelper
   #   (assumes steps are added to the end), when adding a new step.
   #   If step already exists, then simply use that step's order value.
   #
-  # @param [Recipe]
+  # @param [Symbol] form_action
+  # @param [Integer] existing_step_order
+  # @param [Recipe] recipe
   # @return [Integer]
   def new_step_order(form_action, existing_step_order, recipe)
     case form_action

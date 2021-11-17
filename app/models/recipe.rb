@@ -36,6 +36,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user # , optional: true
+  has_one_attached :primary_picture
+
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -48,6 +50,7 @@ class Recipe < ApplicationRecord
   scope :publicly_accessible, -> { where(publicly_accessible: true) }
 
   MAX_STEPS = 100
+  DEFAULT_PRIMARY_PICTURE_KEY = 'site/default_food.jpg'
 
   # Recipes for the main/root landing page
   #

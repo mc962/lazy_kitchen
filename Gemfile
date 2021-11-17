@@ -31,8 +31,9 @@ gem 'argon2', '>= 2'
 # Authorization framework
 gem "action_policy"
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# ActiveStorage
+gem 'image_processing', '~> 1.2'
+gem "aws-sdk-s3", require: false
 
 # User-friendly URL Slugs
 gem 'friendly_id', '~> 5.4.0'

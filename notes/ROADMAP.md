@@ -1,7 +1,7 @@
 # Roadmap
 
-- Pagination and Query Limiting
 - Active Storage Integration
+- Update Resource Constraints Within User
 - Better Resource Management
 - GitHub Actions Workflows
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes

@@ -1,0 +1,1 @@
+LAZY_KITCHEN_BUCKET = 'lazy-kitchen'
