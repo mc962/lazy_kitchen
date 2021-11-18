@@ -33,7 +33,6 @@ class Ingredient < ApplicationRecord
   has_many :steps, through: :step_ingredients
   has_many :recipes, through: :steps
 
-
   validates :name, presence: true
   validates :name, uniqueness: {
     scope: [:user_id]
@@ -41,7 +40,7 @@ class Ingredient < ApplicationRecord
 
   accepts_nested_attributes_for :step_ingredients
 
-  friendly_id :name, use: [:slugged, :scoped, :history], scope: [:user]
+  friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
 
@@ -49,7 +48,7 @@ class Ingredient < ApplicationRecord
   # and when the name is updated
   #
   # @return [Boolean]
-  #noinspection RubyInstanceMethodNamingConvention
+  # noinspection RubyInstanceMethodNamingConvention
   def should_generate_new_friendly_id?
     new_record? || name_changed?
   end

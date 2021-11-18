@@ -37,7 +37,6 @@ class Recipe < ApplicationRecord
   has_many :citations
   belongs_to :user
 
-
   validates :name, presence: true
   validates :name, uniqueness: {
     scope: [:user_id]
@@ -45,7 +44,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for(:steps, :citations)
 
-  friendly_id :name, use: [:slugged, :scoped, :history], scope: [:user]
+  friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
   scope :publicly_accessible, -> { where(publicly_accessible: true) }
@@ -71,7 +70,7 @@ class Recipe < ApplicationRecord
   # and when the name is updated
   #
   # @return [Boolean]
-  #noinspection RubyInstanceMethodNamingConvention
+  # noinspection RubyInstanceMethodNamingConvention
   def should_generate_new_friendly_id?
     new_record? || name_changed?
   end
