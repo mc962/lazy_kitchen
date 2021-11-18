@@ -12,9 +12,9 @@
 #
 # Indexes
 #
-#  index_ingredients_on_name     (name) UNIQUE
-#  index_ingredients_on_slug     (slug) UNIQUE
-#  index_ingredients_on_user_id  (user_id)
+#  index_ingredients_on_name_and_user_id  (name,user_id) UNIQUE
+#  index_ingredients_on_slug              (slug) UNIQUE
+#  index_ingredients_on_user_id           (user_id)
 #
 # Foreign Keys
 #
