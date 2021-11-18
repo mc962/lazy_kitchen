@@ -44,7 +44,7 @@
 <nav class="action-links-navbar">
   <ul class="action-links">
     <li class="action-link"><%= link_to "Edit", edit_manage_legacy_recipe_path(@recipe) %></li>
-    <li class="action-link"><%= link_to "Delete", {action: :destroy, method: :delete, id: @recipe.id, data: {confirm: "Are you sure?"}} %></li>
+    <li class="action-link"><%= link_to "Delete", manage_legacy_recipe_path(@recipe), {action: :destroy, method: :delete, id: @recipe.id, data: {confirm: "Are you sure?"}} %></li>
     <li class="action-link"><%= link_to "Back", manage_legacy_recipes_path %></li>
   </ul>
 </nav>

@@ -14,9 +14,9 @@
 #
 # Indexes
 #
-#  index_recipes_on_name     (name) UNIQUE
-#  index_recipes_on_slug     (slug) UNIQUE
-#  index_recipes_on_user_id  (user_id)
+#  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
+#  index_recipes_on_slug              (slug) UNIQUE
+#  index_recipes_on_user_id           (user_id)
 #
 # Foreign Keys
 #

@@ -16,9 +16,9 @@
 #
 # Indexes
 #
-#  index_recipes_on_name     (name) UNIQUE
-#  index_recipes_on_slug     (slug) UNIQUE
-#  index_recipes_on_user_id  (user_id)
+#  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
+#  index_recipes_on_slug              (slug) UNIQUE
+#  index_recipes_on_user_id           (user_id)
 #
 # Foreign Keys
 #
@@ -35,14 +35,16 @@ class Recipe < ApplicationRecord
   }, dependent: :destroy
   has_many :ingredients, through: :steps
   has_many :citations
-  belongs_to :user # , optional: true
+  belongs_to :user
 
   validates :name, presence: true
-  validates :name, uniqueness: true
+  validates :name, uniqueness: {
+    scope: [:user_id]
+  }
 
   accepts_nested_attributes_for(:steps, :citations)
 
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
   scope :publicly_accessible, -> { where(publicly_accessible: true) }
@@ -63,5 +65,14 @@ class Recipe < ApplicationRecord
   # @return [Recipe::ActiveRecord_Relation]
   def self.directory_recipes(page)
     order(:name).page(page)
+  end
+
+  # Determines if a new slug should be generated. Currently this happens when the model is first created,
+  # and when the name is updated
+  #
+  # @return [Boolean]
+  # noinspection RubyInstanceMethodNamingConvention
+  def should_generate_new_friendly_id?
+    new_record? || name_changed?
   end
 end
