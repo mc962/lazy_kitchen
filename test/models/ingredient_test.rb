@@ -12,9 +12,9 @@
 #
 # Indexes
 #
-#  index_ingredients_on_name     (name) UNIQUE
-#  index_ingredients_on_slug     (slug) UNIQUE
-#  index_ingredients_on_user_id  (user_id)
+#  index_ingredients_on_name_and_user_id  (name,user_id) UNIQUE
+#  index_ingredients_on_slug              (slug) UNIQUE
+#  index_ingredients_on_user_id           (user_id)
 #
 # Foreign Keys
 #
@@ -38,6 +38,6 @@ class IngredientTest < ActiveSupport::TestCase
 
   context 'validations' do
     should validate_presence_of(:name)
-    should validate_uniqueness_of(:name)
+    should validate_uniqueness_of(:name).scoped_to(:user_id)
   end
 end

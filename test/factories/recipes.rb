@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id                  :bigint           not null, primary key
+#  description         :text
+#  image_url           :string
+#  name                :string           not null
+#  publicly_accessible :boolean          default(FALSE), not null
+#  slug                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :bigint
+#
+# Indexes
+#
+#  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
+#  index_recipes_on_slug              (slug) UNIQUE
+#  index_recipes_on_user_id           (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 FactoryBot.define do
   factory :recipe do
     name { Faker::Food.dish + SecureRandom.uuid }

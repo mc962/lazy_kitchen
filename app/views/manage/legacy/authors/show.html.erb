@@ -14,7 +14,7 @@
 <nav class="action-links-navbar">
   <ul class="action-links">
     <li class="action-link"><span><%= link_to "Edit", edit_manage_legacy_recipe_citation_author_path(@author.citation.recipe, @author.citation, @author) %></span></li>
-    <li class="action-link"><span><%= link_to "Delete", {action: :destroy, method: :delete, recipe_id: @author.citation.recipe.id, citation_id: @author.citation.id, id: @author.id, data: {confirm: "Are you sure?"}} %></span></li>
+    <li class="action-link"><span><%= link_to "Delete", manage_legacy_recipe_citation_path(@author.citation.recipe, @author.citation, @author), {action: :destroy, method: :delete, recipe_id: @author.citation.recipe.id, citation_id: @author.citation.id, id: @author.id, data: {confirm: "Are you sure?"}} %></span></li>
     <li class="action-link"><span><%= link_to "Back", manage_legacy_recipe_citation_path(@author.citation.recipe, @author.citation) %></span></li>
   </ul>
 </nav>
