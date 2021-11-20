@@ -1,7 +1,6 @@
 # Roadmap
 
-- Active Storage Integration
-- Update Resource Constraints Within User
+- Image Management Integration
 - Better Resource Management
 - GitHub Actions Workflows
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
