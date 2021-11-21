@@ -11,6 +11,8 @@ module RecipesHelper
     alt_text = "Main picture of recipe food"
     if recipe.primary_picture.attached?
       image_tag recipe.primary_picture, alt: alt_text, class: classes
+    else
+      image_tag recipe_bucket_asset_url(Recipe::DEFAULT_PRIMARY_PICTURE_KEY), alt: alt_text, class: classes
     end
   end
 end
