@@ -5,7 +5,7 @@
       <ul id="existing_resource_images" class="gallery-images-container">
         <% if recipe_form.object.gallery_pictures.attached? %>
           <% recipe_form.object.gallery_pictures.each do |picture| %>
-            <li class="existing-resource-image">
+            <li class="preview-resource-image existing-resource-image">
               <%#= image_tag picture.representation(resize_to_limit: [100, 100]).processed.url %>
               <%= image_tag picture, alt: 'Gallery picture of recipe food', class: 'resource-gallery-img' %>
               <div class="delete-img-container">
@@ -19,13 +19,12 @@
     </div>
     <div class="resource-preview-container">
       <label for="new_resource_images">Images to Upload</label>
-      <ul id="new_resource_images" class="gallery-images-container">
-        <template id="new_resource_image_template">
-          <li class="new-resource-image">
-            <img src="" alt="<% "A picture of #{recipe_form.object.name}" %>"> />
-          </li>
-        </template>
-      </ul>
+      <ul id="new_resource_images" class="gallery-images-container"></ul>
+      <template id="new_resource_image_template">
+        <li class="preview-resource-image new-resource-image">
+          <img src="" alt="<% "A picture of #{recipe_form.object.name}" %>" class="resource-gallery-img synced-multi-img" />
+        </li>
+      </template>
     </div>
   </div>
 

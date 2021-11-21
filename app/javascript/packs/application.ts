@@ -8,7 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import {setupFlashAlerts} from "alert";
-import {DRAGGABLE_LIST_SELECTOR, setupDraggableList, setupSingleImgSync} from "recipes";
+import {DRAGGABLE_LIST_SELECTOR, setupDraggableList, setupMultiImgSync, setupSingleImgSync} from "recipes";
 
 Rails.start()
 Turbolinks.start()
@@ -17,7 +17,8 @@ ActiveStorage.start()
 // Set up JS that depends on only DOM being fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     setupFlashAlerts();
-    setupSingleImgSync('.synced-single-img.recipe-primary-picture', '.synced-img.recipe-profile-img')
+    setupSingleImgSync('.synced-single-img.recipe-primary-picture', '.synced-img.recipe-profile-img');
+    setupMultiImgSync('#recipe_gallery_pictures', '#new_resource_images');
     setupDraggableList(DRAGGABLE_LIST_SELECTOR);
 })
 
