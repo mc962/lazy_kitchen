@@ -27,5 +27,8 @@ module LazyKitchen
     )
     # Allow custom error pages
     config.exceptions_app = self.routes
+
+    # Do not destroy existing attachments on new attachment upload
+    config.active_storage.replace_on_assign_to_many = false
   end
 end

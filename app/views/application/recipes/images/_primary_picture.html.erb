@@ -1,0 +1,9 @@
+<section class="resource-primary-img-container">
+  <div class="edit-recipe-profile-img-container">
+    <%= primary_picture(recipe_form.object) %>
+  </div>
+  <div class="form-ctrl-container primary-picture-upload-ctrl" id="primary_picture_upload_ctrl_container">
+    <%= recipe_form.file_field :primary_picture %>
+    <%#= error_tag f, :image_url %>
+  </div>
+</section>

@@ -29,7 +29,6 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
     # Associate Recipe created through Public Endpoints with currently authenticated user
     @recipe.user = current_user
     authorize! @recipe
-    @recipe.primary_picture.attach(params[:primary_picture])
 
     if @recipe.save
       flash.notice = 'Recipe created successfully.'
@@ -50,10 +49,6 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
   def update
     @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
-    @recipe.primary_picture.attach(params[:primary_picture])
-
-    # Associate Recipe created through Public Endpoints with currently authenticated user
-    # @recipe.user = current_user
 
     if @recipe.update(recipe_params)
       flash.notice = 'Recipe updated successfully.'
@@ -83,6 +78,7 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       :image_url,
       :publicly_accessible,
       :primary_picture,
+      gallery_pictures: [],
       steps_attributes: %i[
         id
         order

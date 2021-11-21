@@ -6,14 +6,9 @@
     <%#= error_tag f, :name %>
   </div>
 
-  <div class="recipe-profile-img-container">
-    <%= primary_picture(recipe_form.object) %>
-  </div>
+  <%= render partial: 'application/recipes/images/primary_picture', locals: {recipe_form: recipe_form} %>
 
-  <div class="form-ctrl-container">
-    <%= recipe_form.file_field :primary_picture %>
-    <%#= error_tag f, :image_url %>
-  </div>
+  <%= render partial: 'application/recipes/images/gallery_pictures', locals: {recipe_form: recipe_form} %>
 
   <div class="form-ctrl-container publicly-accessible-container">
     <%= recipe_form.label :publicly_accessible, class: "form-ctrl-lbl" %>
@@ -57,7 +52,7 @@
           <li class="resource-item">
             <p class="citation-publication-title resource-text"><%= citations_form.object.publication_title %></p>
             <div class="manage-resource-links">
-              <%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citations_form.object), class: "button" %>
+              <%= link_to "Edit", edit_manage_legacy_recipe_citation_path(citations_form.object.recipe.id, citations_form.object), class: "button" %>
             </div>
           </li>
         <% end %>

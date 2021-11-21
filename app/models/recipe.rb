@@ -28,6 +28,7 @@
 # Holds all information relating to an overall recipe itself
 class Recipe < ApplicationRecord
   extend FriendlyId
+  include ActiveStoragePath
 
   has_many :steps, lambda {
     # Recipe's steps should be displayed in order
@@ -36,7 +37,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user
-  has_one_attached :primary_picture
+  has_one_attached_with :primary_picture, path: -> {"resources/dev/recipes"}
+  has_many_attached_with :gallery_pictures, path: -> {"resources/dev/recipes"}
 
   validates :name, presence: true
   validates :name, uniqueness: {
