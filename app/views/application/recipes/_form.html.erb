@@ -3,7 +3,6 @@
   <div class="form-ctrl-container">
     <%= recipe_form.label :name, class: "form-ctrl-lbl" %>
     <%= recipe_form.text_field :name, class: "form-ctrl" %>
-    <%#= error_tag f, :name %>
   </div>
 
   <%= render partial: 'application/recipes/images/primary_picture', locals: {recipe_form: recipe_form} %>
@@ -13,13 +12,11 @@
   <div class="form-ctrl-container publicly-accessible-container">
     <%= recipe_form.label :publicly_accessible, class: "form-ctrl-lbl" %>
     <%= recipe_form.check_box :publicly_accessible, class: "form-ctrl-text" %>
-    <%#= error_tag f, :publicly_accessible %>
   </div>
 
   <div class="form-ctrl-container">
     <%= recipe_form.label :description, class: "form-ctrl-lbl" %>
     <%= recipe_form.text_area :description, class: "form-ctrl-text" %>
-    <%#= error_tag f, :description %>
   </div>
 
   <section class="resources">
