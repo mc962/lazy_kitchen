@@ -8,7 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import {setupFlashAlerts} from "alert";
-import {DRAGGABLE_LIST_SELECTOR, setupDraggableList, setupMultiImgSync, setupSingleImgSync} from "recipes";
+import {DRAGGABLE_LIST_SELECTOR, setupDraggableList} from "recipes";
+import {setupMultiImgSync, setupSingleImgSync} from "images";
 
 Rails.start()
 Turbolinks.start()

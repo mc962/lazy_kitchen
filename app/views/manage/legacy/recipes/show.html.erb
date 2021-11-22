@@ -2,7 +2,7 @@
 
 <section class="recipe-bio">
   <div class="recipe-profile-img-container">
-    <%= image_tag @recipe.primary_picture, alt: "Food picture of #{@recipe.name}", class: "recipe-profile-img" %>
+    <%= primary_picture(@recipe) %>
   </div>
   <p aria-label="Recipe description" id="recipe_description"><%= @recipe.description %></p>
   <p aria-label="Recipe publicly accessible" id="publicly_accessible"><%= publicly_accessible_display(@recipe.publicly_accessible) %></p>

@@ -31,8 +31,8 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
     authorize! @recipe
 
     if @recipe.save
-      purge_deleted_attachments(params[:deleted_recipe_img_ids]) if params[:deleted_recipe_img_ids].present?
-
+      # @note Purging params[:deleted_recipe_img_ids] Attachment images is unnecessary here, as the Recipe is new in
+      #   this case and so should not have any existing attachments.
       flash.notice = 'Recipe created successfully.'
       redirect_to manage_legacy_recipe_path(@recipe)
     else

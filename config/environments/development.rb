@@ -31,7 +31,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :amazon # TODO temporary for testing
+  config.active_storage.service = :local
 
   config.action_mailer.delivery_method = :smtp
   # Settings for local SMTP server to deliver email to (such as Mailcatcher)

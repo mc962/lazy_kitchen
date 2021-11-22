@@ -30,5 +30,10 @@ module LazyKitchen
 
     # Do not destroy existing attachments on new attachment upload
     config.active_storage.replace_on_assign_to_many = false
+
+    # S3 Bucket for site assets and uploaded files
+    config.x.application_bucket = 'lazy-kitchen'
+    # Path prefix for S3 resources item files (such as images) (defaults to dev path)
+    config.x.resource_prefix = 'resources/dev'
   end
 end

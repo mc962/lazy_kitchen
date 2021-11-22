@@ -36,8 +36,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user
-  has_one_attached_with :primary_picture, path: -> {"resources/dev/recipes"}
-  has_many_attached_with :gallery_pictures, path: -> {"resources/dev/recipes"}
+  has_one_attached_with :primary_picture, path: -> {"#{Rails.application.config.x.resource_prefix}/recipes"}
+  has_many_attached_with :gallery_pictures, path: -> {"#{Rails.application.config.x.resource_prefix}/recipes"}
 
   validates :name, presence: true
   validates :name, uniqueness: {
