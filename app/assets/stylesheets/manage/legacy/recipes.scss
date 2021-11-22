@@ -28,9 +28,12 @@ Primary Picture
   }
 
   #primary_picture_upload_ctrl_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     padding: 1%;
     border-radius: 10px;
-    width: 35%;
+    width: 30%;
     margin: 0.5% 0 0.5% 0;
     #recipe_primary_picture {
       margin: 0.5% auto;
@@ -117,5 +120,14 @@ Gallery Pictures
     flex-direction: row;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.cancel-upload-btn {
+  background-color: red;
+  border: 1px solid #861111;
+
+  &:hover {
+    background-color: #861111;
   }
 }
