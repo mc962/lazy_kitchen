@@ -79,7 +79,6 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       :id,
       :name,
       :description,
-      :image_url,
       :publicly_accessible,
       :primary_picture,
       gallery_pictures: [],

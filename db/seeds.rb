@@ -76,7 +76,6 @@ unless Rails.env.production?
 
     recipe = Recipe.new(
       name: "Pain au Levain",
-      image_url: "https://seethings.s3.amazonaws.com/118810714_10157682000183652_1417595698238834363_n.jpg",
       description: "Delicious sourdough bread",
       publicly_accessible: true,
       user: user

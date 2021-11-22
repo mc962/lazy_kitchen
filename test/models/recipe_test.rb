@@ -4,7 +4,6 @@
 #
 #  id                  :bigint           not null, primary key
 #  description         :text
-#  image_url           :string
 #  name                :string           not null
 #  publicly_accessible :boolean          default(FALSE), not null
 #  slug                :string

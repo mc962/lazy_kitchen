@@ -4,7 +4,6 @@
 #
 #  id                  :bigint           not null, primary key
 #  description         :text
-#  image_url           :string
 #  name                :string           not null
 #  publicly_accessible :boolean          default(FALSE), not null
 #  slug                :string
@@ -25,7 +24,6 @@
 FactoryBot.define do
   factory :recipe do
     name { Faker::Food.dish + SecureRandom.uuid }
-    image_url { Faker::Avatar.image }
     description { Faker::Food.description }
     publicly_accessible { Faker::Boolean.boolean }
 
