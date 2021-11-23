@@ -24,7 +24,7 @@ class API::RecipesController < API::ApplicationController
       description: @recipe.description,
       publicly_accessible: @recipe.publicly_accessible,
       primary_picture: url_for(@recipe.primary_picture),
-      gallery_pictures: @recipe.gallery_pictures.map{|attachment| url_for(attachment)}
+      gallery_pictures: @recipe.gallery_pictures.map { |attachment| url_for(attachment) }
     }, include: {
       steps: {
         include: {
