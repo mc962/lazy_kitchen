@@ -4,46 +4,38 @@
   <div class="form-ctrl-container">
     <%= citation_form.label :origin, class: "form-ctrl-lbl" %>
     <%= citation_form.select :origin, options_for_select(Citation::ORIGINS.map{|c| [c.capitalize, c]}), class: "form-ctrl" %>
-    <%#= error_tag f, :origin %>
   </div>
   <div class="form-ctrl-container">
     <%= citation_form.label :content_type, class: "form-ctrl-lbl" %>
     <%= citation_form.select :content_type, options_for_select(Citation::CONTENT_TYPES.map{|o| [o.capitalize, o]}, class: "form-ctrl") %>
-    <%#= error_tag f, :content_type %>
   </div>
 
   <% if http_method == :patch %>
     <div class="form-ctrl-container">
       <%= citation_form.label :publication_title, class: "form-ctrl-lbl" %>
       <%= citation_form.text_field :publication_title, class: "form-ctrl" %>
-      <%#= error_tag f, :publication_title %>
     </div>
     <div class="form-ctrl-container">
       <%= citation_form.label :published_at, class: "form-ctrl-lbl" %>
       <%= citation_form.date_field :published_at, class: "form-ctrl form-ctrl-date" %>
-      <%#= error_tag f, :published_at %>
     </div>
 
     <section id="book_citation_fields" class="content-citation-fields">
       <div class="form-ctrl-container">
         <%= citation_form.label :publication_location, class: "form-ctrl-lbl" %>
         <%= citation_form.text_field :publication_location, class: "form-ctrl" %>
-        <%#= error_tag f, :publication_location %>
       </div>
       <div class="form-ctrl-container">
         <%= citation_form.label :content_location, class: "form-ctrl-lbl" %>
         <%= citation_form.text_field :content_location, class: "form-ctrl" %>
-        <%#= error_tag f, :content_location %>
       </div>
       <div class="form-ctrl-container">
         <%= citation_form.label :publisher, class: "form-ctrl-lbl" %>
         <%= citation_form.text_field :publisher, class: "form-ctrl" %>
-        <%#= error_tag f, :publisher %>
       </div>
       <div class="form-ctrl-container">
         <%= citation_form.label :version, class: "form-ctrl-lbl" %>
         <%= citation_form.text_field :version, class: "form-ctrl" %>
-        <%#= error_tag f, :version %>
       </div>
     </section>
 
@@ -51,17 +43,14 @@
       <div class="form-ctrl-container">
         <%= citation_form.label :site_link, class: "form-ctrl-lbl" %>
         <%= citation_form.url_field :site_link, class: "form-ctrl" %>
-        <%#= error_tag f, :site_link %>
       </div>
       <div class="form-ctrl-container">
         <%= citation_form.label :site_title, class: "form-ctrl-lbl" %>
         <%= citation_form.text_field :site_title, class: "form-ctrl" %>
-        <%#= error_tag f, :site_title %>
       </div>
       <div class="form-ctrl-container">
         <%= citation_form.label :last_accessed_at, class: "form-ctrl-lbl" %>
         <%= citation_form.date_field :last_accessed_at, class: "form-ctrl" %>
-        <%#= error_tag f, :last_accessed_at %>
       </div>
     </section>
 

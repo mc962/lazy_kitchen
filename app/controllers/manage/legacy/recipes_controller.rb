@@ -31,6 +31,8 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
     authorize! @recipe
 
     if @recipe.save
+      # @note Purging params[:deleted_recipe_img_ids] Attachment images is unnecessary here, as the Recipe is new in
+      #   this case and so should not have any existing attachments.
       flash.notice = 'Recipe created successfully.'
       redirect_to manage_legacy_recipe_path(@recipe)
     else
@@ -50,10 +52,9 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
     @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
-    # Associate Recipe created through Public Endpoints with currently authenticated user
-    # @recipe.user = current_user
-
     if @recipe.update(recipe_params)
+      purge_deleted_attachments(params[:deleted_recipe_img_ids]) if params[:deleted_recipe_img_ids].present?
+
       flash.notice = 'Recipe updated successfully.'
       redirect_to manage_legacy_recipe_path(@recipe)
     else
@@ -78,13 +79,23 @@ class Manage::Legacy::RecipesController < Manage::Legacy::ApplicationController
       :id,
       :name,
       :description,
-      :image_url,
       :publicly_accessible,
+      :primary_picture,
+      gallery_pictures: [],
       steps_attributes: %i[
         id
         order
       ],
       citations_attributes: []
     )
+  end
+
+  def purge_deleted_attachments(deleted_attachment_ids)
+    attachments = ActiveStorage::Attachment
+                  .where(id: deleted_attachment_ids, record_type: 'Recipe')
+                  .joins('JOIN recipes ON active_storage_attachments.record_id = recipes.id')
+                  .joins('JOIN users ON recipes.user_id = users.id')
+                  .where('users.id = ?', current_user.id)
+    attachments.map(&:purge)
   end
 end

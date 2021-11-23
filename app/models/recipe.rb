@@ -6,7 +6,6 @@
 #
 #  id                  :bigint           not null, primary key
 #  description         :text
-#  image_url           :string
 #  name                :string           not null
 #  publicly_accessible :boolean          default(FALSE), not null
 #  slug                :string
@@ -28,6 +27,7 @@
 # Holds all information relating to an overall recipe itself
 class Recipe < ApplicationRecord
   extend FriendlyId
+  include ActiveStoragePath
 
   has_many :steps, lambda {
     # Recipe's steps should be displayed in order
@@ -36,6 +36,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user
+  has_one_attached_with :primary_picture, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
+  has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
 
   validates :name, presence: true
   validates :name, uniqueness: {
@@ -50,6 +52,7 @@ class Recipe < ApplicationRecord
   scope :publicly_accessible, -> { where(publicly_accessible: true) }
 
   MAX_STEPS = 100
+  DEFAULT_PRIMARY_PICTURE_KEY = 'site/default_food.jpg'
 
   # Recipes for the main/root landing page
   #
