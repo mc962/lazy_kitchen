@@ -15,8 +15,9 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// Set up JS that depends on only DOM being fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Set up JS that depends on only DOM being fully loaded.
+// Use `turbolinks:load` instead of DOMContentLoaded to work with Turbolinks
+document.addEventListener('turbolinks:load', () => {
     setupFlashAlerts();
     setupSingleImgSync(
         '.synced-single-img.recipe-primary-picture',
