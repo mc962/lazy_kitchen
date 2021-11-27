@@ -1,3 +1,7 @@
+<% content_for :head_js do %>
+  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <h1 class="manage-resource-heading">New Author</h1>
 
 <%= render partial: "application/authors/form", locals: {http_method: :post, action: manage_legacy_recipe_citation_authors_path(@author.citation.recipe.id, @author.citation.id)} %>

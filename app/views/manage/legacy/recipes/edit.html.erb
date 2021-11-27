@@ -1,3 +1,7 @@
+<% content_for :head_js do %>
+  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <h1 class="manage-resource-heading">Edit Recipe</h1>
 
 <%= render partial: "application/recipes/form", locals: {http_method: :patch, action: manage_legacy_recipe_path(@recipe)} %>
