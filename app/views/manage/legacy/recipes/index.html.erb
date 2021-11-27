@@ -1,3 +1,7 @@
+<% content_for :head_js do %>
+  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <h1 class="recipes-heading">Listing Recipes</h1>
 
 <div class="paginated-resources-container">

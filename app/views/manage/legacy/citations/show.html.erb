@@ -1,3 +1,7 @@
+<% content_for :head_js do %>
+  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <% case @citation.content_type %>
 <% when "BOOK" %>
   <%= render partial: 'manage/legacy/citations/citations/book', citation: @citation %>
