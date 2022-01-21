@@ -1,4 +1,4 @@
-class CreateStepIngredients < ActiveRecord::Migration[6.1]
+class CreateStepIngredients < ActiveRecord::Migration[7.0]
   def change
     create_table :step_ingredients do |t|
       t.decimal :amount, null: false
