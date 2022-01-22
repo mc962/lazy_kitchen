@@ -115,3 +115,24 @@ Show
   list-style: none;
   padding-left: 0;
 }
+
+/**
+Form
+ */
+.form-nav {
+  width: 100%;
+  .form-nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    .form-nav-link {
+      width: 30%;
+      border: 1px solid black;
+      padding: 1%;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+}

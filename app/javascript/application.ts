@@ -7,7 +7,6 @@ import {setupFlashAlerts} from "alert";
 // Use `turbolinks:load` instead of DOMContentLoaded to work with Turbolinks
 document.addEventListener('turbo:load', () => {
     setupFlashAlerts();
-    console.log('LOADED!!!');
 })
 
 // // Set up JS that depends on site/window being fully loaded
