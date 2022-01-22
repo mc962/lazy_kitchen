@@ -1,5 +1,5 @@
 <%= turbo_frame_tag('tab_content') do %>
-  <h3>Ingredients</h3>
+  <h3 class="tab-form-heading">Step</h3>
 
   <%= form_with model: @step, class: 'resource-form', url: decorated_query_url_for(action, {tab: 'ingredients'}), data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper', turbo: false} do |step_form| %>
     <template data-nested-form-target="template">
@@ -12,6 +12,8 @@
       <%= step_form.label :instruction, class: "form-ctrl-lbl" %>
       <%= step_form.text_area :instruction, class: "form-ctrl-text" %>
     </div>
+
+    <h3 class="tab-form-heading">Ingredients</h3>
 
     <ul id="recipe_step_ingredients" class="resource-list" data-nested-form-target="target">
       <%= step_form.fields_for :step_ingredients do |step_ingredients_form| %>

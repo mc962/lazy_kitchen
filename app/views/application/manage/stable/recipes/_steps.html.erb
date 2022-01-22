@@ -1,5 +1,5 @@
 <%= turbo_frame_tag('tab_content') do %>
-  <h3>Steps</h3>
+  <h3 class="tab-form-heading">Steps</h3>
 
   <%= form_with model: @recipe, id: 'recipe_steps_form', class: 'resource-form', url: decorated_query_url_for(action, {tab: 'steps'}), data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper', turbo: false} do |recipe_form| %>
     <template data-nested-form-target="template">

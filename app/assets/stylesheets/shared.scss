@@ -97,3 +97,83 @@ Validation Errors
   background-color: #f3665b;
   color: #80231d;
 }
+
+/**
+Form Shared
+ */
+.resource-heading {
+  text-align: center;
+}
+
+.resources-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.resource-list {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .resource-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .resource-text {
+      width: 75%;
+    }
+
+    .manage-resource-links {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 20%;
+    }
+  }
+}
+
+.add-resource-container {
+  width: 100%;
+}
+
+.manage-resource-heading {
+  text-align: center;
+}
+
+.return-link {
+  padding: 2%;
+  text-align: end;
+}
+
+.action-links-navbar {
+  width: 100%;
+
+  .action-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    width: 100%;
+
+    .action-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 15%;
+      border: 1px solid black;
+      text-align: center;
+      padding: 1%;
+    }
+  }
+}
+
+.resource-list-container.small-list-container {
+  width: 75%;
+}

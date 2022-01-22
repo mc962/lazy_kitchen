@@ -26,13 +26,15 @@
     </div>
   <% end %>
 
-  <button type="button" class="remove-btn" data-action="nested-form#remove">
-    Remove Ingredient
-  </button>
+  <div class="nested-form-actions">
+    <button type="button" class="remove-btn" data-action="nested-form#remove">
+      Remove Ingredient
+    </button>
 
-  <button type="button" class="undo-remove-btn hidden" data-action="nested-form#undoRemove">
-    Undo Remove
-  </button>
+    <button type="button" class="undo-remove-btn hidden" data-action="nested-form#undoRemove">
+      Undo Remove
+    </button>
+  </div>
 
   <%= step_ingredients_form.hidden_field :_destroy %>
 </li>

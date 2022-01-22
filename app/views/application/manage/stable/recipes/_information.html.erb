@@ -1,5 +1,5 @@
 <%= turbo_frame_tag('tab_content') do %>
-  <h3>Information</h3>
+  <h3 class="tab-form-heading">Information</h3>
 
   <%= form_with model: @recipe, class: 'resource-form', url: action, data: {turbo: false} do |recipe_form| %>
     <div class="form-ctrl-container">
