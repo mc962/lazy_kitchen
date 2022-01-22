@@ -43,8 +43,12 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: {
     scope: [:user_id]
   }
+  validates_associated :steps
 
-  accepts_nested_attributes_for(:steps, :citations)
+  before_save :consolidate_step_order
+
+  accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :citations, reject_if: :all_blank, allow_destroy: true
 
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
@@ -76,5 +80,12 @@ class Recipe < ApplicationRecord
   # noinspection RubyInstanceMethodNamingConvention
   def should_generate_new_friendly_id?
     new_record? || name_changed?
+  end
+
+  def consolidate_step_order
+    steps.sort_by(&:order).map!.with_index do |step, idx|
+      step.order = idx + 1
+      step
+    end
   end
 end

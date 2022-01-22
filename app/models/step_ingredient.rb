@@ -31,9 +31,10 @@ class StepIngredient < ApplicationRecord
   belongs_to :ingredient
 
   validates :amount, :step, :ingredient, presence: true
+  validates_associated :ingredient
 
-  accepts_nested_attributes_for :step
-  accepts_nested_attributes_for :ingredient
+  accepts_nested_attributes_for :step, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :ingredient, reject_if: :all_blank, allow_destroy: true
 
   scope :managed, -> { includes(step: [recipe: [:user]]) }
 end
