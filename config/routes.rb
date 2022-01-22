@@ -14,6 +14,12 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :stable do
+      resources :recipes do
+        resources :steps
+      end
+    end
   end
 
   resources :recipes, only: [:index, :show]
