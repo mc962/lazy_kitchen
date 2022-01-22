@@ -1,6 +1,7 @@
 <nav class="form-nav">
   <ul class="form-nav-links">
     <li class="form-nav-link"><%= link_to 'Information', edit_manage_stable_recipe_path(@recipe, tab: 'information'), data: {"turbo-frame": :"tab_content"} %></li>
+    <li class="form-nav-link"><%= link_to 'Images', edit_manage_stable_recipe_path(@recipe, tab: 'images'), data: {"turbo-frame": :"tab_content"} %></li>
     <li class="form-nav-link"><%= link_to 'Steps', edit_manage_stable_recipe_path(@recipe, tab: 'steps'), data: {"turbo-frame": :"tab_content"} %></li>
   </ul>
 </nav>

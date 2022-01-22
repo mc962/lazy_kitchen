@@ -5,6 +5,8 @@ module FormRenderable
     case tab
     when 'information'
       render partial: 'application/manage/stable/recipes/information', locals: {action: action}
+    when 'images'
+      render partial: 'application/manage/stable/recipes/images', locals: {action: action}
     when 'steps'
       render partial: 'application/manage/stable/recipes/steps', locals: {action: action}
     when 'ingredients'

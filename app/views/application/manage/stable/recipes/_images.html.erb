@@ -1,0 +1,9 @@
+<%= turbo_frame_tag('tab_content') do %>
+  <h3>Images</h3>
+
+  <%= form_with model: @recipe, id: 'recipe_images_form', class: 'resource-form', url: decorated_query_url_for(action, {tab: 'images'}), data: {turbo: false} do |recipe_form| %>
+    <%= render partial: 'application/manage/stable/recipes/images/primary_picture', locals: {recipe_form: recipe_form} %>
+
+    <%= render partial: 'application/manage/stable/recipes/images/gallery_pictures', locals: {recipe_form: recipe_form} %>
+  <% end %>
+<% end %>
