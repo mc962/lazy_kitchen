@@ -1,0 +1,38 @@
+<li class="resource-item recipe-step-ingredient nested-form-wrapper" data-new-record="<%= step_ingredients_form.object.new_record? %>">
+  <div class="form-ctrl-container">
+    <%= step_ingredients_form.label :amount, class: "form-ctrl-lbl" %>
+    <%= step_ingredients_form.number_field :amount, min: 0, step: "any", class: "form-ctrl" %>
+  </div>
+
+  <div class="form-ctrl-container">
+    <%= step_ingredients_form.label :unit, class: "form-ctrl-lbl" %>
+    <%= step_ingredients_form.text_field :unit, class: "form-ctrl" %>
+  </div>
+
+  <div class="form-ctrl-container">
+    <%= step_ingredients_form.label :condition, class: "form-ctrl-lbl" %>
+    <%= step_ingredients_form.text_field :condition, class: "form-ctrl" %>
+  </div>
+
+  <%= step_ingredients_form.fields_for :ingredient do |ingredient_form| %>
+    <div class="form-ctrl-container">
+      <%= ingredient_form.label :name, class: "form-ctrl-lbl" %>
+      <%= ingredient_form.text_field :name, class: "form-ctrl" %>
+    </div>
+
+    <div class="form-ctrl-container">
+      <%= ingredient_form.label :description, class: "form-ctrl-lbl" %>
+      <%= ingredient_form.text_area :description, class: "form-ctrl" %>
+    </div>
+  <% end %>
+
+  <button type="button" class="remove-btn" data-action="nested-form#remove">
+    Remove Ingredient
+  </button>
+
+  <button type="button" class="undo-remove-btn hidden" data-action="nested-form#undoRemove">
+    Undo Remove
+  </button>
+
+  <%= step_ingredients_form.hidden_field :_destroy %>
+</li>

@@ -1,0 +1,12 @@
+<h2>Recipe</h2>
+
+<nav>
+  <ul>
+    <li><%= link_to 'Information', edit_recipe_path(@recipe, tab: 'information'), data: {"turbo-frame": :"tab_content"} %></li>
+    <li><%= link_to 'Steps', edit_recipe_path(@recipe, tab: 'steps'), data: {"turbo-frame": :"tab_content"} %></li>
+  </ul>
+</nav>
+
+<%= turbo_frame_tag('tab_content', data: {turbo_action: 'advance'}) do %>
+  <%= render_frame_tab(params[:tab], action) %>
+<% end %>

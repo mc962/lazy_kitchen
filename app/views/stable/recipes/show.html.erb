@@ -1,0 +1,29 @@
+<h1 class="resource-heading">Manage: <%= @recipe.name %></h1>
+
+<section class="recipe-bio">
+  <p aria-label="Recipe description" id="recipe_description"><%= @recipe.description %></p>
+  <p aria-label="Recipe publicly accessible" id="publicly_accessible"><%= publicly_accessible_display(@recipe.publicly_accessible) %></p>
+</section>
+
+<div class="resources-container">
+  <section class="resources">
+    <div class="resource-list-container">
+      <label for="recipe_steps">Steps</label>
+      <ul id="recipe_steps" class="resource-list">
+        <% @recipe.steps.each do |step| %>
+          <li class="recipe-step resource-item">
+            <p class="recipe-step-instruction resource-text"><%= step.instruction %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<nav>
+  <ul class="action-links">
+    <li class="action-link"><%= link_to "Edit", manage_stable_edit_recipe_path(@recipe) %></li>
+    <li class="action-link"><%= link_to "Delete", manage_stable_recipe_path(@recipe), {action: :destroy, method: :delete, id: @recipe.id, data: {confirm: "Are you sure?"}} %></li>
+    <li class="action-link"><%= link_to "Back", manage_stable_recipes_path %></li>
+  </ul>
+</nav>

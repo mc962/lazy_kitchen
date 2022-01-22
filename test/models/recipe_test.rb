@@ -2,14 +2,14 @@
 #
 # Table name: recipes
 #
-#  id                  :bigint           not null, primary key
-#  description         :text
+#  id                  :integer          not null, primary key
 #  name                :string           not null
-#  publicly_accessible :boolean          default(FALSE), not null
-#  slug                :string
+#  description         :text
+#  publicly_accessible :boolean          default("false"), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  user_id             :bigint
+#  user_id             :integer
+#  slug                :string
 #
 # Indexes
 #
@@ -17,10 +17,7 @@
 #  index_recipes_on_slug              (slug) UNIQUE
 #  index_recipes_on_user_id           (user_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
-#
+
 require "test_helper"
 
 class RecipeTest < ActiveSupport::TestCase

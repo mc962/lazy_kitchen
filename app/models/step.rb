@@ -1,23 +1,18 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: steps
 #
-#  id          :bigint           not null, primary key
-#  instruction :text             not null
+#  id          :integer          not null, primary key
 #  order       :integer          not null
+#  instruction :text             not null
+#  recipe_id   :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  recipe_id   :bigint           not null
 #
 # Indexes
 #
 #  index_steps_on_recipe_id  (recipe_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (recipe_id => recipes.id)
 #
 
 # Contains information for a specific recipe step

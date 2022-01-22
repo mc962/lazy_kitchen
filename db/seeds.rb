@@ -201,35 +201,35 @@ unless Rails.env.production?
       )
     ]
 
-    citations = [
-      Citation.new(
-        origin: 'ADAPTED',
-        content_type: 'SITE',
-        publisher: 'King Arthur Baking Company',
-        publication_title: 'Honey Spelt Sourdough Bread',
-        last_accessed_at: Date.today,
-        site_title: 'King Arthur Baking',
-        site_link: 'https://www.kingarthurbaking.com/recipes/honey-spelt-sourdough-bread-recipe',
-        recipe: recipe
-      )
-    ]
+    # citations = [
+    #   Citation.new(
+    #     origin: 'ADAPTED',
+    #     content_type: 'SITE',
+    #     publisher: 'King Arthur Baking Company',
+    #     publication_title: 'Honey Spelt Sourdough Bread',
+    #     last_accessed_at: Date.today,
+    #     site_title: 'King Arthur Baking',
+    #     site_link: 'https://www.kingarthurbaking.com/recipes/honey-spelt-sourdough-bread-recipe',
+    #     recipe: recipe
+    #   )
+    # ]
 
-    authors = [
-      Author.new(
-        first_name: 'Bob',
-        last_name: 'Builder',
-        citation: citations.first
-      ),
-      Author.new(
-        first_name: 'Rob',
-        last_name: 'Ruler',
-        citation: citations.first
-      )
-    ]
+    # authors = [
+    #   Author.new(
+    #     first_name: 'Bob',
+    #     last_name: 'Builder',
+    #     citation: citations.first
+    #   ),
+    #   Author.new(
+    #     first_name: 'Rob',
+    #     last_name: 'Ruler',
+    #     citation: citations.first
+    #   )
+    # ]
 
     recipe.save!
     steps.each(&:save!)
-    citations.each(&:save!)
-    authors.each(&:save!)
+    # citations.each(&:save!)
+    # authors.each(&:save!)
   end
 end

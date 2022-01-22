@@ -1,0 +1,23 @@
+<h1 class="recipes-heading">Listing Recipes</h1>
+
+<div class="paginated-resources-container">
+  <p class="page-entries-info">
+    <%= page_entries_info @recipes %>
+  </p>
+
+  <ul id="directory_recipes">
+    <% @recipes.each do |recipe| %>
+      <li class="directory-recipe">
+        <span><%= link_to recipe.name, manage_stable_recipe_path(recipe) %></span>
+        <div class="recipe-links">
+          <span><%= link_to "Edit", manage_stable_edit_recipe_path(recipe) %></span>
+          <span><%= link_to "Delete", manage_stable_recipe_path(recipe), {action: :destroy, method: :delete, id: recipe.id, data: {confirm: "Are you sure?"}} %></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= paginate @recipes %>
+</div>
+
+<div class="new-recipe-link"><%= link_to "New Recipe", manage_stable_new_recipe_path %></div>
