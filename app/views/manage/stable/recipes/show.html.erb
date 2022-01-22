@@ -22,7 +22,7 @@
 
 <nav>
   <ul class="action-links">
-    <li class="action-link"><%= link_to "Edit", manage_stable_edit_recipe_path(@recipe) %></li>
+    <li class="action-link"><%= link_to "Edit", edit_manage_stable_recipe_path(@recipe) %></li>
     <li class="action-link"><%= link_to "Delete", manage_stable_recipe_path(@recipe), {action: :destroy, method: :delete, id: @recipe.id, data: {confirm: "Are you sure?"}} %></li>
     <li class="action-link"><%= link_to "Back", manage_stable_recipes_path %></li>
   </ul>

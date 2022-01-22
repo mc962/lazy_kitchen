@@ -2,8 +2,8 @@
 
 <nav>
   <ul>
-    <li><%= link_to 'Information', edit_recipe_path(@recipe, tab: 'information'), data: {"turbo-frame": :"tab_content"} %></li>
-    <li><%= link_to 'Steps', edit_recipe_path(@recipe, tab: 'steps'), data: {"turbo-frame": :"tab_content"} %></li>
+    <li><%= link_to 'Information', edit_manage_stable_recipe_path(@recipe, tab: 'information'), data: {"turbo-frame": :"tab_content"} %></li>
+    <li><%= link_to 'Steps', edit_manage_stable_recipe_path(@recipe, tab: 'steps'), data: {"turbo-frame": :"tab_content"} %></li>
   </ul>
 </nav>
 

@@ -33,8 +33,6 @@ class Ingredient < ApplicationRecord
     scope: [:user_id]
   }
 
-  accepts_nested_attributes_for :step_ingredients
-
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }

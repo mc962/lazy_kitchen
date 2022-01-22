@@ -10,7 +10,7 @@ class Manage::Stable::RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
 
     render :show
   end
@@ -38,7 +38,7 @@ class Manage::Stable::RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
 
     if turbo_frame_request?
       render_frame_tab(params[:tab], manage_stable_recipe_path(@recipe))
@@ -48,7 +48,7 @@ class Manage::Stable::RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
 
     if @recipe.update(recipe_params)
       flash.notice = 'Recipe updated successfully.'

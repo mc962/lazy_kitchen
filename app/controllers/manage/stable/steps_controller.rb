@@ -20,7 +20,7 @@ class Manage::Stable::StepsController < ApplicationController
 
     if @step.update(step_params)
       flash.notice = 'Step updated successfully.'
-      redirect_to manage_stable_edit_recipe_path(@step.recipe, tab: 'steps')
+      redirect_to edit_manage_stable_recipe_path(@step.recipe, tab: 'steps')
     else
       flash.now[:error] = @step.errors.full_messages
       render :edit

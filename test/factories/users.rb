@@ -37,7 +37,7 @@ FactoryBot.define do
       end
 
       after(:create) do |user, evaluator|
-        FactoryBot.create_list(:recipe, evaluator.recipes_count, user: user)
+        FactoryBot.create_list(:recipe_with_steps, evaluator.recipes_count, user: user)
 
         user.reload
       end

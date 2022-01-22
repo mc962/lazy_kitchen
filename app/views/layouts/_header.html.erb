@@ -8,7 +8,7 @@
       <ul class="site-nav-links">
         <% if user_signed_in? %>
           <li class="site-nav-link">
-            <%= link_to 'Manage Recipes', manage_legacy_recipes_path %>
+            <%= link_to 'Manage Recipes', manage_stable_recipes_path %>
           </li>
           <li class="site-nav-link">
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
