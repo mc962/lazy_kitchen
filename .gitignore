@@ -40,6 +40,7 @@
 yarn-debug.log*
 .yarn-integrity
 .yarn/
+app/assets/builds/
 
 # OS Files
 .DS_Store

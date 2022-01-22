@@ -4,5 +4,6 @@
 
 import { application } from "./application"
 // import NestedForm from "stimulus-rails-nested-form"
+import NestedForm from "./nested_form"
 
 application.register("nested-form", NestedForm)
