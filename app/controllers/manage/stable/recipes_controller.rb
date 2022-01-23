@@ -51,6 +51,8 @@ class Manage::Stable::RecipesController < ApplicationController
     @recipe = Recipe.friendly.find(params[:id])
 
     if @recipe.update(recipe_params)
+      purge_deleted_attachments(params[:deleted_recipe_img_ids]) if params[:deleted_recipe_img_ids].present?
+
       flash.notice = 'Recipe updated successfully.'
       redirect_to manage_stable_recipe_path(@recipe)
     else
@@ -67,6 +69,8 @@ class Manage::Stable::RecipesController < ApplicationController
       :name,
       :description,
       :publicly_accessible,
+      :primary_picture,
+      gallery_pictures: [],
       steps_attributes: %i[
         id
         order
@@ -74,5 +78,14 @@ class Manage::Stable::RecipesController < ApplicationController
         _destroy
       ],
       )
+  end
+
+  def purge_deleted_attachments(deleted_attachment_ids)
+    attachments = ActiveStorage::Attachment
+                    .where(id: deleted_attachment_ids, record_type: 'Recipe')
+                    .joins('JOIN recipes ON active_storage_attachments.record_id = recipes.id')
+                    .joins('JOIN users ON recipes.user_id = users.id')
+                    .where('users.id = ?', current_user.id)
+    attachments.map(&:purge)
   end
 end

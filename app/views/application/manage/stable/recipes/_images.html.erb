@@ -5,5 +5,9 @@
     <%= render partial: 'application/manage/stable/recipes/images/primary_picture', locals: {recipe_form: recipe_form} %>
 
     <%= render partial: 'application/manage/stable/recipes/images/gallery_pictures', locals: {recipe_form: recipe_form} %>
+
+    <div class="submit-container">
+      <%= recipe_form.submit "Save", class: "button save-btn" %>
+    </div>
   <% end %>
 <% end %>
