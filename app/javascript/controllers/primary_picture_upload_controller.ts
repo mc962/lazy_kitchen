@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="primary-image-upload"
+// noinspection JSUnusedGlobalSymbols
 export default class extends Controller {
   static targets = ['recipePrimaryPicture', 'previewImg'];
   private previewImgTarget: HTMLImageElement;

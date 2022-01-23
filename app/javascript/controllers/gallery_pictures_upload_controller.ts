@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="gallery-pictures-upload"
+// noinspection JSUnusedGlobalSymbols
 export default class extends Controller {
   static targets = ['recipeGalleryPictures', 'previewImgs'];
   private previewImgsTarget: HTMLUListElement;

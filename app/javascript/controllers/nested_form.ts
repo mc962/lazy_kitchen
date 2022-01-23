@@ -1,12 +1,19 @@
 import StimulusRailsNestedFormController from 'stimulus-rails-nested-form'
 
+// Connects to data-controller="nested-form"
+// noinspection JSUnusedGlobalSymbols
 export default class extends StimulusRailsNestedFormController {
+    private templateTarget: HTMLTemplateElement;
+    private targetTarget: HTMLElement;
+    private wrapperSelectorValue: string;
+
+
     add(e) {
         e.preventDefault();
-        const content = this.templateTarget.content.cloneNode(true);
+        const content = this.templateTarget.content.cloneNode(true) as HTMLElement;
         const nodeInputs = content.querySelectorAll('input');
         const nodeTextAreas = content.querySelectorAll('textarea');
-        [...nodeInputs, ...nodeTextAreas].forEach((nodeInput) => {
+        [...Array.from(nodeInputs), ...Array.from(nodeTextAreas)].forEach((nodeInput) => {
             const newRandVal = new Date().getTime().toString();
             nodeInput.name = nodeInput.name.replace(/NEW_RECORD/g, newRandVal)
             nodeInput.id = nodeInput.id.replace(/NEW_RECORD/g, newRandVal)
@@ -18,8 +25,8 @@ export default class extends StimulusRailsNestedFormController {
         e.preventDefault();
 
         const itemOrderEls = document.querySelectorAll('.recipe-step-order');
-        itemOrderEls.forEach((orderEl, idx) => {
-            orderEl.value = idx + 1;
+        itemOrderEls.forEach((orderEl: HTMLInputElement, idx) => {
+            orderEl.value = (idx + 1).toString();
         })
     }
     remove(e) {
