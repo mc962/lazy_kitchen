@@ -115,6 +115,10 @@ Show
 /**
 Form
  */
+.recipe-form-title {
+  text-align: center;
+}
+
 .form-nav {
   width: 100%;
   .form-nav-links {
@@ -148,10 +152,10 @@ Form
   .form-ctrl-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 90%;
 
-    .form-ctrl-date {
-
+    .form-ctrl-text {
+      width: 90%;
     }
   }
 
@@ -194,10 +198,26 @@ Form
   .nested-form-actions {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
   }
 
   .nested-form-nav-link {
     text-align: center;
+  }
+
+  .recipe-step-ingredient {
+    padding: 1%;
+    .ingredient-info {
+      width: 70%;
+    }
+
+    .ingredient-measurement {
+      width: 10%;
+    }
+
+    .ingredient-condition {
+      width: 15%;
+    }
   }
 }
 
