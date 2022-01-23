@@ -1,4 +1,4 @@
-<section class="resource-gallery-img-container">
+<section class="resource-gallery-img-container" data-controller="gallery-pictures-upload">
   <div class="resource-gallery-preview">
     <div class="resource-preview-container">
       <label for="existing_resource_images">Existing Images</label>
@@ -19,7 +19,7 @@
     </div>
     <div class="resource-preview-container">
       <label for="new_resource_images">Images to Upload</label>
-      <ul id="new_resource_images" class="gallery-images-container"></ul>
+      <ul id="new_resource_images" class="gallery-images-container" data-gallery-pictures-upload-target="previewImgs"></ul>
       <template id="new_resource_image_template">
         <li class="preview-resource-image new-resource-image">
           <img src="" alt="<% "A picture of #{recipe_form.object.name}" %>" class="resource-gallery-img synced-multi-img" />
@@ -29,7 +29,7 @@
   </div>
 
   <div class="form-ctrl-container" id="gallery_pictures_ctrl">
-    <%= recipe_form.file_field :gallery_pictures, multiple: true, class: 'synced-multi-img' %>
-    <button type="button" class="cancel-upload-btn cancel-gallery-upload-btn">Cancel</button>
+    <%= recipe_form.file_field :gallery_pictures, multiple: true, data: {action: 'change->gallery-pictures-upload#sync', gallery_pictures_upload_target: 'recipeGalleryPictures'}, class: 'synced-multi-img' %>
+    <button type="button" class="cancel-upload-btn cancel-gallery-upload-btn" data-action="click->gallery-pictures-upload#cancel">Cancel</button>
   </div>
 </section>

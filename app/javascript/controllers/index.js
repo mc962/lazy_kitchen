@@ -6,6 +6,8 @@ import { application } from "./application"
 // import NestedForm from "stimulus-rails-nested-form"
 import NestedForm from "./nested_form"
 import PrimaryPictureUpload from './primary_picture_upload_controller'
+import GalleryPicturesUpload from './gallery_pictures_upload_controller'
 
 application.register("nested-form", NestedForm)
 application.register("primary-picture-upload", PrimaryPictureUpload)
+application.register("gallery-pictures-upload", GalleryPicturesUpload)
