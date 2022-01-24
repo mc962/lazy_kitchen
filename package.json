@@ -12,9 +12,12 @@
     "@hotwired/turbo-rails": "^7.1.1",
     "@rails/actioncable": "^7.0.1",
     "@rails/activestorage": "^7.0.1",
+    "@rails/request.js": "^0.0.6",
     "esbuild": "^0.14.12",
     "sass": "^1.49.0",
-    "stimulus-rails-nested-form": "^4.0.0"
+    "sortablejs": "^1.14.0",
+    "stimulus-rails-nested-form": "^4.0.0",
+    "stimulus-sortable": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.10",

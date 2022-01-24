@@ -1,6 +1,5 @@
 <%= turbo_frame_tag('tab_content') do %>
   <h3 class="tab-form-heading">Steps</h3>
-
   <%= form_with model: @recipe, id: 'recipe_steps_form', class: 'resource-form', url: decorated_query_url_for(action, {tab: 'steps'}), data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper', turbo: false} do |recipe_form| %>
     <template data-nested-form-target="template">
       <%= recipe_form.fields_for :steps, Step.new, child_index: 'NEW_RECORD' do |steps_form| %>
@@ -8,7 +7,7 @@
       <% end %>
     </template>
 
-    <ol id="recipe_steps" class="resource-list draggable" data-nested-form-target="target">
+    <ol id="recipe_steps" class="resource-list draggable" data-nested-form-target="target" data-controller="sortable-list" data-sortable_param_name_value="order" data-sortable_animation_value="150">
       <%= recipe_form.fields_for :steps do |steps_form| %>
         <%= render partial: 'application/manage/stable/recipes/step', locals: {steps_form: steps_form} %>
       <% end %>

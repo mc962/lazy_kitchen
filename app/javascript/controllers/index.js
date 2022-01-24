@@ -7,7 +7,12 @@ import { application } from "./application"
 import NestedForm from "./nested_form"
 import PrimaryPictureUpload from './primary_picture_upload_controller'
 import GalleryPicturesUpload from './gallery_pictures_upload_controller'
+// import Sortable from "stimulus-sortable"
+import SortableList from './sortable_list'
 
+// noinspection JSCheckFunctionSignatures
 application.register("nested-form", NestedForm)
 application.register("primary-picture-upload", PrimaryPictureUpload)
 application.register("gallery-pictures-upload", GalleryPicturesUpload)
+// noinspection JSCheckFunctionSignatures
+application.register("sortable-list", SortableList)

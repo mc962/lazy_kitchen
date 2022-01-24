@@ -82,6 +82,11 @@
   dependencies:
     spark-md5 "^3.0.1"
 
+"@rails/request.js@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.6.tgz#5f0347a9f363e50ec45118c7134080490cda81d8"
+  integrity sha512-dfFWaQXitYJ4kxrgGJNhDNXX54/v10YgoJqBMVe6lhqs6a4N9WD7goZJEvwin82TtK8MqUNhwfyisgKwM6dMdg==
+
 "@types/json-schema@^7.0.9":
   version "7.0.9"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
@@ -1002,6 +1007,11 @@ slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
+sortablejs@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.14.0.tgz#6d2e17ccbdb25f464734df621d4f35d4ab35b3d8"
+  integrity sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==
+
 "source-map-js@>=0.6.2 <2.0.0":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
@@ -1023,6 +1033,11 @@ stimulus-rails-nested-form@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/stimulus-rails-nested-form/-/stimulus-rails-nested-form-4.0.0.tgz#cb9295a70081b6e1b9b05250533b1f92a9902d3b"
   integrity sha512-nE2dM0glgjBvUq/gzORJ+94wITOijoYMZWIrkXSNNH8BpELwH8zg9fuad0X+ZBrhjQrYuNW2R0zLgX69oIzMvw==
+
+stimulus-sortable@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-sortable/-/stimulus-sortable-3.1.0.tgz#bf29117750e7d1ba6125d15d5538b551fd21a56a"
+  integrity sha512-BPuqKKLqJkwDQxUNhRNcQrgBFPfMEmsX9BgFj6Qo85R272vi5MGqIcfkGFqJOvuMhsa0cpnKno9fVGnWjNYszg==
 
 stream-combiner@~0.0.4:
   version "0.0.4"
