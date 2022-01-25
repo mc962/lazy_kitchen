@@ -27,10 +27,6 @@ class IngredientTest < ActiveSupport::TestCase
     should have_many(:step_ingredients).dependent(:destroy)
     should have_many(:steps)
     should have_many(:recipes).through(:steps)
-
-    context 'nested models' do
-      should accept_nested_attributes_for(:step_ingredients)
-    end
   end
 
   context 'validations' do
