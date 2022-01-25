@@ -11,13 +11,17 @@ module RecipesHelper
     alt_text = 'Main picture of recipe food'
     if recipe.primary_picture.attached?
       image_tag recipe.primary_picture, alt: alt_text, class: classes,
-                                        data: { original_src: url_for(recipe.primary_picture), primary_picture_upload_target: 'previewImg' }
+                                        data: {
+                                          original_src: url_for(recipe.primary_picture),
+                                          primary_picture_upload_target: 'previewImg'
+                                        }
     else
       image_tag recipe_bucket_asset_url(Recipe::DEFAULT_PRIMARY_PICTURE_KEY),
                 alt: alt_text,
                 class: classes,
                 data: {
-                  original_src: recipe_bucket_asset_url(Recipe::DEFAULT_PRIMARY_PICTURE_KEY), primary_picture_upload_target: 'previewImg'
+                  original_src: recipe_bucket_asset_url(Recipe::DEFAULT_PRIMARY_PICTURE_KEY),
+                  primary_picture_upload_target: 'previewImg'
                 }
     end
   end

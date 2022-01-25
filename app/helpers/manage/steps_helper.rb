@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Manage::StepsHelper
   # Get potential order of current step, based on number of existing steps on recipe
   #   (assumes steps are added to the end), when adding a new step.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Manage::RecipesHelper
   def publicly_accessible_display(recipe_publicly_accessible)
     if recipe_publicly_accessible

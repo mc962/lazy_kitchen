@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::RecipesController < Manage::ApplicationController
   include FormRenderable
 
@@ -93,16 +95,16 @@ class Manage::RecipesController < Manage::ApplicationController
         order
         instruction
         _destroy
-      ],
-      )
+      ]
+    )
   end
 
   def purge_deleted_attachments(deleted_attachment_ids)
     attachments = ActiveStorage::Attachment
-                    .where(id: deleted_attachment_ids, record_type: 'Recipe')
-                    .joins('JOIN recipes ON active_storage_attachments.record_id = recipes.id')
-                    .joins('JOIN users ON recipes.user_id = users.id')
-                    .where('users.id = ?', current_user.id)
+                  .where(id: deleted_attachment_ids, record_type: 'Recipe')
+                  .joins('JOIN recipes ON active_storage_attachments.record_id = recipes.id')
+                  .joins('JOIN users ON recipes.user_id = users.id')
+                  .where('users.id = ?', current_user.id)
     attachments.map(&:purge)
   end
 end

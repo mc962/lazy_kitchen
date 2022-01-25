@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::StepsController < Manage::ApplicationController
   include FormRenderable
 
@@ -44,12 +46,12 @@ class Manage::StepsController < Manage::ApplicationController
         :condition,
         :unit,
         :_destroy,
-        ingredient_attributes: %i[
+        { ingredient_attributes: %i[
           id
           name
           description
           _destroy
-        ]
+        ] }
       ]
     )
   end
