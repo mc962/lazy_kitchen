@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Manage::Stable::RecipesControllerTest < ApplicationControllerTestCase
+class Manage::RecipesControllerTest < ApplicationControllerTestCase
   context 'unauthenticated user' do
     setup do
       @user = FactoryBot.create(:user_with_recipes)

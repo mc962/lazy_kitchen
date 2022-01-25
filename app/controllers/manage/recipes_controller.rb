@@ -1,4 +1,4 @@
-class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
+class Manage::RecipesController < Manage::ApplicationController
   include FormRenderable
 
   helper_method :render_frame_tab
@@ -22,7 +22,7 @@ class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
     authorize!
 
     if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_stable_recipes_path)
+      render_frame_tab(params[:tab], manage_recipes_path)
     else
       render :new
     end
@@ -36,7 +36,7 @@ class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
 
     if @recipe.save
       flash.notice = 'Recipe created successfully.'
-      redirect_to manage_stable_recipe_path(@recipe)
+      redirect_to manage_recipe_path(@recipe)
     else
       flash.now[:error] = @recipe.errors.full_messages
       render :new
@@ -48,7 +48,7 @@ class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
     authorize! @recipe
 
     if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_stable_recipe_path(@recipe))
+      render_frame_tab(params[:tab], manage_recipe_path(@recipe))
     else
       render :edit
     end
@@ -62,7 +62,7 @@ class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
       purge_deleted_attachments(params[:deleted_recipe_img_ids]) if params[:deleted_recipe_img_ids].present?
 
       flash.notice = 'Recipe updated successfully.'
-      redirect_to manage_stable_recipe_path(@recipe)
+      redirect_to manage_recipe_path(@recipe)
     else
       flash.now[:error] = @recipe.errors.full_messages
       render :edit
@@ -75,7 +75,7 @@ class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
 
     Recipe.destroy(@recipe.id)
 
-    redirect_to manage_stable_recipes_path
+    redirect_to manage_recipes_path
   end
 
   private

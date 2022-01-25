@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   root to: 'landings#home'
 
   namespace :manage do
-    namespace :stable do
-      resources :recipes do
-        resources :steps
-      end
+    resources :recipes do
+      resources :steps
     end
   end
 

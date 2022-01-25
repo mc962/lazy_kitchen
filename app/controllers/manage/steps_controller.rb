@@ -1,4 +1,4 @@
-class Manage::Stable::StepsController < Manage::Stable::ApplicationController
+class Manage::StepsController < Manage::ApplicationController
   include FormRenderable
 
   helper_method :render_frame_tab
@@ -10,7 +10,7 @@ class Manage::Stable::StepsController < Manage::Stable::ApplicationController
     @recipe = @step.recipe
 
     if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_stable_recipe_step_path(params[:recipe_id], params[:id]))
+      render_frame_tab(params[:tab], manage_recipe_step_path(params[:recipe_id], params[:id]))
     else
       render :edit
     end
@@ -24,7 +24,7 @@ class Manage::Stable::StepsController < Manage::Stable::ApplicationController
 
     if @step.update(step_params)
       flash.notice = 'Step updated successfully.'
-      redirect_to edit_manage_stable_recipe_path(@step.recipe, tab: 'steps')
+      redirect_to edit_manage_recipe_path(@step.recipe, tab: 'steps')
     else
       flash.now[:error] = @step.errors.full_messages
       render :edit

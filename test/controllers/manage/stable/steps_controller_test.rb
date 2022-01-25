@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Manage::Stable::StepsControllerTest < ApplicationControllerTestCase
+class Manage::StepsControllerTest < ApplicationControllerTestCase
   context 'unauthenticated user' do
     setup do
       @step = FactoryBot.create(:step)
