@@ -1,9 +1,0 @@
-<% content_for :head_js do %>
-  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
-<% end %>
-
-<h1 class="manage-resource-heading">New Step</h1>
-
-<%= render partial: "application/steps/form", locals: {http_method: :post, action: manage_legacy_recipe_steps_path(@step.recipe.id)} %>
-
-<div class="return-link"><%= link_to "Back", manage_legacy_recipe_path(@step.recipe) %></div>

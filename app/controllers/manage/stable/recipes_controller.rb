@@ -1,22 +1,25 @@
-class Manage::Stable::RecipesController < ApplicationController
+class Manage::Stable::RecipesController < Manage::Stable::ApplicationController
   include FormRenderable
 
   helper_method :render_frame_tab
 
   def index
     @recipes = Recipe.directory_recipes(params[:page])
+    authorize!
 
     render :index
   end
 
   def show
     @recipe = Recipe.friendly.find(params[:id])
+    authorize! @recipe
 
     render :show
   end
 
   def new
     @recipe = Recipe.new
+    authorize!
 
     if turbo_frame_request?
       render_frame_tab(params[:tab], manage_stable_recipes_path)
@@ -27,6 +30,9 @@ class Manage::Stable::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    # Associate Recipe created through Public Endpoints with currently authenticated user
+    @recipe.user = current_user
+    authorize! @recipe
 
     if @recipe.save
       flash.notice = 'Recipe created successfully.'
@@ -39,6 +45,7 @@ class Manage::Stable::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.friendly.find(params[:id])
+    authorize! @recipe
 
     if turbo_frame_request?
       render_frame_tab(params[:tab], manage_stable_recipe_path(@recipe))
@@ -49,6 +56,7 @@ class Manage::Stable::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.friendly.find(params[:id])
+    authorize! @recipe
 
     if @recipe.update(recipe_params)
       purge_deleted_attachments(params[:deleted_recipe_img_ids]) if params[:deleted_recipe_img_ids].present?
@@ -59,6 +67,15 @@ class Manage::Stable::RecipesController < ApplicationController
       flash.now[:error] = @recipe.errors.full_messages
       render :edit
     end
+  end
+
+  def destroy
+    @recipe = Recipe.friendly.find(params[:id])
+    authorize! @recipe
+
+    Recipe.destroy(@recipe.id)
+
+    redirect_to manage_stable_recipes_path
   end
 
   private

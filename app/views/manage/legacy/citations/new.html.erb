@@ -1,9 +1,0 @@
-<% content_for :head_js do %>
-  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
-<% end %>
-
-<h1 class="manage-resource-heading">New Citation</h1>
-
-<%= render partial: "application/citations/form", locals: {http_method: :post, action: manage_legacy_recipe_citations_path(@citation.recipe.id)} %>
-
-<div class="return-link"><%= link_to "Back", manage_legacy_recipe_path(@citation.recipe) %></div>

@@ -119,15 +119,15 @@ Form
   text-align: center;
 }
 
-.form-nav {
+.action-nav {
   width: 100%;
-  .form-nav-links {
+  .action-nav-links {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-left: 0;
     list-style: none;
-    .form-nav-link {
+    .action-nav-link {
       width: 30%;
       border: 1px solid black;
       padding: 1%;
@@ -356,4 +356,11 @@ Gallery Pictures
     padding: 0;
     margin: 0;
   }
+}
+
+/**
+New Recipe
+ */
+.new-resource-note {
+  text-align: center;
 }

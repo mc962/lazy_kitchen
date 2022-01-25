@@ -1,10 +1,12 @@
-class Manage::Stable::StepsController < ApplicationController
+class Manage::Stable::StepsController < Manage::Stable::ApplicationController
   include FormRenderable
 
   helper_method :render_frame_tab
 
   def edit
     @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
+    authorize! @step
+
     @recipe = @step.recipe
 
     if turbo_frame_request?
@@ -16,6 +18,8 @@ class Manage::Stable::StepsController < ApplicationController
 
   def update
     @step = Step.includes(:recipe).find(params[:id])
+    authorize! @step
+
     @recipe = @step.recipe
 
     if @step.update(step_params)

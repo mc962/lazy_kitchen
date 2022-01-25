@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Manage::Legacy::StepIngredientsControllerTest < ApplicationControllerTestCase
+class Manage::Stable::StepIngredientsControllerTest < ApplicationControllerTestCase
   context 'unauthenticated user' do
     setup do
       @step_ingredient = FactoryBot.create(:step_ingredient)
