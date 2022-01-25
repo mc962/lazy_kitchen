@@ -7,37 +7,37 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
     end
 
     should"get index" do
-      get manage_legacy_recipes_url
+      get manage_recipes_url
       assert_response :found
     end
 
     should"get show" do
-      get manage_legacy_recipe_url(@user.recipes.first)
+      get manage_recipe_url(@user.recipes.first)
       assert_response :found
     end
 
     should"get new" do
-      get new_manage_legacy_recipe_url
+      get new_manage_recipe_url
       assert_response :found
     end
 
     should"get create" do
-      post manage_legacy_recipes_url, params: {}
+      post manage_recipes_url, params: {}
       assert_response :found
     end
 
     should"get edit" do
-      get edit_manage_legacy_recipe_url(@user.recipes.first)
+      get edit_manage_recipe_url(@user.recipes.first)
       assert_response :found
     end
 
     should"get update" do
-      patch manage_legacy_recipe_url(@user.recipes.first)
+      patch manage_recipe_url(@user.recipes.first)
       assert_response :found
     end
 
     should"get destroy" do
-      delete manage_legacy_recipe_url(@user.recipes.first)
+      delete manage_recipe_url(@user.recipes.first)
       assert_response :found
     end
   end
@@ -49,29 +49,29 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
     end
 
     should"get index" do
-      get manage_legacy_recipes_url
+      get manage_recipes_url
       assert_response :success
     end
 
     should"get show" do
-      get manage_legacy_recipe_url(@user.recipes.first)
+      get manage_recipe_url(@user.recipes.first)
       assert_response :success
     end
 
     should"get new" do
-      get new_manage_legacy_recipe_url
+      get new_manage_recipe_url
       assert_response :success
     end
 
     should"create recipe" do
       new_recipe_params = {name: "#{Faker::Food.name}-#{SecureRandom.uuid}"}
-      post manage_legacy_recipes_url, params: {recipe: new_recipe_params}
+      post manage_recipes_url, params: {recipe: new_recipe_params}
       assert_response :found
-      assert_redirected_to manage_legacy_recipe_url(Recipe.find_by(name: new_recipe_params[:name]))
+      assert_redirected_to manage_recipe_url(Recipe.find_by(name: new_recipe_params[:name]))
     end
 
     should"get edit" do
-      get edit_manage_legacy_recipe_url(@user.recipes.first)
+      get edit_manage_recipe_url(@user.recipes.first)
       assert_response :success
     end
 
@@ -79,15 +79,15 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
       update_recipe = @user.recipes.first
       update_recipe_params = @user.recipes.first.attributes
       update_recipe_params[:name] = "#{Faker::Food.name}-#{SecureRandom.uuid}"
-      patch manage_legacy_recipe_url(update_recipe), params: {recipe: update_recipe_params}
+      patch manage_recipe_url(update_recipe), params: {recipe: update_recipe_params}
       assert_response :found
-      assert_redirected_to manage_legacy_recipe_url(Recipe.find_by(name: update_recipe_params[:name]))
+      assert_redirected_to manage_recipe_url(Recipe.find_by(name: update_recipe_params[:name]))
     end
 
     should"destroy recipe" do
-      delete manage_legacy_recipe_url(@user.recipes.first)
+      delete manage_recipe_url(@user.recipes.first)
       assert_response :found
-      assert_redirected_to manage_legacy_recipes_url
+      assert_redirected_to manage_recipes_url
     end
   end
 
@@ -102,7 +102,7 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
     should"get index" do
       # NOTE: Currently index is allowed by everyone, as it just gets the current user's recipes
 
-      get manage_legacy_recipes_url
+      get manage_recipes_url
       assert_response :success
     end
 
@@ -110,14 +110,14 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
       # NOTE: Expected to fail, as the signed in @unauthorized_user is not allowed access to @authorized_user recipes
 
       assert_raises ActionPolicy::Unauthorized do
-        get manage_legacy_recipe_url(@authorized_user.recipes.first)
+        get manage_recipe_url(@authorized_user.recipes.first)
       end
     end
 
     should"get new" do
       # NOTE: Currently new is allowed by everyone, as it just gets the a page to make a new recipe
 
-      get new_manage_legacy_recipe_url
+      get new_manage_recipe_url
       assert_response :success
     end
 
@@ -127,16 +127,16 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
       #   user, and so this test is not currently expected to fail authorization checks.
 
       new_recipe_params = {name: "#{Faker::Food.name}-#{SecureRandom.uuid}", user_id: @authorized_user.id}
-      post manage_legacy_recipes_url, params: {recipe: new_recipe_params}
+      post manage_recipes_url, params: {recipe: new_recipe_params}
       assert_response :found
-      assert_redirected_to manage_legacy_recipe_url(Recipe.find_by(name: new_recipe_params[:name]))
+      assert_redirected_to manage_recipe_url(Recipe.find_by(name: new_recipe_params[:name]))
     end
 
     should"get edit" do
       # NOTE: Expected to fail, as the signed in @unauthorized_user is not allowed access to @authorized_user recipes
 
       assert_raises ActionPolicy::Unauthorized do
-        get edit_manage_legacy_recipe_url(@authorized_user.recipes.first)
+        get edit_manage_recipe_url(@authorized_user.recipes.first)
       end
     end
 
@@ -147,7 +147,7 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
         update_recipe = @authorized_user.recipes.first
         update_recipe_params = @authorized_user.recipes.first.attributes
         update_recipe_params[:name] = "#{Faker::Food.name}-#{SecureRandom.uuid}"
-        patch manage_legacy_recipe_url(update_recipe), params: {recipe: update_recipe_params}
+        patch manage_recipe_url(update_recipe), params: {recipe: update_recipe_params}
       end
     end
 
@@ -155,7 +155,7 @@ class Manage::RecipesControllerTest < ApplicationControllerTestCase
       # NOTE: Expected to fail, as the signed in @unauthorized_user is not allowed access to @authorized_user recipes
 
       assert_raises ActionPolicy::Unauthorized do
-        delete manage_legacy_recipe_url(@authorized_user.recipes.first)
+        delete manage_recipe_url(@authorized_user.recipes.first)
       end
     end
   end

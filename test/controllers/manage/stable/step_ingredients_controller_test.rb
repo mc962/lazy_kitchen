@@ -7,32 +7,32 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
     end
 
     should"show step ingredient" do
-      get manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      get manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :found
     end
 
     should"new step ingredient" do
-      get new_manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      get new_manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :unauthorized
     end
 
     should"create step ingredient" do
-      post manage_legacy_recipe_step_step_ingredients_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient), params: {}
+      post manage_recipe_step_step_ingredients_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient), params: {}
       assert_response :unauthorized
     end
 
     should"edit step ingredient" do
-      get edit_manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      get edit_manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :found
     end
 
     should"update step ingredient" do
-      patch manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      patch manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :found
     end
 
     should"destroy step ingredient" do
-      delete manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      delete manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :found
     end
   end
@@ -45,12 +45,12 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
     end
 
     should "get show" do
-      get manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      get manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :success
     end
 
     should "get new" do
-      get new_manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id)
+      get new_manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id)
       assert_response :success
     end
 
@@ -65,7 +65,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
         }
       }
 
-      post manage_legacy_recipe_step_step_ingredients_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id),
+      post manage_recipe_step_step_ingredients_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id),
            params: {step_ingredient: new_step_ingredient_params}
       assert_response :found
 
@@ -74,7 +74,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
         condition: new_step_ingredient_params[:condition],
         unit: new_step_ingredient_params[:unit]
       ).first
-      assert_redirected_to manage_legacy_recipe_step_step_ingredient_url(
+      assert_redirected_to manage_recipe_step_step_ingredient_url(
                              created_step_ingredient.step.recipe.id,
                              created_step_ingredient.step.id,
                              created_step_ingredient
@@ -82,7 +82,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
     end
 
     should "get edit" do
-      get edit_manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      get edit_manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :success
     end
 
@@ -96,17 +96,17 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
         description: Faker::Food.description
       }
 
-      patch manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient),
+      patch manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient),
             params: {step_ingredient: update_step_ingredient_params}
       assert_response :success
 
-      # assert_redirected_to manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      # assert_redirected_to manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
     end
 
     should "destroy step ingredient" do
-      delete manage_legacy_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
+      delete manage_recipe_step_step_ingredient_url(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient)
       assert_response :found
-      assert_redirected_to manage_legacy_recipe_step_path(@step_ingredient.step.recipe.id, @step_ingredient.step)
+      assert_redirected_to manage_recipe_step_path(@step_ingredient.step.recipe.id, @step_ingredient.step)
     end
   end
 
@@ -133,14 +133,14 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
       # NOTE: Expected to fail, as the signed in @unauthorized_user is not allowed access to @authorized_user author recipes
 
       assert_raises ActionPolicy::Unauthorized do
-        get manage_legacy_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
+        get manage_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
       end
     end
 
     should "get new" do
       # NOTE: Currently new is allowed by everyone, as it just gets the a page to make a new author
 
-      get new_manage_legacy_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
+      get new_manage_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
       assert_response :success
     end
 
@@ -156,7 +156,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
       }
 
       assert_raises ActionPolicy::Unauthorized do
-        post manage_legacy_recipe_step_step_ingredients_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id),
+        post manage_recipe_step_step_ingredients_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id),
              params: {step_ingredient: new_step_ingredient_params}
       end
     end
@@ -165,7 +165,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
       # NOTE: Expected to fail, as the signed in @unauthorized_user is not allowed access to @authorized_user author recipes
 
       assert_raises ActionPolicy::Unauthorized do
-        get edit_manage_legacy_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
+        get edit_manage_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
       end
     end
 
@@ -182,7 +182,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
           description: Faker::Food.description
         }
 
-        patch manage_legacy_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient),
+        patch manage_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient),
               params: {step_ingredient: update_step_ingredient_params}
       end
     end
@@ -191,7 +191,7 @@ class Manage::StepIngredientsControllerTest < ApplicationControllerTestCase
       # NOTE: Expected to fail, as the signed in @unauthorized_user is not allowed access to @authorized_user recipes
 
       assert_raises ActionPolicy::Unauthorized do
-        delete manage_legacy_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
+        delete manage_recipe_step_step_ingredient_url(@authorized_step_ingredient.step.recipe.id, @authorized_step_ingredient.step.id, @authorized_step_ingredient)
       end
     end
   end
