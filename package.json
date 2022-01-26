@@ -28,9 +28,9 @@
     "typescript": "^4.3.5"
   },
   "scripts": {
-    "build:js": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build:css": "sass app/assets/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "failure:js": "rm ./app/assets/builds/application.js && rm ./app/assets/builds/application.js.map",
-    "dev": "tsc-watch --noClear -p tsconfig.json --onSuccess \"yarn build:js\" --onFailure \"yarn failure:js\""
+    "dev": "tsc-watch --noClear -p tsconfig.json --onSuccess \"yarn build\" --onFailure \"yarn failure:js\""
   }
 }
