@@ -12,7 +12,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= yield :head_css %>
-    <%= javascript_importmap_tags %>
+    <%#= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= yield :head_js %>
   </head>
 
