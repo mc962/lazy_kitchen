@@ -1,7 +1,5 @@
 # Roadmap
 
-- Image Management Integration
-- Better Resource Management
 - GitHub Actions Workflows
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
 - Step and Ingredient Notes
