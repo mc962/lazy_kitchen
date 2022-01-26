@@ -26,7 +26,7 @@ FactoryBot.define do
 
     association :user
 
-    factory :recipe_with_steps do
+    factory :recipe_with_full_steps do
       transient do
         steps_count { 5 }
       end
@@ -34,6 +34,17 @@ FactoryBot.define do
       after(:create) do |recipe, evaluator|
         recipe.reload
         FactoryBot.create_list(:step_with_ingredients, evaluator.steps_count, recipe: recipe)
+        recipe.reload
+      end
+    end
+    factory :recipe_with_steps do
+      transient do
+        steps_count { 5 }
+      end
+
+      after(:create) do |recipe, evaluator|
+        recipe.reload
+        FactoryBot.create_list(:step, evaluator.steps_count, recipe: recipe)
         recipe.reload
       end
     end

@@ -8,6 +8,6 @@
 
 unless Rails.env.production?
   ActiveRecord::Base.transaction do
-    FactoryBot.create(:user_with_recipes, password: 'password')
+    FactoryBot.create(:user_with_full_recipes, password: 'password')
   end
 end
