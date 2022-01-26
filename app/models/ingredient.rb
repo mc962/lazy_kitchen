@@ -4,23 +4,19 @@
 #
 # Table name: ingredients
 #
-#  id          :bigint           not null, primary key
-#  description :text
+#  id          :integer          not null, primary key
 #  name        :string           not null
-#  slug        :string
+#  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :bigint
+#  user_id     :integer
+#  slug        :string
 #
 # Indexes
 #
 #  index_ingredients_on_name_and_user_id  (name,user_id) UNIQUE
 #  index_ingredients_on_slug              (slug) UNIQUE
 #  index_ingredients_on_user_id           (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
 #
 
 # Holds all information relating to an overall ingredient itself, not related directly to a Recipe that
@@ -37,8 +33,6 @@ class Ingredient < ApplicationRecord
   validates :name, uniqueness: {
     scope: [:user_id]
   }
-
-  accepts_nested_attributes_for :step_ingredients
 
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 

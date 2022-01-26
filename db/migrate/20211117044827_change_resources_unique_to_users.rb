@@ -1,4 +1,4 @@
-class ChangeResourcesUniqueToUsers < ActiveRecord::Migration[6.1]
+class ChangeResourcesUniqueToUsers < ActiveRecord::Migration[7.0]
   def change
     # Constrain Ingredients to Users
     remove_index :ingredients, :name

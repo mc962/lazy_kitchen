@@ -4,24 +4,20 @@
 #
 # Table name: recipes
 #
-#  id                  :bigint           not null, primary key
-#  description         :text
+#  id                  :integer          not null, primary key
 #  name                :string           not null
-#  publicly_accessible :boolean          default(FALSE), not null
-#  slug                :string
+#  description         :text
+#  publicly_accessible :boolean          default("false"), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  user_id             :bigint
+#  user_id             :integer
+#  slug                :string
 #
 # Indexes
 #
 #  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
 #  index_recipes_on_slug              (slug) UNIQUE
 #  index_recipes_on_user_id           (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
 #
 
 # Holds all information relating to an overall recipe itself
@@ -43,8 +39,12 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: {
     scope: [:user_id]
   }
+  validates_associated :steps
 
-  accepts_nested_attributes_for(:steps, :citations)
+  before_save :consolidate_step_order
+
+  accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :citations, reject_if: :all_blank, allow_destroy: true
 
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
@@ -76,5 +76,12 @@ class Recipe < ApplicationRecord
   # noinspection RubyInstanceMethodNamingConvention
   def should_generate_new_friendly_id?
     new_record? || name_changed?
+  end
+
+  def consolidate_step_order
+    steps.sort_by(&:order).map!.with_index do |step, idx|
+      step.order = idx + 1
+      step
+    end
   end
 end

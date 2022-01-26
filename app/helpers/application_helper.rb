@@ -10,4 +10,12 @@ module ApplicationHelper
   def recipe_bucket_asset_url(s3_key)
     "https://#{Rails.configuration.x.application_bucket}.s3.amazonaws.com/#{s3_key}"
   end
+
+  def decorated_query_url_for(url, additional_params = {})
+    uri = URI.parse(url)
+    current_params = Rack::Utils.parse_query(uri.query)
+    final_params = current_params.merge(additional_params)
+    uri.query = Rack::Utils.build_query(final_params)
+    uri.to_s
+  end
 end

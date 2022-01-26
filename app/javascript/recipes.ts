@@ -1,4 +1,4 @@
-import Sortable from 'sortablejs/modular/sortable.core.esm.js';
+// import Sortable from 'sortablejs/modular/sortable.core.esm.js';
 
 export const DRAGGABLE_LIST_SELECTOR = '.draggable';
 
@@ -7,23 +7,23 @@ export const DRAGGABLE_LIST_SELECTOR = '.draggable';
  * @param {string} listTarget List Element to attach Drag and Drop behavior onto
  */
 export const setupDraggableList = (listTarget) => {
-    const sortableEl = document.querySelector(listTarget);
+    // const sortableEl = document.querySelector(listTarget);
 
-    if (sortableEl) {
-        Sortable.create(
-            sortableEl,
-            {
-                draggable: '.recipe-step',
-                onUpdate: function (_event) {
-                    const sortableItems = document.querySelectorAll(`${listTarget} .recipe-step`);
-                    sortableItems.forEach((item, idx) => {
-                        const itemOrder = idx + 1;
-                        const itemOrderEl = item.querySelector('.recipe-step-order') as HTMLInputElement;
-
-                        itemOrderEl.value = itemOrder.toString();
-                    });
-                }
-            }
-        )
-    }
+    // if (sortableEl) {
+    //     Sortable.create(
+    //         sortableEl,
+    //         {
+    //             draggable: '.recipe-step',
+    //             onUpdate: function (_event) {
+    //                 const sortableItems = document.querySelectorAll(`${listTarget} .recipe-step`);
+    //                 sortableItems.forEach((item, idx) => {
+    //                     const itemOrder = idx + 1;
+    //                     const itemOrderEl = item.querySelector('.recipe-step-order') as HTMLInputElement;
+    //
+    //                     itemOrderEl.value = itemOrder.toString();
+    //                 });
+    //             }
+    //         }
+    //     )
+    // }
 }

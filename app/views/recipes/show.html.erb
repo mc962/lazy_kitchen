@@ -1,12 +1,8 @@
-<% content_for :head_js do %>
-  <%= javascript_pack_tag 'public', 'data-turbolinks-track': 'reload' %>
-<% end %>
-
 <h1 class='recipe-heading'><%= @recipe.name %></h1>
 
 <section class="recipe-content">
   <% if user_signed_in? && allowed_to?(:edit?, @recipe) %>
-    <%= link_to 'Edit', edit_manage_legacy_recipe_path(@recipe) %>
+    <%= link_to 'Edit', edit_manage_recipe_path(@recipe) %>
   <% end %>
 
   <div class="recipe-profile-img-container">

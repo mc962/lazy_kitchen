@@ -1,7 +1,3 @@
-<% content_for :head_js do %>
-  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
-<% end %>
-
 <h2 class="auth-heading">Change your password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'auth-form' }) do |f| %>

@@ -1,7 +1,3 @@
-<% content_for :head_js do %>
-  <%= javascript_pack_tag 'manage', 'data-turbolinks-track': 'reload' %>
-<% end %>
-
 <h2 class="auth-heading">Resend confirmation instructions</h2>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'auth-form' }) do |f| %>

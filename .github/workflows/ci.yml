@@ -20,7 +20,7 @@ jobs:
       - name: Setup Ruby and Gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
+          ruby-version: 3.1.0
           bundler-cache: true
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -44,12 +44,13 @@ jobs:
       - name: Setup Ruby and Gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
+          ruby-version: 3.1.0
           bundler-cache: true
       - name: Run Security Checks
         run: |
           bundle exec bundler-audit --update
-          bundle exec brakeman -q -w2
+#          TODO Disable until ruby_parser supports Ruby 3.1
+#          bundle exec brakeman -q -w2
 
   tests:
     name: Tests
@@ -78,7 +79,7 @@ jobs:
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
+          ruby-version: 3.1.0
           bundler-cache: true
       - name: Setup Node
         uses: actions/setup-node@v2

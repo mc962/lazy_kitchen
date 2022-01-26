@@ -2,30 +2,27 @@
 #
 # Table name: citations
 #
-#  id                   :bigint           not null, primary key
-#  content_location     :string
-#  content_type         :string           not null
-#  last_accessed_at     :date
+#  id                   :integer          not null, primary key
 #  origin               :string           not null
-#  publication_location :string
+#  content_type         :string           not null
 #  publication_title    :string
-#  published_at         :date
+#  publication_location :string
 #  publisher            :string
-#  site_link            :string
-#  site_title           :string
+#  published_at         :date
+#  content_location     :string
 #  version              :string
+#  site_title           :string
+#  last_accessed_at     :date
+#  site_link            :string
+#  recipe_id            :integer          not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  recipe_id            :bigint           not null
 #
 # Indexes
 #
 #  index_citations_on_recipe_id  (recipe_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (recipe_id => recipes.id)
-#
+
 FactoryBot.define do
   factory :citation do
     content_location { Faker::Number.between(from: 1, to: 800).to_s }
