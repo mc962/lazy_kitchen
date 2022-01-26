@@ -22,7 +22,7 @@ gem "sprockets-rails"
 gem "jsbundling-rails"
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -74,7 +74,10 @@ gem 'rack-cors'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  # NOTE: There is a bug with running a Foreman configuration and this application's configuration that causes an error
+  #   loop in a JetBrains IDE. Since in that case we'd be using the JetBrains Debugger anyway, we do not need to load
+  #   this library if we are running with a JetBrains IDE.
+  gem "debug", platforms: %i[ mri mingw x64_mingw ] unless !!(ENV['RUBYLIB'] =~ /ruby-debug-ide/)
 
   # Generate fake seed data
   gem 'factory_bot_rails'
