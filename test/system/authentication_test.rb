@@ -1,6 +1,10 @@
 require "test_helper"
 
 class AuthenticationTest < ApplicationSystemTestCase
+  setup do
+
+  end
+
   test 'sign up' do
     registration_data = {
       email: Faker::Internet.email,
