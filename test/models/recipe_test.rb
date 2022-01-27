@@ -47,5 +47,15 @@ class RecipeTest < ActiveSupport::TestCase
 
       assert Recipe.publicly_accessible.count == public_recipes.size
     end
+
+    should 'only get recipes owned by the user with #owned' do
+      owned_recipes_count = 2
+      user_1 = FactoryBot.create(:user_with_recipes, recipes_count: owned_recipes_count)
+      _user_2 = FactoryBot.create(:user_with_recipes, recipes_count: 3)
+
+      user_1_recipes_count = Recipe.owned(user_1.id).count
+
+      assert_equal owned_recipes_count, user_1_recipes_count
+    end
   end
 end

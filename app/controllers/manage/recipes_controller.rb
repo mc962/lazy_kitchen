@@ -6,7 +6,7 @@ class Manage::RecipesController < Manage::ApplicationController
   helper_method :render_frame_tab
 
   def index
-    @recipes = Recipe.directory_recipes(params[:page])
+    @recipes = Recipe.owned(current_user.id).directory_recipes(params[:page])
     authorize!
 
     render :index
