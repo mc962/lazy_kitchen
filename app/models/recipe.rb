@@ -49,7 +49,7 @@ class Recipe < ApplicationRecord
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
-  scope :owned, ->(user_id) { where(user_id: user_id) }
+  scope :owned, ->(user_id) { where(user_id:) }
   scope :publicly_accessible, -> { where(publicly_accessible: true) }
 
   MAX_STEPS = 100
