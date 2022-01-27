@@ -21,12 +21,16 @@
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
 
 /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/production.key
 
 # Assets
 /public/packs
@@ -36,6 +40,10 @@
 yarn-debug.log*
 .yarn-integrity
 .yarn/
+app/assets/builds/
+
+# OS Files
+.DS_Store
 
 # IDEs
 .idea/

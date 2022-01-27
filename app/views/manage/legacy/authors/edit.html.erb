@@ -1,5 +1,0 @@
-<h1 class="manage-resource-heading">Edit Author</h1>
-
-<%= render partial: "application/authors/form", locals: {http_method: :patch, action: manage_legacy_recipe_citation_author_path(@author)} %>
-
-<div class="return-link"><%= link_to "Back", manage_legacy_recipe_citation_author_path(@author.citation.recipe.id, @author.citation.id, @author) %></div>

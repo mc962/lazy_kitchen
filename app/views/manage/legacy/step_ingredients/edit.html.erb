@@ -1,5 +1,0 @@
-<h1 class="manage-resource-heading">Edit Step Ingredient</h1>
-
-<%= render partial: "application/step_ingredients/form", locals: {http_method: :patch, action: manage_legacy_recipe_step_step_ingredient_path(@step_ingredient)} %>
-
-<div class="return-link"><%= link_to "Back", manage_legacy_recipe_step_step_ingredient_path(@step_ingredient.step.recipe.id, @step_ingredient.step.id, @step_ingredient) %></div>

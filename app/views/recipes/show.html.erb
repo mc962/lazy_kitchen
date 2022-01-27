@@ -2,11 +2,11 @@
 
 <section class="recipe-content">
   <% if user_signed_in? && allowed_to?(:edit?, @recipe) %>
-    <%= link_to 'Edit', edit_manage_legacy_recipe_path(@recipe) %>
+    <%= link_to 'Edit', edit_manage_recipe_path(@recipe) %>
   <% end %>
 
   <div class="recipe-profile-img-container">
-    <img src="<%= @recipe.image_url %>" alt="A display of <%= @recipe.name %>" class="recipe-profile-img" />
+    <%= primary_picture(@recipe) %>
   </div>
 
   <p aria-label="Recipe description"><%= @recipe.description %></p>

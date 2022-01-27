@@ -2,17 +2,17 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
-#  confirmation_sent_at   :datetime
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  username               :string
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
+#  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -23,6 +23,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
+
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase

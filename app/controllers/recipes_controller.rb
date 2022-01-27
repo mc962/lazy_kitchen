@@ -2,7 +2,7 @@
 
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.publicly_accessible
+    @recipes = Recipe.publicly_accessible.directory_recipes(params[:page])
 
     render :index
   end

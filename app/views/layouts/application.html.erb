@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale || 'en' %>">
   <head>
-    <title>LazyKitchen</title>
+    <title>A Lazy Kitchen</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Quick and lazy recipes for the uninspired cook.">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= yield :head_css %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= yield :head_js %>
   </head>
 

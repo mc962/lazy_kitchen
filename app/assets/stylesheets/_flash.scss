@@ -1,0 +1,54 @@
+/**
+Flash
+ */
+
+.flash-container {
+  width: 60%;
+  margin: 1% auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  padding: 1%;
+  border: 1px solid black;
+
+  .flash-message-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.hidden-flash {
+  display: none;
+}
+
+// Flash Color Schemes
+
+// Default flash coloring for anything that isn't applied
+.flash-container {
+  background-color: white;
+  color: black;
+}
+
+.flash-container.flash-alert {
+  background-color: #f3665b;
+  color: #80231d;
+}
+
+.flash-container.flash-notice {
+  background-color: #7bc4e7;
+  color: #2a5c73;
+}
+
+.flash-container.flash-special {
+  background-color: #ebed79;
+  color: #7f8035;
+}
+
+.flash-container.flash-success {
+  background-color: #61cb61;
+  color: #006400FF;
+}

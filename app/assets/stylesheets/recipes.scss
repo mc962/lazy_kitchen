@@ -5,6 +5,13 @@ Index
   text-align: center;
 }
 
+.page-entries-info {
+  text-align: right;
+  width: 65%;
+  padding: 1%;
+  margin: 0 auto;
+}
+
 #directory_recipes {
   margin: 0 auto;
   list-style: none;
@@ -34,7 +41,8 @@ Index
 }
 
 .new-recipe-link {
-  text-align: center;
+  width: 80%;
+  text-align: end;
 }
 
 /**
@@ -48,10 +56,6 @@ Show
 
   #recipe_ingredients {
     width: 35%;
-  }
-
-  #recipe_steps {
-    width: 55%;
   }
 
   .recipe-col {
@@ -85,9 +89,4 @@ Show
       width: 100%;
     }
   }
-}
-
-.ingredient {
-  list-style: none;
-  padding-left: 0;
 }

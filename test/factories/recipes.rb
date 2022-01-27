@@ -1,13 +1,32 @@
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id                  :integer          not null, primary key
+#  name                :string           not null
+#  description         :text
+#  publicly_accessible :boolean          default("false"), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :integer
+#  slug                :string
+#
+# Indexes
+#
+#  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
+#  index_recipes_on_slug              (slug) UNIQUE
+#  index_recipes_on_user_id           (user_id)
+#
+
 FactoryBot.define do
   factory :recipe do
     name { Faker::Food.dish + SecureRandom.uuid }
-    image_url { Faker::Avatar.image }
     description { Faker::Food.description }
     publicly_accessible { Faker::Boolean.boolean }
 
     association :user
 
-    factory :recipe_with_steps do
+    factory :recipe_with_full_steps do
       transient do
         steps_count { 5 }
       end
@@ -15,6 +34,17 @@ FactoryBot.define do
       after(:create) do |recipe, evaluator|
         recipe.reload
         FactoryBot.create_list(:step_with_ingredients, evaluator.steps_count, recipe: recipe)
+        recipe.reload
+      end
+    end
+    factory :recipe_with_steps do
+      transient do
+        steps_count { 5 }
+      end
+
+      after(:create) do |recipe, evaluator|
+        recipe.reload
+        FactoryBot.create_list(:step, evaluator.steps_count, recipe: recipe)
         recipe.reload
       end
     end
