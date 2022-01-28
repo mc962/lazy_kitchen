@@ -40,11 +40,13 @@ class Manage::StepsController < Manage::ApplicationController
       :id,
       :order,
       :instruction,
+      gallery_pictures: [],
       step_ingredients_attributes: [
         :id,
         :amount,
         :condition,
         :unit,
+        :gallery_pictures,
         :_destroy,
         { ingredient_attributes: %i[
           id

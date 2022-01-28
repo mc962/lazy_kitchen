@@ -24,6 +24,7 @@
 class StepIngredient < ApplicationRecord
   belongs_to :step
   belongs_to :ingredient
+  has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
 
   validates :amount, :step, :ingredient, presence: true
   validates_associated :ingredient
