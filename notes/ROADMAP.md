@@ -1,8 +1,8 @@
 # Roadmap
 
-- GitHub Actions Workflows
-- Recipe, Step, and Ingredient Notes
+## Features
 - Step-specific images gallery
+- Recipe, Step, and Ingredient Notes
 - Personal Recipe Downloads
 - Bulk Recipe Uploads
 - Recipe/User Ingredients vs. Canonical Ingredients
@@ -16,3 +16,6 @@
   - Comments
 - CookLang Support
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
+
+## Workflow
+- GitHub Actions Workflows
