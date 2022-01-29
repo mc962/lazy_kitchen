@@ -8,11 +8,11 @@ module FormRenderable
     # when 'information'
     #   render partial: 'application/manage/recipes/information', locals: { action: }
     when 'images'
-      render partial: 'application/manage/recipes/images', locals: { action: }
+      render partial: 'application/manage/recipes/images/tab', locals: { action: }
     when 'steps'
-      render partial: 'application/manage/recipes/steps', locals: { action: }
+      render partial: 'application/manage/recipes/steps/all', locals: { action: }
     when 'ingredients'
-      render partial: 'application/manage/recipes/ingredients', locals: { action: }
+      render partial: 'application/manage/recipes/steps/ingredients/all', locals: { action: }
     else
       render partial: 'application/manage/recipes/information', locals: { action: }
     end

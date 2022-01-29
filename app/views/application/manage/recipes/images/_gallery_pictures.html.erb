@@ -30,6 +30,6 @@
 
   <div class="form-ctrl-container" id="gallery_pictures_ctrl">
     <%= recipe_form.file_field :gallery_pictures, multiple: true, data: {action: 'change->gallery-pictures-upload#sync', gallery_pictures_upload_target: 'recipeGalleryPictures'}, class: 'synced-multi-img' %>
-    <button type="button" class="cancel-upload-btn cancel-gallery-upload-btn" data-action="click->gallery-pictures-upload#cancel">Cancel</button>
+    <button type="button" class="cancel-btn cancel-gallery-upload-btn" data-action="click->gallery-pictures-upload#cancel">Cancel</button>
   </div>
 </section>

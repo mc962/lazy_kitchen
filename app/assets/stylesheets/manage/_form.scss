@@ -56,6 +56,27 @@ Form
   }
 }
 
+.cancel-btn {
+  background-color: red;
+  border: 1px solid #861111;
+
+  &:hover {
+    background-color: #861111;
+  }
+}
+
+.add-resource-btn {
+  align-self: flex-end;
+  margin: 0 10%;
+
+  background-color: #14a318;
+  border: 1px solid #1f8922;
+
+  &:hover {
+    background-color: #1f8922;
+  }
+}
+
 .tab-form-heading {
   text-align: center;
 }

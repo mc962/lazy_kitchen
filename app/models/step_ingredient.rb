@@ -22,6 +22,8 @@
 # Links an ingredient to a specific recipe step. Contains step specific information about an ingredient, such
 #   as the condition of an ingredient (e.g. hot, cold, etc.) that is not a specific quality of that ingredient
 class StepIngredient < ApplicationRecord
+  include ActiveStoragePath
+
   belongs_to :step
   belongs_to :ingredient
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }

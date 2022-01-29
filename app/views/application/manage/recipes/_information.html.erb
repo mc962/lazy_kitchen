@@ -2,19 +2,26 @@
   <h3 class="tab-form-heading">Information</h3>
 
   <%= form_with model: @recipe, class: 'resource-form', url: action, data: {turbo: false} do |recipe_form| %>
-    <div class="form-ctrl-container">
-      <%= recipe_form.label :name, class: "form-ctrl-lbl" %>
-      <%= recipe_form.text_field :name, class: "form-ctrl" %>
+    <div class="information-tab">
+
+      <div class="form-ctrl-container">
+        <%= recipe_form.label :name, class: "form-ctrl-lbl" %>
+        <%= recipe_form.text_field :name, class: "form-ctrl" %>
+      </div>
+
+      <div class="form-ctrl-container publicly-accessible-container">
+        <%= recipe_form.label :publicly_accessible, class: "form-ctrl-lbl" %>
+        <%= recipe_form.check_box :publicly_accessible, class: "form-ctrl-check" %>
+      </div>
+
+      <div class="form-ctrl-container">
+        <%= recipe_form.label :description, class: "form-ctrl-lbl" %>
+        <%= recipe_form.text_area :description, class: "form-ctrl-text" %>
+      </div>
     </div>
 
-    <div class="form-ctrl-container publicly-accessible-container">
-      <%= recipe_form.label :publicly_accessible, class: "form-ctrl-lbl" %>
-      <%= recipe_form.check_box :publicly_accessible, class: "form-ctrl-check" %>
-    </div>
-
-    <div class="form-ctrl-container">
-      <%= recipe_form.label :description, class: "form-ctrl-lbl" %>
-      <%= recipe_form.text_area :description, class: "form-ctrl-text" %>
+    <div class="images-tab">
+      <%= turbo_frame_tag 'recipe_images', src: edit_manage_recipe_path(@recipe, tab: 'recipe_images'), loading: 'lazy' %>
     </div>
 
     <%= recipe_form.submit %>
