@@ -2,7 +2,6 @@
   <%= steps_form.hidden_field :order, class: "recipe-step-order" %>
 
   <div class="form-ctrl-container">
-    <%#= steps_form.label :instruction, class: "form-ctrl-lbl" %>
     <%= steps_form.text_area :instruction, class: "form-ctrl-text" %>
   </div>
 
@@ -16,7 +15,7 @@
     </button>
 
     <% unless steps_form.object.new_record? %>
-      <%= link_to 'Edit', decorated_query_url_for(edit_manage_recipe_step_path(steps_form.object.recipe.id, steps_form.object.id), {tab: 'ingredients'}), data: {"turbo-frame": :"tab_content"}, class: 'nested-form-nav-link' %>
+      <%= link_to 'Edit', decorated_query_url_for(edit_manage_recipe_step_path(steps_form.object.recipe.slug, steps_form.object.id), {tab: 'step'}), data: {"turbo-frame": :"tab_content", turbo: false}, class: 'nested-form-nav-link' %>
     <% end %>
   </div>
 

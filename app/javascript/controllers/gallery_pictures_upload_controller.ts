@@ -3,14 +3,14 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="gallery-pictures-upload"
 // noinspection JSUnusedGlobalSymbols
 export default class extends Controller {
-  static targets = ['recipeGalleryPictures', 'previewImgs'];
+  static targets = ['resourceGalleryPictures', 'previewImgs'];
   private previewImgsTarget: HTMLUListElement;
-  private recipeGalleryPicturesTarget: HTMLInputElement;
+  private resourceGalleryPicturesTarget: HTMLInputElement;
 
   sync() {
     this.emptyMultiImgContainer(this.previewImgsTarget);
 
-    const currentFiles = this.recipeGalleryPicturesTarget.files;
+    const currentFiles = this.resourceGalleryPicturesTarget.files;
     if (currentFiles.length) {
       const newResourceImgTemplate = document.getElementById('new_resource_image_template') as HTMLTemplateElement;
       Array.from(currentFiles).forEach((inputFile) => {
@@ -24,7 +24,7 @@ export default class extends Controller {
     // TODO see if stimulus can deal with this state in here
     this.emptyMultiImgContainer(this.previewImgsTarget);
     // Clear out images assigned to file input
-    this.recipeGalleryPicturesTarget.value = ''
+    this.resourceGalleryPicturesTarget.value = ''
   }
 
   connect() {

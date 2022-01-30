@@ -21,7 +21,7 @@
     </div>
 
     <div class="images-tab">
-      <%= turbo_frame_tag 'recipe_images', src: edit_manage_recipe_path(@recipe, tab: 'recipe_images'), loading: 'lazy' %>
+      <%= render partial: 'application/manage/recipes/images/tab', locals: {recipe_form: recipe_form} %>
     </div>
 
     <%= recipe_form.submit %>

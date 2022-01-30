@@ -1,7 +1,6 @@
-<%= turbo_frame_tag('recipe_images', loading: :lazy) do %>
-  <h3 class="tab-form-heading">Images</h3>
+<h3 class="tab-form-heading">Images</h3>
 
-  <%= render partial: 'application/manage/recipes/images/primary_picture', locals: {recipe_form: recipe_form} %>
+<%= render partial: 'application/manage/images/primary_picture', locals: {form: recipe_form} %>
 
-  <%= render partial: 'application/manage/recipes/images/gallery_pictures', locals: {recipe_form: recipe_form} %>
-<% end %>
+<%= render partial: 'application/manage/images/gallery_pictures', locals: {form: recipe_form, standard_alt_text: "A picture of #{form.object.name}"} %>
+

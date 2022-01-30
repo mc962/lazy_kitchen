@@ -61,7 +61,7 @@ class Manage::RecipesController < Manage::ApplicationController
     authorize! @recipe
 
     if @recipe.update(recipe_params)
-      purge_deleted_attachments(params[:deleted_recipe_img_ids]) if params[:deleted_recipe_img_ids].present?
+      purge_deleted_attachments(params[:deleted_resource_img_ids]) if params[:deleted_resource_img_ids].present?
 
       flash.notice = 'Recipe updated successfully.'
       redirect_to manage_recipe_path(@recipe)

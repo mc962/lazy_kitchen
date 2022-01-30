@@ -3,14 +3,14 @@
     <div class="resource-preview-container">
       <label for="existing_resource_images">Existing Images</label>
       <ul id="existing_resource_images" class="gallery-images-container">
-        <% if recipe_form.object.gallery_pictures.attached? %>
-          <% recipe_form.object.gallery_pictures.each do |picture| %>
+        <% if form.object.gallery_pictures.attached? %>
+          <% form.object.gallery_pictures.each do |picture| %>
             <li class="preview-resource-image existing-resource-image">
               <%#= image_tag picture.representation(resize_to_limit: [100, 100]).processed.url %>
-              <%= image_tag picture, alt: 'Gallery picture of recipe food', class: 'resource-gallery-img' %>
+              <%= image_tag picture, alt: standard_alt_text, class: 'resource-gallery-img' %>
               <div class="delete-img-container">
                 <p class="delete-img-txt">Delete</p>
-                <%= check_box_tag "deleted_recipe_img_ids[]", picture.id %>
+                <%= check_box_tag "deleted_resource_img_ids[]", picture.id %>
               </div>
             </li>
           <% end %>
@@ -22,14 +22,14 @@
       <ul id="new_resource_images" class="gallery-images-container" data-gallery-pictures-upload-target="previewImgs"></ul>
       <template id="new_resource_image_template">
         <li class="preview-resource-image new-resource-image">
-          <img src="" alt="<% "A picture of #{recipe_form.object.name}" %>" class="resource-gallery-img synced-multi-img" />
+          <img src="" alt="<%= standard_alt_text %>" class="resource-gallery-img synced-multi-img" />
         </li>
       </template>
     </div>
   </div>
 
   <div class="form-ctrl-container" id="gallery_pictures_ctrl">
-    <%= recipe_form.file_field :gallery_pictures, multiple: true, data: {action: 'change->gallery-pictures-upload#sync', gallery_pictures_upload_target: 'recipeGalleryPictures'}, class: 'synced-multi-img' %>
+    <%= form.file_field :gallery_pictures, multiple: true, data: {action: 'change->gallery-pictures-upload#sync', gallery_pictures_upload_target: 'resourceGalleryPictures'}, class: 'synced-multi-img' %>
     <button type="button" class="cancel-btn cancel-gallery-upload-btn" data-action="click->gallery-pictures-upload#cancel">Cancel</button>
   </div>
 </section>

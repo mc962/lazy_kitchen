@@ -6,7 +6,7 @@ class Manage::StepsController < Manage::ApplicationController
   helper_method :render_frame_tab
 
   def edit
-    @step = Step.where(recipe_id: params[:recipe_id]).find(params[:id])
+    @step = Step.joins(:recipe).where(recipes: {slug: params[:recipe_id]}).find(params[:id])
     authorize! @step
 
     @recipe = @step.recipe

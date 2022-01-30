@@ -25,9 +25,9 @@
       <button type="button" class="button add-resource-btn" data-action="nested-form#add">Add Ingredient</button>
     </div>
 
-<!--    <div class="images-tab">-->
-      <%#= turbo_frame_tag 'recipe_images', src: edit_manage_recipe_path(@recipe, tab: 'recipe_images'), loading: 'lazy' %>
-<!--    </div>-->
+    <div class="images-tab">
+      <%= render partial: 'application/manage/recipes/steps/images/tab', locals: {step_form: step_form} %>
+    </div>
 
     <%= step_form.submit %>
   <% end %>
