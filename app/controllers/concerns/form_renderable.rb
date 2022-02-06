@@ -15,6 +15,8 @@ module FormRenderable
       render partial: 'application/manage/recipes/steps/full', locals: { action: }
     when 'ingredients'
       render partial: 'application/manage/recipes/steps/ingredients/all', locals: { action: }
+    when 'ingredient'
+      render partial: 'application/manage/recipes/steps/ingredients/full', locals: { action: }
     else
       render partial: 'application/manage/recipes/information', locals: { action: }
     end

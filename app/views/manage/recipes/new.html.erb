@@ -1,5 +1,5 @@
 <h1 class="recipe-form-title">New Recipe</h1>
 
-<%= render partial: 'application/manage/recipes/form', locals: {action: manage_recipes_path} %>
+<%= render partial: 'application/manage/form', locals: {action: manage_recipes_path, resource: @recipe, nav_resource: @recipe} %>
 
 <p class="new-resource-note">Note: Only basic information may be added for new recipes</p>

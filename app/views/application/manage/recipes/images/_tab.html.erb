@@ -1,6 +1,6 @@
 <h3 class="tab-form-heading">Images</h3>
 
-<%= render partial: 'application/manage/images/primary_picture', locals: {form: recipe_form} %>
+<%= render partial: 'application/manage/images/primary_picture', locals: {form: form} %>
 
-<%= render partial: 'application/manage/images/gallery_pictures', locals: {form: recipe_form, standard_alt_text: "A picture of #{form.object.name}"} %>
+<%= render partial: 'application/manage/images/gallery_pictures', locals: {form: form, standard_alt_text: "A picture of #{form.object.name}"} %>
 

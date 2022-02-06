@@ -22,12 +22,16 @@
 # Holds all information relating to an overall ingredient itself, not related directly to a Recipe that
 #   it might be linked to
 class Ingredient < ApplicationRecord
+  include ActiveStoragePath
+
   extend FriendlyId
 
   belongs_to :user
   has_many :step_ingredients, dependent: :destroy
   has_many :steps, through: :step_ingredients
   has_many :recipes, through: :steps
+
+  has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/ingredients" }
 
   validates :name, presence: true
   validates :name, uniqueness: {
