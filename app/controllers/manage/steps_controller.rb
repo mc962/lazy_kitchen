@@ -2,6 +2,7 @@
 
 class Manage::StepsController < Manage::ApplicationController
   include FormRenderable
+  include Imageable
 
   helper_method :render_frame_tab
 
@@ -25,6 +26,8 @@ class Manage::StepsController < Manage::ApplicationController
     @recipe = @step.recipe
 
     if @step.update(step_params)
+      purge_deleted_attachments(params[:deleted_resource_img_ids], :step) if params[:deleted_resource_img_ids].present?
+
       flash.notice = 'Step updated successfully.'
       redirect_to edit_manage_recipe_path(@step.recipe, tab: 'steps')
     else

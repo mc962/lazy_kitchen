@@ -1,5 +1,6 @@
 class Manage::IngredientsController < Manage::ApplicationController
   include FormRenderable
+  include Imageable
 
   helper_method :render_frame_tab
 
@@ -22,9 +23,14 @@ class Manage::IngredientsController < Manage::ApplicationController
 
     authorize! @ingredient
 
+    @step = @ingredient.steps.where(id: params[:step_id]).first
+    @recipe = @step.recipe
+
     if @ingredient.update(ingredient_params)
+      purge_deleted_attachments(params[:deleted_resource_img_ids], :ingredient) if params[:deleted_resource_img_ids].present?
+
       flash.notice = 'Ingredient updated successfully.'
-      redirect_to edit_manage_recipe_step_path(params[:recipe_id], params[:step_id], tab: 'step')
+      redirect_to edit_manage_recipe_step_path(@recipe.slug, @step.id, tab: 'step')
     else
       flash.now[:error] = @ingredient.errors.full_messages
       render :edit
