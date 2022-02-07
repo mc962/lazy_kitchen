@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::IngredientsController < Manage::ApplicationController
   include FormRenderable
   include Imageable
@@ -12,7 +14,8 @@ class Manage::IngredientsController < Manage::ApplicationController
     @recipe = @ingredient.recipes.where(slug: params[:recipe_id]).first
 
     if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_recipe_step_ingredient_path(params[:recipe_id], params[:step_id], params[:id]))
+      render_frame_tab(params[:tab],
+                       manage_recipe_step_ingredient_path(params[:recipe_id], params[:step_id], params[:id]))
     else
       render :edit
     end
@@ -27,7 +30,10 @@ class Manage::IngredientsController < Manage::ApplicationController
     @recipe = @step.recipe
 
     if @ingredient.update(ingredient_params)
-      purge_deleted_attachments(params[:deleted_resource_img_ids], :ingredient) if params[:deleted_resource_img_ids].present?
+      if params[:deleted_resource_img_ids].present?
+        purge_deleted_attachments(params[:deleted_resource_img_ids],
+                                  :ingredient)
+      end
 
       flash.notice = 'Ingredient updated successfully.'
       redirect_to edit_manage_recipe_step_path(@recipe.slug, @step.id, tab: 'step')
@@ -44,8 +50,7 @@ class Manage::IngredientsController < Manage::ApplicationController
       :id,
       :name,
       :description,
-      gallery_pictures: [],
+      gallery_pictures: []
     )
   end
 end
-
