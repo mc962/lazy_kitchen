@@ -18,8 +18,6 @@ export default class extends Controller {
      * @param {Event} event Click event that triggered image upload img tag syncing with file input
      */
     sync(event) {
-        event.preventDefault();
-
         const imageFile = this.recipePrimaryPictureTarget.files[0];
 
         if (imageFile) {
@@ -42,8 +40,6 @@ export default class extends Controller {
      * @param {Event} event Click event that triggered image upload cancellation
      */
     cancel(event: Event) {
-        event.preventDefault();
-
         // Free existing image preview file URL and clear file from input
         URL.revokeObjectURL(this.previewImgTarget.src);
         this.recipePrimaryPictureTarget.value = '';

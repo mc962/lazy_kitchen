@@ -4,6 +4,8 @@ class API::RecipesController < API::ApplicationController
   def index
     @recipes = Recipe.where(user_id: current_user.id)
 
+    authorize!
+
     render json: @recipes.map { |recipe|
                    {
                      id: recipe.id,
@@ -17,6 +19,8 @@ class API::RecipesController < API::ApplicationController
   def show
     @recipe = Recipe.includes(:steps, :ingredients,
                               :citations).where(user_id: current_user.id).friendly.find(params[:id])
+
+    authorize!
 
     render json: {
       id: @recipe.id,

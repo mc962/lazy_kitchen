@@ -10,6 +10,7 @@ class Manage::StepsController < Manage::ApplicationController
     @step = Step.joins(:recipe).where(recipes: { slug: params[:recipe_id] }).find(params[:id])
     authorize! @step
 
+    # Expose needed nested models associated with main model for page
     @recipe = @step.recipe
 
     if turbo_frame_request?
@@ -23,6 +24,7 @@ class Manage::StepsController < Manage::ApplicationController
     @step = Step.includes(:recipe).find(params[:id])
     authorize! @step
 
+    # Expose needed nested models associated with main model for page
     @recipe = @step.recipe
 
     if @step.update(step_params)

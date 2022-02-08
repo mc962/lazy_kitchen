@@ -11,6 +11,7 @@ class Manage::IngredientsController < Manage::ApplicationController
 
     authorize! @ingredient
 
+    # Expose needed nested models associated with main model for page
     @recipe = @ingredient.recipes.where(slug: params[:recipe_id]).first
 
     if turbo_frame_request?
@@ -26,6 +27,7 @@ class Manage::IngredientsController < Manage::ApplicationController
 
     authorize! @ingredient
 
+    # Expose needed nested models associated with main model for page
     @step = @ingredient.steps.where(id: params[:step_id]).first
     @recipe = @step.recipe
 

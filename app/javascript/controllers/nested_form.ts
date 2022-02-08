@@ -17,7 +17,6 @@ export default class extends StimulusRailsNestedFormController {
      * @param {Event} event Click event that triggered adding nested model content to form
      */
     add(event: Event) {
-        event.preventDefault();
         const content = this.templateTarget.content.cloneNode(true) as HTMLElement;
         const nodeInputs = content.querySelectorAll('input');
         const nodeTextAreas = content.querySelectorAll('textarea');
@@ -48,8 +47,6 @@ export default class extends StimulusRailsNestedFormController {
      * @param {Event} event Click event that triggered adding nested model content to form
      */
     remove(event: Event) {
-        event.preventDefault();
-
         const eventTarget = event.target as HTMLElement;
         const wrapper = eventTarget.closest(this.wrapperSelectorValue) as HTMLLIElement;
         if (wrapper.dataset.newRecord === "true") {
@@ -73,8 +70,6 @@ export default class extends StimulusRailsNestedFormController {
      * @param {Event} event Click event that triggered removing nested model content from the form
      */
     undoRemove(event: Event) {
-        event.preventDefault();
-
         const eventTarget = event.target as HTMLElement;
         const wrapper = eventTarget.closest(this.wrapperSelectorValue) as HTMLLIElement;
         if (wrapper.dataset.newRecord === "true") {

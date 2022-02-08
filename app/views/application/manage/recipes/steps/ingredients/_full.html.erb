@@ -1,5 +1,5 @@
 <%= turbo_frame_tag('tab_content') do %>
-  <h3 class="tab-form-heading">Step</h3>
+  <h3 class="tab-form-heading">Ingredient</h3>
 
   <%= form_with model: @ingredient, class: 'resource-form', url: decorated_query_url_for(action, {tab: 'ingredient'}), data: { turbo: false} do |ingredient_form| %>
     <div class="tab-form-section ingredient">

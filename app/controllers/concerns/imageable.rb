@@ -29,7 +29,7 @@ module Imageable
     attachments = ActiveStorage::Attachment
                   .where(id: deleted_attachment_ids, record_type: 'Step')
                   .joins('JOIN steps ON active_storage_attachments.record_id = steps.id')
-                  .joins('JOIN recipes ON steps.step_id = recipes.id')
+                  .joins('JOIN recipes ON steps.recipe_id = recipes.id')
                   .joins('JOIN users ON recipes.user_id = users.id')
                   .where('users.id = ?', current_user.id)
     attachments.map(&:purge)
