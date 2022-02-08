@@ -24,6 +24,6 @@ FactoryBot.define do
     unit { Faker::Food.metric_measurement }
 
     association :step
-    ingredient {association :ingredient_with_user}
+    ingredient {association :ingredient}
   end
 end

@@ -1,0 +1,15 @@
+<section class="resource-primary-img-container" data-controller="primary-picture-upload">
+  <div class="edit-recipe-profile-img-container">
+    <%= primary_picture(form.object) %>
+  </div>
+  <% if form.object.primary_picture.attached? %>
+    <div class="delete-img-container">
+      <p class="delete-img-txt">Delete</p>
+      <%= check_box_tag "deleted_resource_img_ids[]", form.object.primary_picture.id %>
+    </div>
+  <% end %>
+  <div class="form-ctrl-container primary-picture-upload-ctrl" id="primary_picture_upload_ctrl_container">
+    <%= form.file_field :primary_picture, data: {primary_picture_upload_target: 'recipePrimaryPicture', action: 'change->primary-picture-upload#sync'}, class: 'synced-single-img recipe-primary-picture' %>
+    <button type="button" class="cancel-btn cancel-primary-picture-upload-btn" data-action="click->primary-picture-upload#cancel">Cancel</button>
+  </div>
+</section>

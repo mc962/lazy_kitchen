@@ -1,0 +1,3 @@
+<h1 class="recipe-form-title">Edit Ingredient: <%= @ingredient.name %></h1>
+<%= render partial: 'application/manage/form', locals: {action: manage_recipe_step_ingredient_path(@ingredient), resource: @ingredient, nav_resource: @recipe} %>
+

@@ -8,6 +8,19 @@
 
 unless Rails.env.production?
   ActiveRecord::Base.transaction do
-    FactoryBot.create(:user_with_full_recipes, password: 'password')
+    user = FactoryBot.create(:user)
+    recipes = FactoryBot.create_list(:recipe, 5, user: user)
+    ingredients = FactoryBot.create_list(:ingredient, 10, user: user)
+
+    recipes.each do |recipe|
+      steps = FactoryBot.create_list(:step, 10, recipe: recipe)
+
+      steps.each do |step|
+        selected_ingredients = ingredients.take(3)
+        selected_ingredients.each do |ingredient|
+          FactoryBot.create(:step_ingredient, step: step, ingredient: ingredient)
+        end
+      end
+    end
   end
 end

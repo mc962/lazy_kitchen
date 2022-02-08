@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :manage do
     resources :recipes do
-      resources :steps
+      resources :steps do
+        resources :ingredients
+      end
     end
   end
 

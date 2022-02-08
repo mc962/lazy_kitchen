@@ -11,7 +11,7 @@
         <span><%= link_to recipe.name, manage_recipe_path(recipe) %></span>
         <div class="recipe-links">
           <span><%= link_to "Edit", edit_manage_recipe_path(recipe) %></span>
-          <span><%= link_to "Delete", manage_recipe_path(recipe), {action: :destroy, method: :delete, id: recipe.id, data: {confirm: "Are you sure?"}} %></span>
+          <span><%= link_to "Delete", manage_recipe_path(recipe), {action: :destroy, method: :delete, id: recipe.slug, data: {confirm: "Are you sure?"}} %></span>
         </div>
       </li>
     <% end %>

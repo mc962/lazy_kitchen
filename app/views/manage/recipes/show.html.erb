@@ -9,13 +9,13 @@
   <section class="resources">
     <div class="resource-list-container">
       <label for="recipe_steps">Steps</label>
-      <ul id="recipe_steps" class="resource-list">
+      <ol id="recipe_steps" class="resource-list">
         <% @recipe.steps.each do |step| %>
           <li class="recipe-step resource-item">
             <p class="recipe-step-instruction resource-text"><%= step.instruction %></p>
           </li>
         <% end %>
-      </ul>
+      </ol>
     </div>
   </section>
 </div>
@@ -23,7 +23,7 @@
 <nav class="action-nav">
   <ul class="action-nav-links">
     <li class="action-nav-link"><%= link_to "Edit", edit_manage_recipe_path(@recipe) %></li>
-    <li class="action-nav-link"><%= link_to "Delete", manage_recipe_path(@recipe), {action: :destroy, method: :delete, id: @recipe.id, data: {confirm: "Are you sure?"}} %></li>
+    <li class="action-nav-link"><%= link_to "Delete", manage_recipe_path(@recipe), {action: :destroy, method: :delete, id: @recipe.slug, data: {confirm: "Are you sure?"}} %></li>
     <li class="action-nav-link"><%= link_to "Back", manage_recipes_path %></li>
   </ul>
 </nav>

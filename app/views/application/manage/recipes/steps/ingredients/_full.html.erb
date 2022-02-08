@@ -1,0 +1,23 @@
+<%= turbo_frame_tag('tab_content') do %>
+  <h3 class="tab-form-heading">Ingredient</h3>
+
+  <%= form_with model: @ingredient, class: 'resource-form', url: decorated_query_url_for(action, {tab: 'ingredient'}), data: { turbo: false} do |ingredient_form| %>
+    <div class="tab-form-section ingredient">
+      <div class="form-ctrl-container">
+        <%= ingredient_form.label :name, class: "form-ctrl-lbl" %>
+        <%= ingredient_form.text_field :name, class: "form-ctrl" %>
+      </div>
+
+      <div class="form-ctrl-container">
+        <%= ingredient_form.label :description, class: "form-ctrl-lbl" %>
+        <%= ingredient_form.text_area :description, class: "form-ctrl" %>
+      </div>
+    </div>
+
+    <div class="tab-form-section images">
+      <%= render partial: 'application/manage/recipes/steps/ingredients/images/tab', locals: {ingredient_form: ingredient_form} %>
+    </div>
+
+    <%= ingredient_form.submit %>
+  <% end %>
+<% end %>
