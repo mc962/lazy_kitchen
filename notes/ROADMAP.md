@@ -1,7 +1,6 @@
 # Roadmap
 
 ## Features
-- Recipe, Step, and Ingredient Notes
 - Recipe/User Ingredients vs. Canonical Ingredients
   - Migration Notes: When the time comes to implement this feature, all existing ingredients would become Recipe/User Ingredients that may be linked to canonical ingredients as needed
 - Article Content
