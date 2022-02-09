@@ -52,7 +52,12 @@ class Manage::IngredientsController < Manage::ApplicationController
       :id,
       :name,
       :description,
-      gallery_pictures: []
+      gallery_pictures: [],
+      notes_attributes: %i[
+        id
+        content
+        _destroy
+      ]
     )
   end
 end

@@ -30,7 +30,7 @@ class Ingredient < ApplicationRecord
   has_many :step_ingredients, dependent: :destroy
   has_many :steps, through: :step_ingredients
   has_many :recipes, through: :steps
-
+  has_many :notes, as: :notable, class_name: 'Note'
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/ingredients" }
 
   validates :name, presence: true
@@ -41,6 +41,8 @@ class Ingredient < ApplicationRecord
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
+
+  accepts_nested_attributes_for :notes, reject_if: :all_blank, allow_destroy: true
 
   # Determines if a new slug should be generated. Currently this happens when the model is first created,
   # and when the name is updated

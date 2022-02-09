@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_072304) do
+ActiveRecord::Schema.define(version: 2022_02_08_042502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 2021_11_22_072304) do
     t.index ["name", "user_id"], name: "index_ingredients_on_name_and_user_id", unique: true
     t.index ["slug"], name: "index_ingredients_on_slug", unique: true
     t.index ["user_id"], name: "index_ingredients_on_user_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "content", null: false
+    t.string "notable_type", null: false
+    t.bigint "notable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notable_type", "notable_id"], name: "index_notes_on_notable"
   end
 
   create_table "recipes", force: :cascade do |t|
