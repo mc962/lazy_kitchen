@@ -2,7 +2,7 @@
   <h3 class="tab-form-heading">Step</h3>
 
   <%= form_with model: @step, class: 'resource-form', url: decorated_query_url_for(action, {tab: 'ingredients'}), data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper', turbo: false} do |step_form| %>
-    <div class="tab-form-section step-ingredients">
+    <section class="tab-form-section step-ingredients">
       <template data-nested-form-target="template">
         <%= step_form.fields_for :step_ingredients, StepIngredient.new(ingredient: Ingredient.new), child_index: 'NEW_RECORD' do |step_ingredients_form| %>
           <%= render partial: 'application/manage/recipes/steps/ingredients/one', locals: {step_ingredients_form: step_ingredients_form} %>
@@ -23,11 +23,11 @@
       </ul>
 
       <button type="button" class="button add-resource-btn" data-action="nested-form#add">Add Ingredient</button>
-    </div>
+    </section>
 
-    <div class="tab-form-section images">
+    <section class="tab-form-section images">
       <%= render partial: 'application/manage/recipes/steps/images/tab', locals: {step_form: step_form} %>
-    </div>
+    </section>
 
     <%= step_form.submit %>
   <% end %>

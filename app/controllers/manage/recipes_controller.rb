@@ -99,6 +99,11 @@ class Manage::RecipesController < Manage::ApplicationController
         order
         instruction
         _destroy
+      ],
+      notes_attributes: %i[
+        id
+        content
+        _destroy
       ]
     )
   end

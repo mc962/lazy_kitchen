@@ -1,9 +1,8 @@
 <%= turbo_frame_tag('tab_content') do %>
   <h3 class="tab-form-heading">Information</h3>
 
-  <%= form_with model: @recipe, class: 'resource-form', url: action, data: {turbo: false} do |recipe_form| %>
+  <%= form_with model: @recipe, class: 'resource-form', url: action, data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper', turbo: false } do |recipe_form| %>
     <section class="tab-form-section information">
-
       <div class="form-ctrl-container">
         <%= recipe_form.label :name, class: "form-ctrl-lbl" %>
         <%= recipe_form.text_field :name, class: "form-ctrl" %>
@@ -22,6 +21,10 @@
 
     <section class="tab-form-section images">
       <%= render partial: 'application/manage/recipes/images/tab', locals: {form: recipe_form} %>
+    </section>
+
+    <section class="tab-form-section notes">
+      <%= render partial: 'application/manage/notes/tab', locals: {form: recipe_form} %>
     </section>
 
     <%= recipe_form.submit %>

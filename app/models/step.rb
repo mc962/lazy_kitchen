@@ -23,6 +23,7 @@ class Step < ApplicationRecord
   belongs_to :recipe
   has_many :step_ingredients, dependent: :destroy
   has_many :ingredients, through: :step_ingredients
+  # has_many :notes, as: :notable
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/steps" }
 
   validates :order, :instruction, :recipe, presence: true

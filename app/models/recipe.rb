@@ -32,6 +32,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user
+  has_many :notes, as: :notable, class_name: 'Note'
   has_one_attached_with :primary_picture, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
 
@@ -39,12 +40,13 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: {
     scope: [:user_id]
   }
-  validates_associated :steps
+  validates_associated :steps, :notes
 
   before_save :consolidate_step_order
 
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :citations, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :notes, reject_if: :all_blank, allow_destroy: true
 
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
