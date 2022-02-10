@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: ingredients
@@ -11,9 +10,11 @@
 #  updated_at  :datetime         not null
 #  user_id     :integer
 #  slug        :string
+#  ancestry    :string
 #
 # Indexes
 #
+#  index_ingredients_on_ancestry          (ancestry)
 #  index_ingredients_on_name_and_user_id  (name,user_id) UNIQUE
 #  index_ingredients_on_slug              (slug) UNIQUE
 #  index_ingredients_on_user_id           (user_id)
@@ -33,6 +34,8 @@ class Ingredient < ApplicationRecord
   has_many :notes, as: :notable, class_name: 'Note'
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/ingredients" }
 
+  has_ancestry orphan_strategy: :rootify, touch: true
+
   validates :name, presence: true
   validates :name, uniqueness: {
     scope: [:user_id]
@@ -51,5 +54,9 @@ class Ingredient < ApplicationRecord
   # noinspection RubyInstanceMethodNamingConvention
   def should_generate_new_friendly_id?
     new_record? || name_changed?
+  end
+
+  def canonical?
+    is_root?
   end
 end

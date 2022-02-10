@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_042502) do
+ActiveRecord::Schema.define(version: 2022_02_10_040240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2022_02_08_042502) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.string "slug"
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_ingredients_on_ancestry", opclass: :text_pattern_ops
     t.index ["name", "user_id"], name: "index_ingredients_on_name_and_user_id", unique: true
     t.index ["slug"], name: "index_ingredients_on_slug", unique: true
     t.index ["user_id"], name: "index_ingredients_on_user_id"
