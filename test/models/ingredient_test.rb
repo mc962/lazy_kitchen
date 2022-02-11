@@ -9,9 +9,11 @@
 #  updated_at  :datetime         not null
 #  user_id     :integer
 #  slug        :string
+#  ancestry    :string
 #
 # Indexes
 #
+#  index_ingredients_on_ancestry          (ancestry)
 #  index_ingredients_on_name_and_user_id  (name,user_id) UNIQUE
 #  index_ingredients_on_slug              (slug) UNIQUE
 #  index_ingredients_on_user_id           (user_id)

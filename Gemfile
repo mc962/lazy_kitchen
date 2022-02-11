@@ -72,6 +72,9 @@ gem 'kaminari'
 # CORS
 gem 'rack-cors'
 
+# Efficient tree structure querying
+gem 'ancestry'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # NOTE: There is a bug with running a Foreman configuration and this application's configuration that causes an error
