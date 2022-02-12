@@ -36,6 +36,8 @@ class Recipe < ApplicationRecord
   has_one_attached_with :primary_picture, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
 
+  resourcify
+
   validates :name, presence: true
   validates :name, uniqueness: {
     scope: [:user_id]

@@ -25,6 +25,8 @@ class StepIngredient < ApplicationRecord
   belongs_to :step
   belongs_to :ingredient
 
+  resourcify
+
   validates :amount, :step, :ingredient, presence: true
   validates_associated :ingredient
 
