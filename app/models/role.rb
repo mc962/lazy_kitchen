@@ -21,6 +21,7 @@
 class Role < ApplicationRecord
   VALID_ROLES = %w[basic author editor admin superuser].freeze
   DEFAULT = 'basic'
+  MANAGEMENT_ROLES = %i[admin superuser]
 
   has_and_belongs_to_many :users, join_table: :users_roles
 
