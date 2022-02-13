@@ -2,25 +2,29 @@
 #
 # Table name: citations
 #
-#  id                   :integer          not null, primary key
-#  origin               :string           not null
-#  content_type         :string           not null
-#  publication_title    :string
-#  publication_location :string
-#  publisher            :string
-#  published_at         :date
+#  id                   :bigint           not null, primary key
 #  content_location     :string
-#  version              :string
-#  site_title           :string
+#  content_type         :string           not null
 #  last_accessed_at     :date
+#  origin               :string           not null
+#  publication_location :string
+#  publication_title    :string
+#  published_at         :date
+#  publisher            :string
 #  site_link            :string
-#  recipe_id            :integer          not null
+#  site_title           :string
+#  version              :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  recipe_id            :bigint           not null
 #
 # Indexes
 #
 #  index_citations_on_recipe_id  (recipe_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (recipe_id => recipes.id)
 #
 
 require "test_helper"

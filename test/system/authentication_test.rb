@@ -2,7 +2,10 @@ require "test_helper"
 
 class AuthenticationTest < ApplicationSystemTestCase
   setup do
-
+    admin_user = FactoryBot.create(:user)
+    # Ensure that an admin-level user has been created so that there are admins to receive
+    #   user registration approval emails
+    admin_user.add_role(:admin)
   end
 
   test 'sign up' do
@@ -20,7 +23,7 @@ class AuthenticationTest < ApplicationSystemTestCase
     click_button('Sign up')
 
     assert page.has_selector?('.flash-container.flash-notice')
-    assert page.has_selector?('.flash-message', text: I18n.t('devise.registrations.signed_up_but_unconfirmed'))
+    assert page.has_selector?('.flash-message', text: I18n.t('devise.registrations.signed_up_but_not_approved'))
   end
 
   test 'login' do

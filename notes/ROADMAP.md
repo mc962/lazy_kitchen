@@ -13,6 +13,7 @@
   - Comments
 - CookLang Support
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
+- Alerting and Monitoring tools
 
 ## Workflow
 - GitHub Actions Workflows

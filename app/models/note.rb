@@ -4,12 +4,12 @@
 #
 # Table name: notes
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  content      :text             not null
 #  notable_type :string           not null
-#  notable_id   :integer          not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  notable_id   :bigint           not null
 #
 # Indexes
 #
