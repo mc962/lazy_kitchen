@@ -57,21 +57,30 @@ class User < ApplicationRecord
     approved? ? super : :not_approved
   end
 
+  # Handles sending instructions for a user to reset their password, adding on functionality to the default to make the
+  #   process aware of and able to handle approved users
+  #
+  # @return [User]
   def self.send_reset_password_instructions(attributes = {})
     recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
     if !recoverable.approved?
+      # Add error for user not yet being approved if they attempt to reset before being approved, and do not allow
+      #   them to reset their password before being approved
       recoverable.errors[:base] << I18n.t('devise.failure.not_approved')
     elsif recoverable.persisted?
+      # Send instructions to reset password if user has been approved
       recoverable.send_reset_password_instructions
     end
     recoverable
   end
 
+  # Sets a user as approved in the database
   def approve
     self.approved = true
     save
   end
 
+  # Sets a user as unapproved in the database
   def unapprove
     self.approved = false
     save
@@ -79,6 +88,7 @@ class User < ApplicationRecord
 
   private
 
+  # Sets default authorization role for a newly created user, if they do not already have any roles
   def assign_default_role
     add_role(Role::DEFAULT) if roles.blank?
   end
