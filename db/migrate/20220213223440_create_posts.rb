@@ -2,7 +2,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
   def change
     create_table :posts do |t|
       t.string :title, null: false
-      t.text :content, null: false
+      # NOTE: content/body field is handled by action_text_rich_texts
       t.date :published_at
       t.date :modified_at
       t.boolean :published, null: false
