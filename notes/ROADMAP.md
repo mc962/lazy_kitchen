@@ -1,7 +1,6 @@
 # Roadmap
 
 ## Features
-- User types
 - Article Content
   - Tips
   - Tools

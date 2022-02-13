@@ -37,6 +37,8 @@ class Ingredient < ApplicationRecord
 
   has_ancestry orphan_strategy: :rootify, touch: true
 
+  resourcify
+
   validates :name, presence: true
   validates :name, uniqueness: {
     scope: [:user_id]

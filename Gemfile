@@ -53,6 +53,9 @@ gem 'argon2', '>= 2'
 # Authorization framework
 gem "action_policy"
 
+# Authorization roles
+gem "rolify"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 

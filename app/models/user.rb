@@ -28,6 +28,8 @@
 
 # A basic User that clients may use to authenticate and manage resources
 class User < ApplicationRecord
+  rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,4 +37,12 @@ class User < ApplicationRecord
 
   has_many :recipes
   has_many :ingredients
+
+  after_create :assign_default_role
+
+  private
+
+  def assign_default_role
+    add_role(Role::DEFAULT) if roles.blank?
+  end
 end

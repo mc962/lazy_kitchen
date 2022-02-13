@@ -26,6 +26,8 @@ class Step < ApplicationRecord
   # has_many :notes, as: :notable
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/steps" }
 
+  resourcify
+
   validates :order, :instruction, :recipe, presence: true
   validates_associated :step_ingredients
 
