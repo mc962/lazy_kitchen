@@ -2,19 +2,24 @@
 #
 # Table name: step_ingredients
 #
-#  id            :integer          not null, primary key
+#  id            :bigint           not null, primary key
 #  amount        :decimal(, )      not null
-#  unit          :string
 #  condition     :string
-#  step_id       :integer          not null
-#  ingredient_id :integer          not null
+#  unit          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  ingredient_id :bigint           not null
+#  step_id       :bigint           not null
 #
 # Indexes
 #
 #  index_step_ingredients_on_ingredient_id  (ingredient_id)
 #  index_step_ingredients_on_step_id        (step_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (ingredient_id => ingredients.id)
+#  fk_rails_...  (step_id => steps.id)
 #
 
 require "test_helper"

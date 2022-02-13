@@ -4,20 +4,24 @@
 #
 # Table name: recipes
 #
-#  id                  :integer          not null, primary key
-#  name                :string           not null
+#  id                  :bigint           not null, primary key
 #  description         :text
-#  publicly_accessible :boolean          default("false"), not null
+#  name                :string           not null
+#  publicly_accessible :boolean          default(FALSE), not null
+#  slug                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  user_id             :integer
-#  slug                :string
+#  user_id             :bigint
 #
 # Indexes
 #
 #  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
 #  index_recipes_on_slug              (slug) UNIQUE
 #  index_recipes_on_user_id           (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 # Holds all information relating to an overall recipe itself
