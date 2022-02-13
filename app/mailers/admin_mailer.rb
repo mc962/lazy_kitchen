@@ -9,9 +9,7 @@ class AdminMailer < ApplicationMailer
     @email = email
 
     admin_emails = User.with_role(:admin).pluck(:email)
-    if admin_emails.empty?
-      raise 'No admins currently available to approve user'
-    end
+    raise 'No admins currently available to approve user' if admin_emails.empty?
 
     mail(to: admin_emails, subject: 'New user awaiting admin approval')
   end
