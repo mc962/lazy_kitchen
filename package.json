@@ -10,9 +10,9 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
-    "@rails/actioncable": "^7.0.1",
+    "@rails/actioncable": "^7.0.2-2",
     "@rails/actiontext": "^7.0.2-2",
-    "@rails/activestorage": "^7.0.1",
+    "@rails/activestorage": "^7.0.2-2",
     "@rails/request.js": "0.0.5",
     "esbuild": "^0.14.12",
     "sass": "^1.49.0",

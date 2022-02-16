@@ -1,7 +1,33 @@
 # frozen_string_literal: true
 
-# A blog-style piece of content about something related to recipes, ingredients, or anything kitchen-related
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :bigint           not null, primary key
+#  modified_at  :date
+#  published    :boolean          not null
+#  published_at :date
+#  slug         :string
+#  title        :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint           not null
+#
+# Indexes
+#
+#  index_posts_on_slug     (slug) UNIQUE
+#  index_posts_on_title    (title) UNIQUE
+#  index_posts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 class Post < ApplicationRecord
+  extend FriendlyId
+  include ActiveStoragePath
+
   belongs_to :author, class_name: 'User', foreign_key: :user_id
   has_rich_text :content
 
@@ -11,6 +37,20 @@ class Post < ApplicationRecord
   before_save :set_published_at, if: :will_save_change_to_published?
   # Always set modified_at before Post is saved, but only bother if Post has been published
   before_save :set_modified_at, if: :published?
+
+  friendly_id :title, use: %i[slugged history]
+
+  scope :managed, -> { includes(:author) }
+  scope :owned, ->(user_id) { where(user_id:) }
+  scope :published, -> { where(published: true) }
+
+  # A basic paginated list of posts, alphabetized by name, meant for a directory-like navigation of posts
+  #
+  # @param [ActionController::Parameters<Integer>] page Current page used to fetch correct selection of posts
+  # @return [Recipe::ActiveRecord_Relation]
+  def self.directory_posts(page)
+    order(:title).page(page)
+  end
 
   private
 

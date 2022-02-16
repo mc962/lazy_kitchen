@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :ingredients
       end
     end
+    resources :posts
   end
 
   resources :recipes, only: [:index, :show]

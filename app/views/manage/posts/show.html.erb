@@ -1,0 +1,30 @@
+<h1 class="resource-heading">Manage Post</h1>
+
+<section class="content">
+  <label for="post_title">Title</label>
+  <h2 id="post_title"><%= @post.title %></h2>
+
+  <label for="post_content">Content</label>
+  <div id="post_content">
+    <%= @post.content %>
+  </div>
+</section>
+
+<section class="publish-info">
+  <label for="published">Published: </label>
+  <p id="published"><%= @post.published %></p>
+
+  <label for="published_at">Published at: </label>
+  <p id="published_at"><%= @post.published_at %></p>
+
+  <label for="modified_at">Last Updated at: </label>
+  <p id="modified_at"><%= @post.modified_at %></p>
+</section>
+
+<nav class="action-nav">
+  <ul class="action-nav-links">
+    <li class="action-nav-link"><%= link_to "Edit", edit_manage_post_path(@post) %></li>
+    <li class="action-nav-link"><%= link_to "Delete", manage_post_path(@post), {action: :destroy, method: :delete, id: @post.slug, data: {confirm: "Are you sure?"}} %></li>
+    <li class="action-nav-link"><%= link_to "Back", manage_posts_path %></li>
+  </ul>
+</nav>

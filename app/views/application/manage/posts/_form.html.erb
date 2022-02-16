@@ -1,0 +1,29 @@
+<%= form_with model: post, class: 'resource-form', url: action do |post_form| %>
+  <div class="form-ctrl-container">
+    <%= post_form.label :title, class: "form-ctrl-lbl" %>
+    <%= post_form.text_field :title, class: "form-ctrl" %>
+  </div>
+
+  <div class="form-ctrl-container">
+    <%= post_form.label :content, class: "form-ctrl-lbl" %>
+    <%= post_form.rich_text_area :content, class: "form-ctrl" %>
+  </div>
+
+  <section class="publish-info">
+    <%= post_form.label :published, class: "form-ctrl-lbl" %>
+    <%= post_form.radio_button :published, "true", class: "form-ctrl" %>
+    <%= post_form.radio_button :published, "false", class: "form-ctrl" %>
+
+    <div class="form-ctrl-container">
+      <label for="published_at" class="form-ctrl-lbl">Published at: </label>
+      <p id="published_at" class="form-ctrl"><%= post.published_at %></p>
+    </div>
+
+    <div class="form-ctrl-container">
+      <label for="modified_at" class="form-ctrl-lbl">Last Updated at: </label>
+      <p id="modified_at" class="form-ctrl"><%= post.modified_at %></p>
+    </div>
+  </section>
+
+  <%= post_form.submit %>
+<% end %>
