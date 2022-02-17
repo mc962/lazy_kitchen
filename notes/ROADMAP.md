@@ -14,6 +14,7 @@
 - CookLang Support
 - Maintenance Mode for Recipes Currently Undergoing Heavy Changes
 - Alerting and Monitoring tools
+- Group together same ingredients from different steps (e.g. steps 1, 3, 7 all have water in them)
 
 ## Workflow
 - GitHub Actions Workflows

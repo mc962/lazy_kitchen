@@ -1478,7 +1478,7 @@ fsevents@~2.3.2:
     sortablejs: ^1.14.0
     stimulus-rails-nested-form: ^4.0.0
     stimulus-sortable: ^3.1.0
-    trix: ^1.3.1
+    trix: 1.3.1
     tsc-watch: ^4.6.0
     typescript: ^4.3.5
   languageName: unknown
@@ -2186,7 +2186,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"trix@npm:^1.3.1":
+"trix@npm:1.3.1":
   version: 1.3.1
   resolution: "trix@npm:1.3.1"
   checksum: b4c6426d6fa78b09d6007cd627c10fe4f21a4f02abcd0266f6c34d16b030a328f1526ba5928c7ee315a48de54e9deb317ada31c3f8eccc0629a1ed67896f8692
