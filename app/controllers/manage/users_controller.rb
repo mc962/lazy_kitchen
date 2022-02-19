@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::UsersController < Manage::ApplicationController
   def index
     authorize!
