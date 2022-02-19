@@ -1,0 +1,20 @@
+<h1 class="text-center">Listing Users</h1>
+
+<div class="paginated-resources-container">
+  <p class="page-entries-info">
+    <%= page_entries_info @users %>
+  </p>
+
+  <ul id="directory_users" class="directory-items">
+    <%= render partial: 'application/manage/users/user', collection: @users %>
+  </ul>
+
+  <%= paginate @users %>
+</div>
+
+<!--<div class="directory-actions-links">-->
+<!--  <ul class="action-links">-->
+<!--    <li class="directory-action-link">-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->

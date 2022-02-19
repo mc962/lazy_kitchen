@@ -1,0 +1,9 @@
+<li class="directory-item directory-user">
+  <label for="<%= "username_#{user.id}" %>"></label>
+  <p id="<%= "username_#{user.id}" %>"><%= user.username %></p>
+
+  <label for="<%= "email_#{user.id}" %>"></label>
+  <p id="<%= "email_#{user.id}" %>"><%= user.email %></p>
+
+  <span><%= link_to "Delete", manage_user_path(user), {action: :destroy, method: :delete, id: user.id, data: {confirm: "Are you sure?"}} %></span>
+</li>
