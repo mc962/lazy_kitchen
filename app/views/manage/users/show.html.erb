@@ -1,0 +1,18 @@
+<h1 class="text-center">Manage Your Account</h1>
+
+<main id="user_profile">
+  <section id="user_bio" class="profile-section">
+    <label for="email">Email</label>
+    <p id="email"><%= @user.email %></p>
+
+    <label for="username">Username</label>
+    <p id="username"><%= @user.username %></p>
+  </section>
+
+  <section id="resources" class="profile-section">
+    <label for="recipes">Recipes</label>
+    <ul id="recipes" class="directory-items">
+      <%= render partial: 'application/recipes/recipe', collection: @user.recipes %>
+    </ul>
+  </section>
+</main>

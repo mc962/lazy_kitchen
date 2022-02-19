@@ -12,7 +12,7 @@ Index
   margin: 0 auto;
 }
 
-#directory_recipes {
+.directory-items {
   margin: 0 auto;
   list-style: none;
   padding-left: 0;
@@ -20,7 +20,7 @@ Index
   display: flex;
   flex-direction: column;
   align-items: center;
-  .directory-recipe {
+  .directory-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -5,9 +5,9 @@
     <%= page_entries_info @recipes %>
   </p>
 
-  <ul id="directory_recipes">
+  <ul id="directory_recipes" class="directory-items">
     <% @recipes.each do |recipe| %>
-      <li class="directory-recipe">
+      <li class="directory-item">
         <span><%= link_to recipe.name, manage_recipe_path(recipe) %></span>
         <div class="recipe-links">
           <span><%= link_to "Edit", edit_manage_recipe_path(recipe) %></span>

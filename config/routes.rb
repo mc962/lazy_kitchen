@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/show'
+  get 'users/new'
+  get 'users/edit'
   devise_for :users
   root to: 'landings#home'
 
@@ -8,6 +12,9 @@ Rails.application.routes.draw do
         resources :ingredients
       end
     end
+
+    get '/', to: 'users#show'
+    resources :users, only: [:index, :destroy]
   end
 
   resources :recipes, only: [:index, :show]
