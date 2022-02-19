@@ -8,6 +8,10 @@ Rails.application.routes.draw do
         resources :ingredients
       end
     end
+
+    get '/', to: 'users#show'
+    resources :users, only: [:index, :destroy]
+
     resources :posts
   end
 

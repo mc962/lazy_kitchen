@@ -7,8 +7,8 @@ class AuthenticationTest < ApplicationSystemTestCase
 
     visit recipes_url
 
-    within('#directory_recipes') do
-      assert page.has_selector?('li.directory-recipe', count: public_recipes.size)
+    within('#directory_recipes.directory-items') do
+      assert page.has_selector?('li.directory-item', count: public_recipes.size)
     end
   end
 

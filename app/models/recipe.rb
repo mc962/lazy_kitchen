@@ -74,7 +74,7 @@ class Recipe < ApplicationRecord
   #
   # @param [ActionController::Parameters<Integer>] page Current page used to fetch correct selection of recipes
   # @return [Recipe::ActiveRecord_Relation]
-  def self.directory_recipes(page)
+  def self.directory(page)
     order(:name).page(page)
   end
 

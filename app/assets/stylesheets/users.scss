@@ -18,3 +18,14 @@
   margin: 0 auto;
   width: 60%;
 }
+
+#user_profile {
+  padding: 2%;
+
+  .directory-items {
+    width: 100%;
+    .directory-item {
+      width: 100%;
+    }
+  }
+}
