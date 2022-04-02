@@ -13,13 +13,25 @@ Form
     justify-content: center;
     padding-left: 0;
     list-style: none;
+    text-decoration: none;
     .action-nav-link {
       width: 30%;
       border: 1px solid black;
       padding: 1%;
       text-align: center;
       cursor: pointer;
+      text-decoration: none;
     }
+  }
+}
+
+.form-ctrl-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+
+  .form-ctrl-text {
+    width: 90%;
   }
 }
 
@@ -39,13 +51,32 @@ Form
     width: 100%;
   }
 
+  .resource-col {
+    width: 100%;
+  }
+
   .form-ctrl-container {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
+    margin: 2% 0;
+
+    .form-ctrl-lbl {
+      font-weight: bold;
+      margin: 1% 0;
+    }
+
+    .form-ctrl {
+      padding: 1%;
+      border-radius: 4px;
+      border: 0.1rem solid #d1d1d1;
+    }
+
+    .form-ctrl-check {
+      align-self: flex-start;
+    }
 
     .form-ctrl-text {
-      width: 90%;
+      padding: 1%;
+      border-radius: 4px;
+      border: 0.1rem solid #d1d1d1;
     }
   }
 
@@ -58,12 +89,27 @@ Form
   .nested-form-nav-link {
     text-align: center;
   }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+    .submit-btn {
+      width: 15%;
+      padding: 1%;
+      font-weight: bold;
+      margin: 2%;
+    }
+  }
 }
 
 .cancel-btn {
   background-color: red;
   border: 1px solid #861111;
-
+  color: white;
+  border-radius: 4px;
   &:hover {
     background-color: #861111;
   }
@@ -72,6 +118,8 @@ Form
 .add-resource-btn {
   align-self: flex-end;
   margin: 0 10%;
+  width: 10%;
+  padding: 1%;
 
   background-color: #14a318;
   border: 1px solid #1f8922;
@@ -80,6 +128,8 @@ Form
     background-color: #1f8922;
   }
 }
+
+
 
 .tab-form-heading {
   text-align: center;

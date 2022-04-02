@@ -81,7 +81,7 @@ export default class extends StimulusRailsNestedFormController {
 
             const currentTarget = event.currentTarget as HTMLElement;
             currentTarget.classList.add('hidden')
-            const removeBtn = wrapper.querySelector('.remove-btn');
+            const removeBtn = wrapper.querySelector('.cancel-btn');
             removeBtn.classList.remove('hidden');
         }
     }

@@ -29,6 +29,8 @@
       <%= render partial: 'application/manage/recipes/steps/images/tab', locals: {step_form: step_form} %>
     </section>
 
-    <%= step_form.submit %>
+    <div class="actions">
+      <%= step_form.submit "Submit", class: 'button submit-btn' %>
+    </div>
   <% end %>
 <% end %>

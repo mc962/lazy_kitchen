@@ -22,6 +22,8 @@
       <%= render partial: 'application/manage/notes/tab', locals: {form: ingredient_form} %>
     </section>
 
-    <%= ingredient_form.submit %>
+    <div class="actions">
+      <%= ingredient_form.submit "Submit", class: 'button submit-btn' %>
+    </div>
   <% end %>
 <% end %>

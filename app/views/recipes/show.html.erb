@@ -14,7 +14,7 @@
 
 <section id="recipe_content">
   <section id="recipe_ingredients" class="recipe-col">
-    <label for="ingredients">Ingredients</label>
+    <h3><label for="ingredients">Ingredients</label></h3>
     <ul id="ingredients">
       <% @recipe.steps.each do |step| %>
         <%= render partial: 'application/recipes/step_ingredient', collection: step.step_ingredients %>
@@ -23,7 +23,7 @@
   </section>
 
   <section id="recipe_steps" class="recipe-col">
-    <label for="steps">Steps</label>
+    <h3><label for="steps">Steps</label></h3>
     <ol id="steps">
       <%= render partial: 'application/recipes/step', collection: @recipe.steps %>
     </ol>

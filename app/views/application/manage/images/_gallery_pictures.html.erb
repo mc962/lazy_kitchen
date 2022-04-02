@@ -1,7 +1,7 @@
 <section class="resource-gallery-img-container" data-controller="gallery-pictures-upload">
   <div class="resource-gallery-preview">
     <div class="resource-preview-container">
-      <label for="existing_resource_images">Existing Images</label>
+      <label for="existing_resource_images" class="tab-section-lbl">Existing Images</label>
       <ul id="existing_resource_images" class="gallery-images-container">
         <% if form.object.gallery_pictures.attached? %>
           <% form.object.gallery_pictures.each do |picture| %>
@@ -18,7 +18,7 @@
       </ul>
     </div>
     <div class="resource-preview-container">
-      <label for="new_resource_images">Images to Upload</label>
+      <label for="new_resource_images" class="tab-section-lbl">Images to Upload</label>
       <ul id="new_resource_images" class="gallery-images-container" data-gallery-pictures-upload-target="previewImgs"></ul>
       <template id="new_resource_image_template">
         <li class="preview-resource-image new-resource-image">
@@ -28,8 +28,8 @@
     </div>
   </div>
 
-  <div class="form-ctrl-container" id="gallery_pictures_ctrl">
+  <div class="form-ctrl-container upload-ctrl-container">
     <%= form.file_field :gallery_pictures, multiple: true, data: {action: 'change->gallery-pictures-upload#sync', gallery_pictures_upload_target: 'resourceGalleryPictures'}, class: 'synced-multi-img' %>
-    <button type="button" class="cancel-btn cancel-gallery-upload-btn" data-action="click->gallery-pictures-upload#cancel">Cancel</button>
+    <button type="button" class="button cancel-btn cancel-gallery-upload-btn" data-action="click->gallery-pictures-upload#cancel">Cancel</button>
   </div>
 </section>
