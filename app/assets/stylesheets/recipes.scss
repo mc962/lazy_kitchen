@@ -56,6 +56,24 @@ Show
 
   #recipe_ingredients {
     width: 35%;
+
+    #ingredients {
+      padding-left: 0;
+      list-style: none;
+
+      .ingredient {
+        padding: 2% 0;
+      }
+    }
+  }
+
+  #recipe_steps {
+    #steps {
+      padding-left: 0;
+      .step {
+        padding: 1%;
+      }
+    }
   }
 
   .recipe-col {
@@ -90,3 +108,11 @@ Show
     }
   }
 }
+
+.ingredients {
+  padding-left: 0;
+  .ingredient {
+    margin: 1%;
+  }
+}
+

@@ -38,6 +38,7 @@ class User < ApplicationRecord
 
   has_many :recipes
   has_many :ingredients
+  has_many :posts
 
   after_create :assign_default_role
   after_create :send_admin_email

@@ -10,14 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_13_052943) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_13_225645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
-  # Custom types defined in this database.
-  # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "role", ["basic", "author", "editor", "admin", "superuser"]
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -110,6 +116,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_13_052943) do
     t.index ["notable_type", "notable_id"], name: "index_notes_on_notable"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug"
+    t.date "published_at"
+    t.date "modified_at"
+    t.boolean "published", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
+    t.index ["title"], name: "index_posts_on_title", unique: true
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -187,6 +207,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_13_052943) do
   add_foreign_key "authors", "citations"
   add_foreign_key "citations", "recipes"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "recipes", "users"
   add_foreign_key "step_ingredients", "ingredients"
   add_foreign_key "step_ingredients", "steps"

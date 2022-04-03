@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/new'
-  get 'users/edit'
   devise_for :users
   root to: 'landings#home'
+
+  resources :recipes, only: [:index, :show]
+
+  resources :posts, only: [:index, :show]
+
+  namespace :api do
+    resources :recipes, only: [:index, :show]
+
+    resources :posts, only: [:index, :show]
+  end
 
   namespace :manage do
     resources :recipes do
@@ -15,12 +21,8 @@ Rails.application.routes.draw do
 
     get '/', to: 'users#show'
     resources :users, only: [:index, :destroy]
-  end
 
-  resources :recipes, only: [:index, :show]
-
-  namespace :api do
-    resources :recipes, only: [:index, :show]
+    resources :posts
   end
 
   # Routes for Error Handling

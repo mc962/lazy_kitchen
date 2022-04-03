@@ -2,17 +2,38 @@
 
 <main id="user_profile">
   <section id="user_bio" class="profile-section">
-    <label for="email">Email</label>
-    <p id="email"><%= @user.email %></p>
-
-    <label for="username">Username</label>
-    <p id="username"><%= @user.username %></p>
+    <table id="user_data">
+      <thead class="user-data-heading">
+        <tr>
+          <th colspan="1000">User Information</th>
+        </tr>
+      </thead>
+      <tbody class="user-data-body">
+        <tr>
+          <th>Email</th>
+          <td>
+            <p id="email"><%= @user.email %></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Username</th>
+          <td>
+            <p id="username"><%= @user.username %></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section id="resources" class="profile-section">
-    <label for="recipes">Recipes</label>
+    <h3><label for="recipes">Recipes</label></h3>
     <ul id="recipes" class="directory-items">
       <%= render partial: 'application/recipes/recipe', collection: @user.recipes %>
+    </ul>
+
+    <h3><label for="posts">Posts</label></h3>
+    <ul id="posts" class="directory-items">
+      <%= render partial: 'application/posts/post', collection: @user.posts %>
     </ul>
   </section>
 </main>

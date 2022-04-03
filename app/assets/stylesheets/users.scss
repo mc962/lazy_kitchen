@@ -4,13 +4,36 @@
 
 .auth-form {
   width: 60%;
+  height: 100vh;
   margin: 0 auto;
+
+  .field {
+    width: 100%;
+    margin: 3% 0;
+
+    .form-ctrl {
+      width: 100%;
+      padding: 1%;
+      margin: 1% 0;
+    }
+  }
 
   .auth-checkbox {
     display: flex;
     flex-direction: row;
-    width: 20%;
+    width: 15%;
     justify-content: space-evenly;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .submit-btn {
+      width: 20%;
+      padding: 1%;
+      font-weight: bold;
+    }
   }
 }
 
@@ -27,5 +50,32 @@
     .directory-item {
       width: 100%;
     }
+  }
+}
+
+#user_bio {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  table {
+    border: 1px solid #333;
+    width: 30%;
+  }
+
+  td {
+    padding: 2%;
+    border: 1px solid #333;
+  }
+
+  thead,
+  tfoot {
+    background-color: #333;
+    color: #fff;
+  }
+
+  th {
+    border: 1px solid black;
   }
 }

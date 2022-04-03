@@ -118,19 +118,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/actioncable@npm:^7.0, @rails/actioncable@npm:^7.0.1":
+"@rails/actioncable@npm:^7.0":
   version: 7.0.1
   resolution: "@rails/actioncable@npm:7.0.1"
   checksum: b4190c2297f973a5d844d8a3ddb1ac907cc96f3a94e42c6c474175059b03854e32985750de378d28c80f38fbe0a64376b27e9c9115faa636e1413f0570a2956b
   languageName: node
   linkType: hard
 
-"@rails/activestorage@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@rails/activestorage@npm:7.0.1"
+"@rails/actioncable@npm:^7.0.2-2":
+  version: 7.0.2
+  resolution: "@rails/actioncable@npm:7.0.2"
+  checksum: 0064aa1b43c4099c62b0ec57534f756b22283a751571449e9b2285cef6593cefdd8f3edd692dc7840047ceba8f39e269f5a3e4a083f761ff87f686a6c366c7e8
+  languageName: node
+  linkType: hard
+
+"@rails/actiontext@npm:^7.0.2-2":
+  version: 7.0.2
+  resolution: "@rails/actiontext@npm:7.0.2"
+  dependencies:
+    "@rails/activestorage": ">= 7.0.0-alpha1"
+  peerDependencies:
+    trix: ^1.3.1
+  checksum: d33d2cdf79518585c3dd38e60cecbf8951759728f32efcf3e437870494debe0ec55b65e91c28df516872cc20bef4b36b284df98060a5b7c4f717e50dfb1745ca
+  languageName: node
+  linkType: hard
+
+"@rails/activestorage@npm:>= 7.0.0-alpha1, @rails/activestorage@npm:^7.0.2-2":
+  version: 7.0.2
+  resolution: "@rails/activestorage@npm:7.0.2"
   dependencies:
     spark-md5: ^3.0.1
-  checksum: 3e386e668bc87b9f1b36fc744801aee13c91e7fe59989124d45013110b70c6f898f14fb329387425b4795c2d9ea590f4388e9429e2a472b33a2b6ba2e510acdf
+  checksum: 8db8f6b01c48753746654aaacf442d669ca3ee4960e8272c427364c8d56220c6c8a8b89ff62c8d433d4597e7ce7673aa2f9fcd6de7366ce447cad351cae18dd0
   languageName: node
   linkType: hard
 
@@ -1428,8 +1446,9 @@ fsevents@~2.3.2:
   dependencies:
     "@hotwired/stimulus": ^3.0.1
     "@hotwired/turbo-rails": ^7.1.1
-    "@rails/actioncable": ^7.0.1
-    "@rails/activestorage": ^7.0.1
+    "@rails/actioncable": ^7.0.2-2
+    "@rails/actiontext": ^7.0.2-2
+    "@rails/activestorage": ^7.0.2-2
     "@rails/request.js": 0.0.5
     "@types/node": ^17.0.10
     "@typescript-eslint/eslint-plugin": ^5.3.0
@@ -1440,6 +1459,7 @@ fsevents@~2.3.2:
     sortablejs: ^1.14.0
     stimulus-rails-nested-form: ^4.0.0
     stimulus-sortable: ^3.1.0
+    trix: 1.3.1
     tsc-watch: ^4.6.0
     typescript: ^4.3.5
   languageName: unknown
@@ -2144,6 +2164,13 @@ fsevents@~2.3.2:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
+  languageName: node
+  linkType: hard
+
+"trix@npm:1.3.1":
+  version: 1.3.1
+  resolution: "trix@npm:1.3.1"
+  checksum: b4c6426d6fa78b09d6007cd627c10fe4f21a4f02abcd0266f6c34d16b030a328f1526ba5928c7ee315a48de54e9deb317ada31c3f8eccc0629a1ed67896f8692
   languageName: node
   linkType: hard
 

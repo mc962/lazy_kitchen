@@ -3,9 +3,13 @@
 }
 
 #landing_recipes {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   list-style: none;
   padding-left: 0;
+
+  .directory-item {
+    padding: 2%;
+  }
 }
 

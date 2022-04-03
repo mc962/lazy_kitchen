@@ -1,0 +1,13 @@
+<h1 class="resource-heading"><%= @post.title %></h1>
+
+<% if user_signed_in? && allowed_to?(:edit?, @post) %>
+  <div class="edit-link-container">
+    <%= link_to 'Edit', edit_manage_post_path(@post), class: 'profile-edit-link' %>
+  </div>
+<% end %>
+
+<section class="content">
+  <div id="post_content">
+    <%= @post.content %>
+  </div>
+</section>
