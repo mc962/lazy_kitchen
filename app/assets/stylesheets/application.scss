@@ -1,14 +1,13 @@
 // Entry point for your Sass build
 
-//@import "reset";
-@import "global";
-
 @import "actiontext";
-@import "alert";
-@import "flash";
 
+@import "global";
 @import "shared";
-@import "recipes";
+
 @import "manage/recipes";
+@import "manage/posts";
+
+@import "recipes";
 @import "users";
 @import "landings";

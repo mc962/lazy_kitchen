@@ -1,4 +1,6 @@
 @import "header";
+@import "alert";
+@import "flash";
 
 .button {
   background-color: #0069d9;
@@ -13,4 +15,9 @@
     color: #fff;
     outline: 0;
   }
+}
+
+.disabled {
+  background: #dddddd;
+  cursor: none;
 }
