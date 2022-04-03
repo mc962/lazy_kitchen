@@ -2,6 +2,16 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'landings#home'
 
+  resources :recipes, only: [:index, :show]
+
+  resources :posts, only: [:index, :show]
+
+  namespace :api do
+    resources :recipes, only: [:index, :show]
+
+    resources :posts, only: [:index, :show]
+  end
+
   namespace :manage do
     resources :recipes do
       resources :steps do
@@ -13,12 +23,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :destroy]
 
     resources :posts
-  end
-
-  resources :recipes, only: [:index, :show]
-
-  namespace :api do
-    resources :recipes, only: [:index, :show]
   end
 
   # Routes for Error Handling

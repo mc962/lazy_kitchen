@@ -5,7 +5,7 @@
     <%= page_entries_info @posts %>
   </p>
 
-  <ul id="directory_posts">
+  <ul id="directory">
     <% @posts.each do |post| %>
       <li class="directory-post">
         <span><%= link_to post.title, manage_post_path(post) %></span>

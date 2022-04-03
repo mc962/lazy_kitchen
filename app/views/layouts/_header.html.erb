@@ -6,6 +6,10 @@
       </div>
 
       <ul class="site-nav-links">
+        <li class="site-nav-link">
+          <%= link_to 'Posts', posts_path, class: 'nav-anchor' %>
+        </li>
+
         <% if user_signed_in? %>
           <li class="site-nav-link">
             <%= link_to 'Manage', manage_path, class: 'nav-anchor' %>

@@ -2,7 +2,9 @@
 
 <section class="recipe-content">
   <% if user_signed_in? && allowed_to?(:edit?, @recipe) %>
-    <%= link_to 'Edit', edit_manage_recipe_path(@recipe) %>
+    <div class="edit-link-container">
+      <%= link_to 'Edit', edit_manage_recipe_path(@recipe), class: 'profile-edit-link' %>
+    </div>
   <% end %>
 
   <div class="recipe-profile-img-container">

@@ -30,5 +30,10 @@
     <ul id="recipes" class="directory-items">
       <%= render partial: 'application/recipes/recipe', collection: @user.recipes %>
     </ul>
+
+    <h3><label for="posts">Posts</label></h3>
+    <ul id="posts" class="directory-items">
+      <%= render partial: 'application/posts/post', collection: @user.posts %>
+    </ul>
   </section>
 </main>

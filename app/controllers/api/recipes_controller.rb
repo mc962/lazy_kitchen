@@ -20,14 +20,14 @@ class API::RecipesController < API::ApplicationController
     @recipe = Recipe.includes(:steps, :ingredients,
                               :citations).where(user_id: current_user.id).friendly.find(params[:id])
 
-    authorize!
+    authorize! @recipe
 
     render json: {
       id: @recipe.id,
       name: @recipe.name,
       description: @recipe.description,
       publicly_accessible: @recipe.publicly_accessible,
-      primary_picture: @recipe.primary_picture.attached? ? url_for(recipe.primary_picture) : nil,
+      primary_picture: @recipe.primary_picture.attached? ? url_for(@recipe.primary_picture) : nil,
       gallery_pictures: @recipe.gallery_pictures.map { |attachment| url_for(attachment) }
     }, include: {
       steps: {

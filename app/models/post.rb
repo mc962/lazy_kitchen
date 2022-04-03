@@ -48,7 +48,7 @@ class Post < ApplicationRecord
   #
   # @param [ActionController::Parameters<Integer>] page Current page used to fetch correct selection of posts
   # @return [Recipe::ActiveRecord_Relation]
-  def self.directory_posts(page)
+  def self.directory(page)
     order(:title).page(page)
   end
 

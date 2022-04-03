@@ -2,7 +2,7 @@ class Manage::PostsController < Manage::ApplicationController
   include Imageable
 
   def index
-    @posts = Post.owned(current_user.id).directory_posts(params[:page])
+    @posts = Post.owned(current_user.id).directory(params[:page])
     authorize!
 
     render :index
