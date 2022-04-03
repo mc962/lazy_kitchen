@@ -1,24 +1,28 @@
-<h1 class="resource-heading">Manage Post</h1>
+<h1 class="resource-heading"><%= @post.title %></h1>
 
 <section class="content">
-  <label for="post_title">Title</label>
-  <h2 id="post_title"><%= @post.title %></h2>
-
-  <label for="post_content">Content</label>
   <div id="post_content">
     <%= @post.content %>
   </div>
 </section>
 
 <section class="publish-info">
-  <label for="published">Published: </label>
-  <p id="published"><%= @post.published %></p>
-
-  <label for="published_at">Published at: </label>
-  <p id="published_at"><%= @post.published_at %></p>
-
-  <label for="modified_at">Last Updated at: </label>
-  <p id="modified_at"><%= @post.modified_at %></p>
+  <div class="row">
+    <div class="publish-cell">
+      <label class="item-lbl" for="published">Published: </label>
+      <p id="published"><%= @post.published %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="publish-cell">
+      <label class="item-lbl" for="published_at">Published at: </label>
+      <p id="published_at"><%= @post.published_at %></p>
+    </div>
+    <div class="publish-cell">
+      <label class="item-lbl" for="modified_at">Last Updated at: </label>
+      <p id="modified_at"><%= @post.modified_at %></p>
+    </div>
+  </div>
 </section>
 
 <nav class="action-nav">
