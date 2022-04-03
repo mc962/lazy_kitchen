@@ -14,8 +14,6 @@ class Manage::RecipesController < Manage::ApplicationController
   end
 
   def show
-    flash.notice = 'Recipe created successfully.'
-
     @recipe = Recipe.friendly.find(params[:id])
     authorize! @recipe
 
