@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Manage::PostsController < Manage::ApplicationController
   include Imageable
 
