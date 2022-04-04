@@ -78,7 +78,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Settings for SMTP server to deliver email to (such as SendGrid)
-  config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = Rails.application.credentials.sendgrid ? {
     user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
     password: Rails.application.credentials.sendgrid[:api_key],
     domain: LAZY_KITCHEN_HOST,
@@ -86,7 +86,7 @@ Rails.application.configure do
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
-  }
+  } : {}
 
   # Default URL options for used by Action Mailer for construction urls for emails
   config.action_mailer.default_url_options = { host: LAZY_KITCHEN_HOST }
