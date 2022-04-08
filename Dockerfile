@@ -77,7 +77,8 @@ RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
 COPY --from=gems /app /app
 COPY --from=node_modules /app/node_modules /app/node_modules
 
-ENV SECRET_KEY_BASE 1
+ARG RAILS_MASTER_KEY
+ARG SECRET_KEY_BASE
 
 COPY . .
 
