@@ -41,7 +41,7 @@ class User < ApplicationRecord
   has_many :posts
 
   after_create :assign_default_role
-  after_create :send_admin_email
+  after_create :send_admin_email, unless: :approved?
 
   # Determines if a user is allowed to be authenticated, if they pass existing Devise authentication logic as well as
   #   being approved by an admin user
@@ -96,9 +96,6 @@ class User < ApplicationRecord
 
   # Send an email to admin users indicating newly created user needs approval
   def send_admin_email
-    # Only send new user approval email request email if user has not already been approved. This prevents sending this
-    #   email unnecessarily if the user has already been approved, while also making things easier for tests where we
-    #   do not need to go through the approval email flow for simple unit tests not involving the approval flow
-    AdminMailer.new_user_waiting_for_approval(email).deliver unless approved?
+    AdminMailer.new_user_waiting_for_approval(email).deliver
   end
 end
