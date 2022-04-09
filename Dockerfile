@@ -78,11 +78,12 @@ COPY --from=gems /app /app
 COPY --from=node_modules /app/node_modules /app/node_modules
 
 ARG RAILS_MASTER_KEY
-ARG SECRET_KEY_BASE
 
 COPY . .
 
-RUN bundle exec rails assets:precompile
+# Pass in a "fake" master key for an essentially empty credentials file that is only used during assets builds.
+#  Any secrets loaded by these credentials _should not_ be used in a real environment.
+RUN RAILS_ENV=build RAILS_MASTER_KEY={RAILS_MASTER_KEY} bundle exec rails assets:precompile
 
 ENV PORT 8080
 

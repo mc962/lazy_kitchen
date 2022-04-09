@@ -59,6 +59,13 @@ test:
   <<: *default
   database: lazy_kitchen_test
 
+# A stub configuration file for a "build" environment, used during building static assets
+build:
+  <<: *default
+  database: lazy_kitchen_production
+  username: lazy_kitchen
+  password: <%= ENV["LAZY_KITCHEN_DATABASE_PASSWORD"] %>
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
