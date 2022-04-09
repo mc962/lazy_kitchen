@@ -21,6 +21,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :selenium,
             using: :headless_chrome,
             screen_size: [1400, 1400]
+
+  Capybara.configure do |config|
+    config.app_host = 'http://tst.emteekitchen.com'
+  end
 end
 
 class ApplicationControllerTestCase < ActionDispatch::IntegrationTest
@@ -28,6 +32,10 @@ class ApplicationControllerTestCase < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   include Capybara::DSL
   include Capybara::Minitest::Assertions
+
+  setup do
+    host! 'emteekitchen.com'
+  end
 end
 
 Shoulda::Matchers.configure do |config|

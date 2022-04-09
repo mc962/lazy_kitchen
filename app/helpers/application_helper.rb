@@ -23,4 +23,20 @@ module ApplicationHelper
     uri.query = Rack::Utils.build_query(final_params)
     uri.to_s
   end
+
+  # Selects site text based on incoming host (from whitelisted hosts)
+  #
+  # @return [String] Key matching incoming host that may be used to select correct site text with I18n
+  def site_key
+    incoming_domain = request.domain
+
+    case incoming_domain
+    when 'alazykitchen.com'
+      'lazy_kitchen'
+    when 'emteekitchen.com'
+      'mt_kitchen'
+    else
+      raise ActionController::RoutingError, 'Not Found'
+    end
+  end
 end

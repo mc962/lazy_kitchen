@@ -1,4 +1,4 @@
-<h1 class="landing-heading">Welcome to A Lazy Kitchen</h1>
+<h1 class="landing-heading">Welcome to <%= I18n.t("global.title.#{site_key}") %></h1>
 
 <ul id="landing_recipes" class="directory-items">
   <%= render partial: 'application/recipes/recipe', collection: @recipes %>
