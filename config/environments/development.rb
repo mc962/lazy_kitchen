@@ -1,10 +1,14 @@
 require "active_support/core_ext/integer/time"
 
+ALLOWED_HOSTS = {
+  mt_kitchen: 'lcl.emteekitchen.com',
+}
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Whitelist local domains
-  config.hosts << "lcl.alazykitchen.com"
+  config.hosts.push(*ALLOWED_HOSTS.values)
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
