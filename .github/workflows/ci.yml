@@ -20,12 +20,12 @@ jobs:
       - name: Setup Ruby and Gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.0
+          ruby-version: 3.1.1
           bundler-cache: true
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: 16.13.0
+          node-version: 16.14.2
           cache: yarn
       # NOTE: Unlike ruby/setup-ruby@v1 action, actions/setup-node@v2 does not have an option to install packages automatically
       - name: Install JS Packages
@@ -44,7 +44,7 @@ jobs:
       - name: Setup Ruby and Gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.0
+          ruby-version: 3.1.1
           bundler-cache: true
       - name: Run Security Checks
         run: |
@@ -79,12 +79,12 @@ jobs:
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.0
+          ruby-version: 3.1.1
           bundler-cache: true
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: 16.13.0
+          node-version: 16.14.2
           cache: yarn
       # NOTE: Unlike ruby/setup-ruby@v1 action, actions/setup-node@v2 does not have an option to install packages automatically
       - name: Install JS Packages

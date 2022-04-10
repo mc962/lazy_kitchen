@@ -1,27 +1,56 @@
-.site-navigation {
+@import "header";
+@import "alert";
+@import "flash";
+
+.button {
+  background-color: #0069d9;
+  border: 0.1rem solid #0069d9;
+  border-radius: 0.4rem;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #606c76;
+    border-color: #606c76;
+    color: #fff;
+    outline: 0;
+  }
+}
+
+.disabled {
+  background: #dddddd;
+  cursor: none;
+}
+
+.directory-actions-links {
   width: 100%;
   display: flex;
-
-  .home-nav-link {
-    width: 20%;
-    text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
+  .action-links {
+    width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-  }
-
-  .site-nav-links {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    list-style: none;
-    padding-left: 0;
-    .site-nav-link {
-      width: 20%;
+    a {
+      text-decoration: none;
+    }
+    .directory-action-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 15%;
+      border: 1px solid black;
       text-align: center;
-      padding: 1%;
+      padding: 2%;
+      .directory-item {}
     }
   }
+}
+
+.edit-link-container {
+  width: 100%;
+  text-align: center;
 }

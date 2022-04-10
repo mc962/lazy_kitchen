@@ -12,7 +12,7 @@ Index
   margin: 0 auto;
 }
 
-#directory_recipes {
+.directory-items {
   margin: 0 auto;
   list-style: none;
   padding-left: 0;
@@ -20,7 +20,7 @@ Index
   display: flex;
   flex-direction: column;
   align-items: center;
-  .directory-recipe {
+  .directory-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -56,6 +56,24 @@ Show
 
   #recipe_ingredients {
     width: 35%;
+
+    #ingredients {
+      padding-left: 0;
+      list-style: none;
+
+      .ingredient {
+        padding: 2% 0;
+      }
+    }
+  }
+
+  #recipe_steps {
+    #steps {
+      padding-left: 0;
+      .step {
+        padding: 1%;
+      }
+    }
   }
 
   .recipe-col {
@@ -90,3 +108,11 @@ Show
     }
   }
 }
+
+.ingredients {
+  padding-left: 0;
+  .ingredient {
+    margin: 1%;
+  }
+}
+

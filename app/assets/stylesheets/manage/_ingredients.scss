@@ -2,15 +2,21 @@
   .recipe-step-ingredient {
     padding: 1%;
     .ingredient-info {
-      width: 70%;
+      width: 50%;
     }
 
     .ingredient-measurement {
-      width: 10%;
+      width: 20%;
+      .form-ctrl {
+        padding: 5%;
+      }
     }
 
     .ingredient-condition {
-      width: 15%;
+      width: 25%;
+      .form-ctrl {
+        padding: 5%;
+      }
     }
   }
 }

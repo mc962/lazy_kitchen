@@ -1,0 +1,8 @@
+<nav class="action-nav">
+  <ul class="action-nav-links">
+    <% unless recipe.new_record? %>
+      <li class="action-nav-link"><%= link_to 'Information', edit_manage_recipe_path(recipe, tab: 'information'), data: {"turbo-frame": :"tab_content"} %></li>
+      <li class="action-nav-link"><%= link_to 'Steps', edit_manage_recipe_path(recipe, tab: 'steps'), data: {"turbo-frame": :"tab_content"} %></li>
+    <% end %>
+  </ul>
+</nav>

@@ -1,0 +1,21 @@
+<h1 class="text-center">Listing Posts</h1>
+
+<div class="paginated-resources-container">
+  <p class="page-entries-info">
+    <%= page_entries_info @posts %>
+  </p>
+
+  <ul id="directory_posts" class="directory-items">
+    <%= render partial: 'application/posts/post', collection: @posts %>
+  </ul>
+
+  <%= paginate @posts %>
+</div>
+
+<div class="directory-actions-links">
+  <ul class="action-links">
+    <li class="directory-action-link">
+      <%= link_to "New Post", new_manage_post_path %>
+    </li>
+  </ul>
+</div>

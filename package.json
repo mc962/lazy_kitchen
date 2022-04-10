@@ -3,21 +3,23 @@
   "version": "0.1.0",
   "license": "UNLICENSED",
   "engines": {
-    "node": "16.13.0",
-    "yarn": "1.22.17"
+    "node": "16.14.2",
+    "yarn": "3.0.0"
   },
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
-    "@rails/actioncable": "^7.0.1",
-    "@rails/activestorage": "^7.0.1",
+    "@rails/actioncable": "^7.0.2-2",
+    "@rails/actiontext": "^7.0.2-2",
+    "@rails/activestorage": "^7.0.2-2",
     "@rails/request.js": "0.0.5",
     "esbuild": "^0.14.12",
     "sass": "^1.49.0",
     "sortablejs": "^1.14.0",
     "stimulus-rails-nested-form": "^4.0.0",
-    "stimulus-sortable": "^3.1.0"
+    "stimulus-sortable": "^3.1.0",
+    "trix": "1.3.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.10",

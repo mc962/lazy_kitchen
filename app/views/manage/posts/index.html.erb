@@ -1,0 +1,23 @@
+<h1 class="text-center">Listing Posts</h1>
+
+<div class="paginated-resources-container">
+  <p class="page-entries-info">
+    <%= page_entries_info @posts %>
+  </p>
+
+  <ul id="directory">
+    <% @posts.each do |post| %>
+      <li class="directory-post">
+        <span><%= link_to post.title, manage_post_path(post) %></span>
+        <div class="post-links">
+          <span><%= link_to "Edit", edit_manage_post_path(post) %></span>
+          <span><%= link_to "Delete", manage_post_path(post), {action: :destroy, method: :delete, id: post.slug, data: {confirm: "Are you sure?"}} %></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= paginate @posts %>
+</div>
+
+<div class="new-post-link"><%= link_to "New Post", new_manage_post_path %></div>

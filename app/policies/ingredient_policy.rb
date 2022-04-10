@@ -12,23 +12,28 @@ class IngredientPolicy < ApplicationPolicy
   end
 
   def create?
-    user.id == record.user_id
+    user.id == record.user_id ||
+      user.has_any_role?(*Role::MANAGEMENT_ROLES)
   end
 
   def show?
-    user.id == record.user_id
+    user.id == record.user_id ||
+      user.has_any_role?(*Role::MANAGEMENT_ROLES)
   end
 
   def edit?
-    allowed_to?(:edit?, record.user_id)
+    user.id == record.user_id ||
+      user.has_any_role?(*Role::MANAGEMENT_ROLES)
   end
 
   def update?
-    user.id == record.user_id
+    user.id == record.user_id ||
+      user.has_any_role?(*Role::MANAGEMENT_ROLES)
   end
 
   def destroy?
-    user.id == record.user_id
+    user.id == record.user_id ||
+      user.has_any_role?(*Role::MANAGEMENT_ROLES)
   end
 
   # Scoping

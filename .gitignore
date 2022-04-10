@@ -31,6 +31,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials/production.key
+/config/credentials/build.key
 
 # Assets
 /public/packs
@@ -40,6 +41,13 @@
 yarn-debug.log*
 .yarn-integrity
 .yarn/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 app/assets/builds/
 
 # OS Files

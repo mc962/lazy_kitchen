@@ -1,11 +1,11 @@
-<h1 class="recipes-heading">Listing Recipes</h1>
+<h1 class="text-center">Listing Recipes</h1>
 
 <div class="paginated-resources-container">
   <p class="page-entries-info">
     <%= page_entries_info @recipes %>
   </p>
 
-  <ul id="directory_recipes">
+  <ul id="directory_recipes" class="directory-items">
     <%= render partial: 'application/recipes/recipe', collection: @recipes %>
   </ul>
 

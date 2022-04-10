@@ -1,0 +1,19 @@
+<div class="notes-container">
+  <h3 class="tab-form-heading">Notes</h3>
+
+  <template data-nested-form-target="template">
+    <%= form.fields_for :notes, Note.new, child_index: 'NEW_RECORD' do |notes_form| %>
+      <%= render partial: 'application/manage/notes/note', locals: {notes_form: notes_form} %>
+    <% end %>
+  </template>
+
+  <ul id="resource_notes" class="resource-list" data-nested-form-target="target">
+    <% if form.object.notes.present? %>
+      <%= form.fields_for :notes do |notes_form| %>
+        <%= render partial: 'application/manage/notes/note', locals: {notes_form: notes_form} %>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <button type="button" class="button add-resource-btn" data-action="nested-form#add">Add Note</button>
+</div>

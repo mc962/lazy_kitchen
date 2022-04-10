@@ -1,8 +1,16 @@
 require "active_support/core_ext/integer/time"
 
-LAZY_KITCHEN_HOST = 'www.alazykitchen.com'
+ALLOWED_HOSTS = {
+  mt_kitchen: '.emteekitchen.com',
+  fly: 'lazy-kitchen.fly.dev'
+}
+
+SITE_HOST = "https://www.#{ALLOWED_HOSTS[:mt_kitchen]}"
 
 Rails.application.configure do
+  # Whitelist local domains
+  config.hosts.push(*ALLOWED_HOSTS.values)
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -65,7 +73,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'], namespace: 'lazy_kitchen' }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
@@ -78,18 +86,18 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Settings for SMTP server to deliver email to (such as SendGrid)
-  config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = Rails.application.credentials.sendgrid ? {
     user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
     password: Rails.application.credentials.sendgrid[:api_key],
-    domain: LAZY_KITCHEN_HOST,
+    domain: SITE_HOST,
     address: 'smtp.sendgrid.net',
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
-  }
+  } : {}
 
   # Default URL options for used by Action Mailer for construction urls for emails
-  config.action_mailer.default_url_options = { host: LAZY_KITCHEN_HOST }
+  config.action_mailer.default_url_options = { host: SITE_HOST }
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

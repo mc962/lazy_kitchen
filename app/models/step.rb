@@ -4,23 +4,33 @@
 #
 # Table name: steps
 #
-#  id          :integer          not null, primary key
-#  order       :integer          not null
+#  id          :bigint           not null, primary key
 #  instruction :text             not null
-#  recipe_id   :integer          not null
+#  order       :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  recipe_id   :bigint           not null
 #
 # Indexes
 #
 #  index_steps_on_recipe_id  (recipe_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (recipe_id => recipes.id)
+#
 
 # Contains information for a specific recipe step
 class Step < ApplicationRecord
+  include ActiveStoragePath
+
   belongs_to :recipe
   has_many :step_ingredients, dependent: :destroy
   has_many :ingredients, through: :step_ingredients
+  # has_many :notes, as: :notable
+  has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/steps" }
+
+  resourcify
 
   validates :order, :instruction, :recipe, presence: true
   validates_associated :step_ingredients

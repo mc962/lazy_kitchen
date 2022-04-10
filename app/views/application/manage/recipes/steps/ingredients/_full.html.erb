@@ -1,0 +1,29 @@
+<%= turbo_frame_tag('tab_content') do %>
+  <h3 class="tab-form-heading">Ingredient</h3>
+
+  <%= form_with model: @ingredient, class: 'resource-form', url: decorated_query_url_for(action, {tab: 'ingredient'}), data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper', turbo: false} do |ingredient_form| %>
+    <section class="tab-form-section ingredient">
+      <div class="form-ctrl-container">
+        <%= ingredient_form.label :name, class: "form-ctrl-lbl" %>
+        <%= ingredient_form.text_field :name, class: "form-ctrl" %>
+      </div>
+
+      <div class="form-ctrl-container">
+        <%= ingredient_form.label :description, class: "form-ctrl-lbl" %>
+        <%= ingredient_form.text_area :description, class: "form-ctrl" %>
+      </div>
+    </section>
+
+    <section class="tab-form-section images">
+      <%= render partial: 'application/manage/recipes/steps/ingredients/images/tab', locals: {ingredient_form: ingredient_form} %>
+    </section>
+
+    <section class="tab-form-section notes">
+      <%= render partial: 'application/manage/notes/tab', locals: {form: ingredient_form} %>
+    </section>
+
+    <div class="actions">
+      <%= ingredient_form.submit "Submit", class: 'button submit-btn' %>
+    </div>
+  <% end %>
+<% end %>

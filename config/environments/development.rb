@@ -1,7 +1,14 @@
 require "active_support/core_ext/integer/time"
 
+ALLOWED_HOSTS = {
+  mt_kitchen: 'lcl.emteekitchen.com',
+}
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+
+  # Whitelist local domains
+  config.hosts.push(*ALLOWED_HOSTS.values)
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
@@ -34,7 +41,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   config.action_mailer.delivery_method = :smtp
   # Settings for local SMTP server to deliver email to (such as Mailcatcher)

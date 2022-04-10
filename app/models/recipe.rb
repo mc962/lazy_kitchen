@@ -4,20 +4,24 @@
 #
 # Table name: recipes
 #
-#  id                  :integer          not null, primary key
-#  name                :string           not null
+#  id                  :bigint           not null, primary key
 #  description         :text
-#  publicly_accessible :boolean          default("false"), not null
+#  name                :string           not null
+#  publicly_accessible :boolean          default(FALSE), not null
+#  slug                :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  user_id             :integer
-#  slug                :string
+#  user_id             :bigint
 #
 # Indexes
 #
 #  index_recipes_on_name_and_user_id  (name,user_id) UNIQUE
 #  index_recipes_on_slug              (slug) UNIQUE
 #  index_recipes_on_user_id           (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 # Holds all information relating to an overall recipe itself
@@ -32,19 +36,23 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :steps
   has_many :citations
   belongs_to :user
+  has_many :notes, as: :notable, class_name: 'Note'
   has_one_attached_with :primary_picture, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
   has_many_attached_with :gallery_pictures, path: -> { "#{Rails.application.config.x.resource_prefix}/recipes" }
+
+  resourcify
 
   validates :name, presence: true
   validates :name, uniqueness: {
     scope: [:user_id]
   }
-  validates_associated :steps
+  validates_associated :steps, :notes
 
   before_save :consolidate_step_order
 
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :citations, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :notes, reject_if: :all_blank, allow_destroy: true
 
   friendly_id :name, use: %i[slugged scoped history], scope: [:user]
 
@@ -66,7 +74,7 @@ class Recipe < ApplicationRecord
   #
   # @param [ActionController::Parameters<Integer>] page Current page used to fetch correct selection of recipes
   # @return [Recipe::ActiveRecord_Relation]
-  def self.directory_recipes(page)
+  def self.directory(page)
     order(:name).page(page)
   end
 
