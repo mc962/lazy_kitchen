@@ -1,8 +1,8 @@
 require "active_support/core_ext/integer/time"
 
 ALLOWED_HOSTS = {
-  lazy_kitchen: '.alazykitchen.com',
   mt_kitchen: '.emteekitchen.com',
+  lazy_kitchen: '.alazykitchen.com',
   heroku: 'a-lazy-kitchen.herokuapp.com',
 }
 
