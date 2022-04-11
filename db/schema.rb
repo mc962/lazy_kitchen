@@ -15,6 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_13_225645) do
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "role", ["basic", "author", "editor", "admin", "superuser"]
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"

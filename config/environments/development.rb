@@ -2,6 +2,7 @@ require "active_support/core_ext/integer/time"
 
 ALLOWED_HOSTS = {
   mt_kitchen: 'lcl.emteekitchen.com',
+  lazy_kitchen: 'lcl.alazykitchen.com',
 }
 
 Rails.application.configure do
