@@ -2,7 +2,8 @@ require "active_support/core_ext/integer/time"
 
 ALLOWED_HOSTS = {
   mt_kitchen: '.emteekitchen.com',
-  fly: 'lazy-kitchen.fly.dev'
+  lazy_kitchen: '.alazykitchen.com',
+  heroku: 'a-lazy-kitchen.herokuapp.com',
 }
 
 SITE_HOST = "https://www.#{ALLOWED_HOSTS[:mt_kitchen]}"
