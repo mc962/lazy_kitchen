@@ -28,12 +28,12 @@
   <section id="resources" class="profile-section">
     <h3><label for="recipes">Recipes</label></h3>
     <ul id="recipes" class="directory-items">
-      <%= render partial: 'application/recipes/recipe', collection: @user.recipes %>
+      <%= render partial: 'application/manage/recipes/recipe', collection: @user.recipes %>
     </ul>
 
     <h3><label for="posts">Posts</label></h3>
     <ul id="posts" class="directory-items">
-      <%= render partial: 'application/posts/post', collection: @user.posts %>
+      <%= render partial: 'application/manage/posts/post', collection: @user.posts %>
     </ul>
   </section>
 </main>

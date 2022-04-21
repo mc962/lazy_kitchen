@@ -33,7 +33,7 @@ class Step < ApplicationRecord
   resourcify
 
   validates :order, :instruction, :recipe, presence: true
-  validates_associated :step_ingredients
+  # validates_associated :step_ingredients
 
   accepts_nested_attributes_for :step_ingredients, reject_if: :all_blank, allow_destroy: true
 
