@@ -45,7 +45,7 @@ class Ingredient < ApplicationRecord
 
   validates :name, :user, presence: true
   validates :name, uniqueness: {
-    scope: [:user_id],
+    scope: [:user_id]
   }
   validates :slug, uniqueness: true
 

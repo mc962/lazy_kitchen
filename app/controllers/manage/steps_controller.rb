@@ -53,12 +53,12 @@ class Manage::StepsController < Manage::ApplicationController
         :unit,
         :gallery_pictures,
         :_destroy,
-        { ingredient_attributes: [
-          :id,
-          :name,
-          :description,
-          :user_id,
-          :_destroy
+        { ingredient_attributes: %i[
+          id
+          name
+          description
+          user_id
+          _destroy
         ] }
       ]
     )
