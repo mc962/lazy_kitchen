@@ -43,12 +43,13 @@ class Ingredient < ApplicationRecord
 
   resourcify
 
-  validates :name, presence: true
+  validates :name, :user, presence: true
   validates :name, uniqueness: {
-    scope: [:user_id]
+    scope: [:user_id],
   }
+  validates :slug, uniqueness: true
 
-  friendly_id :name, use: %i[slugged scoped history], scope: [:user]
+  friendly_id :slug_candidates, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
 
@@ -63,6 +64,21 @@ class Ingredient < ApplicationRecord
     new_record? || name_changed?
   end
 
+  # Provides alternative values to FriendlyId slug generation to avoid collisions across users with identically
+  #   named resources
+  #
+  # @return [Array]
+  def slug_candidates
+    [
+      :name,
+      # Produces a small alphanumeric String to append to the end of the slug. As it is small, collisions may still be
+      #   possible, but very unlikely at current scale.
+      [:name, -> { SecureRandom.urlsafe_base64(6) }]
+    ]
+  end
+
+  # Determines if current Ingredient is the 'canonical' ingredient representing the main for the of the resource that
+  #   other user-generated resources may point to
   def canonical?
     is_root?
   end

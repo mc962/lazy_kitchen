@@ -27,7 +27,7 @@ class Manage::StepsController < Manage::ApplicationController
     # Expose needed nested models associated with main model for page
     @recipe = @step.recipe
 
-    if @step.update(step_params)
+    if @step.update!(step_params)
       purge_deleted_attachments(params[:deleted_resource_img_ids], :step) if params[:deleted_resource_img_ids].present?
 
       flash.notice = 'Step updated successfully.'
@@ -57,7 +57,7 @@ class Manage::StepsController < Manage::ApplicationController
           :id,
           :name,
           :description,
-          { user_id: current_user.id },
+          :user_id,
           :_destroy
         ] }
       ]
