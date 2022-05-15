@@ -52,6 +52,7 @@ class Manage::IngredientsController < Manage::ApplicationController
       :id,
       :name,
       :description,
+      :user_id,
       gallery_pictures: [],
       notes_attributes: %i[
         id

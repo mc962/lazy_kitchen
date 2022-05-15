@@ -49,8 +49,7 @@ jobs:
       - name: Run Security Checks
         run: |
           bundle exec bundler-audit --update
-#          TODO Disable until ruby_parser supports Ruby 3.1
-#          bundle exec brakeman -q -w2
+          bundle exec brakeman -q -w2
 
   tests:
     name: Tests

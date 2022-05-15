@@ -1,6 +1,8 @@
 <li class="resource-item recipe-step-ingredient nested-form-wrapper" data-new-record="<%= step_ingredients_form.object.new_record? %>">
   <div class="ingredient-info resource-col">
     <%= step_ingredients_form.fields_for :ingredient do |ingredient_form| %>
+      <%= ingredient_form.hidden_field :user_id, value: 2 %>
+
       <div class="form-ctrl-container">
         <%= ingredient_form.label :name, class: "form-ctrl-lbl" %>
         <%= ingredient_form.text_field :name, class: "form-ctrl" %>

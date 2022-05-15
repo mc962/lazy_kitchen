@@ -54,7 +54,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :citations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :notes, reject_if: :all_blank, allow_destroy: true
 
-  friendly_id :name, use: %i[slugged scoped history], scope: [:user]
+  friendly_id :slug_candidates, use: %i[slugged scoped history], scope: [:user]
 
   scope :managed, -> { includes(:user) }
   scope :owned, ->(user_id) { where(user_id:) }
@@ -87,6 +87,20 @@ class Recipe < ApplicationRecord
     new_record? || name_changed?
   end
 
+  # Provides alternative values to FriendlyId slug generation to avoid collisions across users with identically
+  #   named resources
+  #
+  # @return [Array]
+  def slug_candidates
+    [
+      :name,
+      # Produces a small alphanumeric String to append to the end of the slug. As it is small, collisions may still be
+      #   possible, but very unlikely at current scale.
+      [:name, -> { SecureRandom.urlsafe_base64(6) }]
+    ]
+  end
+
+  # Consolidates order of recipe steps so that there are no gaps between numbers in step order
   def consolidate_step_order
     steps.sort_by(&:order).map!.with_index do |step, idx|
       step.order = idx + 1
