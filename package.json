@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "UNLICENSED",
   "engines": {
-    "node": "16.14.2",
+    "node": "16.15.0",
     "yarn": "1.22.18"
   },
   "private": true,
