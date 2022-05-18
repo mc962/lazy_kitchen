@@ -5,8 +5,6 @@ ALLOWED_HOSTS = {
   lazy_kitchen: '.alazykitchen.com',
   heroku: 'a-lazy-kitchen.herokuapp.com',
   fly: 'lazy-kitchen.fly.dev',
-  ipv4: Rails.application.credentials.dig('ips', 'v4'),
-  ipv6: Rails.application.credentials.dig('ips', 'v6'),
 }
 
 SITE_HOST = "https://www.#{ALLOWED_HOSTS[:mt_kitchen]}"
