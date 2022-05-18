@@ -56,26 +56,43 @@
 #user_bio {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 
-  table {
+  #user_data {
     border: 1px solid #333;
-    width: 30%;
+    width: 50%;
+
+    .user-data-header {
+      border: 1px solid black;
+    }
+
+    .user-data-heading {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .user-data-body {
+      .user-data-item {
+        padding: 2%;
+        border: 1px solid #333;
+      }
+    }
   }
 
-  td {
-    padding: 2%;
-    border: 1px solid #333;
-  }
+  #profile_management {
+    width: 50%;
+    .profile-manage-links {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
 
-  thead,
-  tfoot {
-    background-color: #333;
-    color: #fff;
-  }
-
-  th {
-    border: 1px solid black;
+      .profile-manage-link {
+        padding: 2%;
+      }
+    }
   }
 }
