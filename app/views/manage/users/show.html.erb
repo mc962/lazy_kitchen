@@ -1,28 +1,39 @@
 <h1 class="text-center">Manage Your Account</h1>
 
-<main id="user_profile">
+<div id="user_profile">
   <section id="user_bio" class="profile-section">
     <table id="user_data">
       <thead class="user-data-heading">
         <tr>
-          <th colspan="1000">User Information</th>
+          <th class="user-data-header" colspan="1000">User Information</th>
         </tr>
       </thead>
       <tbody class="user-data-body">
         <tr>
-          <th>Email</th>
-          <td>
+          <th class="user-data-header">Email</th>
+          <td class="user-data-item">
             <p id="email"><%= @user.email %></p>
           </td>
         </tr>
         <tr>
-          <th>Username</th>
-          <td>
+          <th class="user-data-header">Username</th>
+          <td class="user-data-item">
             <p id="username"><%= @user.username %></p>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <nav id="profile_management">
+      <ul class="profile-manage-links">
+        <li class="profile-manage-link">
+          <%= link_to 'Update Profile', edit_user_registration_path %>
+        </li>
+        <li class="profile-manage-link">
+          <%= link_to 'Delete Profile', cancel_user_registration_path %>
+        </li>
+      </ul>
+    </nav>
   </section>
 
   <section id="resources" class="profile-section">
@@ -36,4 +47,4 @@
       <%= render partial: 'application/manage/posts/post', collection: @user.posts %>
     </ul>
   </section>
-</main>
+</div>

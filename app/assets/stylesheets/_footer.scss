@@ -1,0 +1,13 @@
+#footer_nav {
+  .footer-links {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    .footer-link {
+      padding: 3%;
+    }
+  }
+}
