@@ -1,5 +1,5 @@
 <li class="ingredient" id="ingredient_<%= step_ingredient.ingredient.id %>">
   <%= step_ingredient.amount %>
   <%= step_ingredient.unit %>
-  <%= [step_ingredient.ingredient.name, step_ingredient.condition].join(', ') %>
+  <%= [step_ingredient.ingredient.name, step_ingredient.condition].compact_blank.join(', ') %>
 </li>

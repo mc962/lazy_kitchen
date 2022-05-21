@@ -107,4 +107,11 @@ class Recipe < ApplicationRecord
       step
     end
   end
+
+  # Searches for matching recipes based on inputted search text
+  #
+  # @return [ActiveRecord::Relation<Recipe>]
+  def self.autocomplete
+
+  end
 end
