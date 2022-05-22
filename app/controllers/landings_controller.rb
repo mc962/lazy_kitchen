@@ -8,4 +8,10 @@ class LandingsController < ApplicationController
 
     render :home
   end
+
+  def search
+    @recipes = Search.home_autocomplete(params[:query])
+
+    render json: @recipes
+  end
 end

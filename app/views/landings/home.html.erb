@@ -1,5 +1,14 @@
 <h1 class="landing-heading">Welcome to M and T's Kitchen</h1>
 
-<ul id="landing_recipes" class="directory-items">
-  <%= render partial: 'application/recipes/recipe', collection: @recipes %>
-</ul>
+<!--<ul id="landing_recipes" class="directory-items">-->
+  <%#= render partial: 'application/recipes/recipe', collection: @recipes %>
+<!--</ul>-->
+
+<section id=search>
+  <%= form_with url: '/search', method: :get do |f| %>
+    <%= f.label :query, 'Search Recipes: ' %>
+    <%= f.search_field :query %>
+
+    <%= f.submit 'Search' %>
+  <% end %>
+</section>

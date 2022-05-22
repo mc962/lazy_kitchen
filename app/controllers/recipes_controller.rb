@@ -12,8 +12,4 @@ class RecipesController < ApplicationController
 
     render :show
   end
-
-  def search
-    @recipes = Recipe
-  end
 end
