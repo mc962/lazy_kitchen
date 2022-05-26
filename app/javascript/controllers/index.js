@@ -3,13 +3,14 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-// import NestedForm from "stimulus-rails-nested-form"
+
 import NestedForm from "./nested_form"
 import PrimaryPictureUpload from './primary_picture_upload_controller'
 import GalleryPicturesUpload from './gallery_pictures_upload_controller'
-// import Sortable from "stimulus-sortable"
+
 import SortableList from './sortable_list'
 import Flash from './flash_controller'
+import Search from './search_controller'
 
 // noinspection JSCheckFunctionSignatures
 application.register("nested-form", NestedForm)
@@ -18,3 +19,4 @@ application.register("gallery-pictures-upload", GalleryPicturesUpload)
 // noinspection JSCheckFunctionSignatures
 application.register("sortable-list", SortableList)
 application.register("flash", Flash)
+application.register("search", Search)
