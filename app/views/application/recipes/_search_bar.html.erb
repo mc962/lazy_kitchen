@@ -1,0 +1,9 @@
+<section id="search_bar">
+  <%= form_with url: searches_path(turbo_frame: 'results'), method: :get, data: {turbo_frame: 'results', controller: 'search' } do |f| %>
+    <%= f.label :query, 'Search Recipes: ' %>
+    <%= f.search_field :query, autocomplete: 'off', list: 'autocomplete', data: {search_target: 'input', action: 'input->search#submit'} %>
+    <turbo-frame id="results" target="_top"></turbo-frame>
+
+    <%= f.submit 'Search', data: {search_target: 'submit'} %>
+  <% end %>
+</section>

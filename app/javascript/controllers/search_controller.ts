@@ -17,7 +17,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.submitTarget.hidden = true;
+    // this.submitTarget.hidden = true;
   }
 
   hideValidationMessage(event) {
