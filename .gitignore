@@ -48,6 +48,7 @@ yarn-debug.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+.yarnrc
 app/assets/builds/
 
 # OS Files
