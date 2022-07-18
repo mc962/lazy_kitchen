@@ -5,6 +5,10 @@ class Search
   # @param [String] query User-inputted search query
   # @return [Array<Recipe>]
   def self.home_autocomplete(query)
-    Recipe.search_by_name(query)
+    if query.present?
+      Recipe.search_by_name(query)
+    else
+      []
+    end
   end
 end

@@ -1,9 +1,18 @@
 <section id="search_bar">
-  <%= form_with url: searches_path(turbo_frame: 'results'), method: :get, data: {turbo_frame: 'results', controller: 'search' } do |f| %>
-    <%= f.label :query, 'Search Recipes: ' %>
-    <%= f.search_field :query, autocomplete: 'off', list: 'autocomplete', data: {search_target: 'input', action: 'input->search#submit'} %>
-    <turbo-frame id="results" target="_top"></turbo-frame>
+  <%#= form_with url: searches_path(turbo_frame: 'results'), method: :get, data: {turbo_frame: 'results', controller: 'search' } do |f| %>
+    <%#= f.label :query, 'Search Recipes: ' %>
+    <%#= f.search_field :query, autocomplete: 'off', list: 'autocomplete', data: {search_target: 'input', action: 'input->search#submit'} %>
+<!--    <turbo-frame id="results" target="_top"></turbo-frame>-->
 
-    <%= f.submit 'Search', data: {search_target: 'submit'} %>
-  <% end %>
+    <%#= f.submit 'Search', data: {search_target: 'submit'} %>
+  <%# end %>
+  <%= form_with url: '/search', method: :post, data: {controller: 'search', search_target: 'form' } do |form| %>
+    <%= form.label :query, 'Search Recipes: ' %>
+    <%= form.search_field :query, value: params[:query], autocomplete: 'off', list: 'autocomplete', data: {search_target: 'input', action: 'input->search#autocomplete'} %>
+    <datalist id="autocomplete">
+      <%= render partial: 'searches/results', results: @results %>
+    </datalist>
+
+    <%= form.submit 'Search', data: {search_target: 'submit', action: 'click->search#send'} %>
+<% end %>
 </section>
