@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Search
+  # Array-like data structure for results returned from Search service
   class ResultSet
     include Enumerable
 

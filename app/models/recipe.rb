@@ -123,7 +123,7 @@ class Recipe < ApplicationRecord
   # @param [String] query Search term to attempt to find matching recipes on
   # @param [Integer] page Current page of results to return
   # @return [ActiveRecord::Relation<Recipe>]
-  def self.search(query: , page: 1)
+  def self.search(query:, page: 1)
     Recipe.where(publicly_accessible: true).search_by_name(query).order(:name).page(page)
   end
 end

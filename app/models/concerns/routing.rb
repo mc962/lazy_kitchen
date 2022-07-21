@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Injects Rails routing path helpers into modules where they normally are not automatically included into
 module Routing
   extend ActiveSupport::Concern
 

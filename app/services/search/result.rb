@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Search
+  # A common interface for results returned from search service
   class Result
     include ActiveModel::API
 

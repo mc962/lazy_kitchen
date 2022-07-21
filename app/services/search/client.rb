@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Search
+  # Service client for interacting with Search data store
   class Client
     # Queries data store for data matching complex Search queries
     # Currently implemented using PostgreSQL Text Search features
