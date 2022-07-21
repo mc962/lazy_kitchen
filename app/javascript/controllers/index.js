@@ -19,4 +19,3 @@ application.register("gallery-pictures-upload", GalleryPicturesUpload)
 // noinspection JSCheckFunctionSignatures
 application.register("sortable-list", SortableList)
 application.register("flash", Flash)
-application.register("search", Search)

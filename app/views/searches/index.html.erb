@@ -1,0 +1,16 @@
+<h1 class="text-center">Search</h1>
+
+<%= render partial: 'application/search/search_bar' %>
+
+<div class="paginated-resources-container">
+  <p class="page-entries-info">
+    <%= page_entries_info @results %>
+  </p>
+
+
+  <ul id="results" class="search directory-items">
+    <%= render partial: 'application/search/result', collection: @results %>
+  </ul>
+
+  <%= paginate @results %>
+</div>

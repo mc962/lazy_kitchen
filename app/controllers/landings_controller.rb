@@ -3,13 +3,7 @@
 class LandingsController < ApplicationController
   MAX_HOME_RECIPES = 10
 
-  def home
-    render :home
-  end
-
-  def search
-    @recipes = Search.home_autocomplete(params[:query])
-
-    render json: @recipes
+  def index
+    render :index
   end
 end
