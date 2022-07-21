@@ -10,7 +10,6 @@ import GalleryPicturesUpload from './gallery_pictures_upload_controller'
 
 import SortableList from './sortable_list'
 import Flash from './flash_controller'
-import Search from './search_controller'
 
 // noinspection JSCheckFunctionSignatures
 application.register("nested-form", NestedForm)
