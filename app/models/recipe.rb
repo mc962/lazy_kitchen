@@ -28,6 +28,7 @@
 class Recipe < ApplicationRecord
   extend FriendlyId
   include ActiveStoragePath
+  include PgSearch::Model
 
   has_many :steps, lambda {
     # Recipe's steps should be displayed in order
@@ -59,6 +60,14 @@ class Recipe < ApplicationRecord
   scope :managed, -> { includes(:user) }
   scope :owned, ->(user_id) { where(user_id:) }
   scope :publicly_accessible, -> { where(publicly_accessible: true) }
+
+  pg_search_scope :search_by_name,
+                  against: :name,
+                  using: {
+                    tsearch: { prefix: true },
+                    trigram: {}
+                  },
+                  order_within_rank: 'recipes.updated_at DESC'
 
   MAX_STEPS = 100
   DEFAULT_PRIMARY_PICTURE_KEY = 'site/default_food.jpg'
@@ -106,5 +115,15 @@ class Recipe < ApplicationRecord
       step.order = idx + 1
       step
     end
+  end
+
+  # Searches for recipes matching name based on inputted search text.
+  #   - Only show results that are publicly accessible
+  #
+  # @param [String] query Search term to attempt to find matching recipes on
+  # @param [Integer] page Current page of results to return
+  # @return [ActiveRecord::Relation<Recipe>]
+  def self.search(query:, page: 1)
+    Recipe.where(publicly_accessible: true).search_by_name(query).order(:name).page(page)
   end
 end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'landings#home'
+  root to: 'landings#index'
+
+  get '/search', to: 'searches#index'
 
   resources :recipes, only: [:index, :show]
 

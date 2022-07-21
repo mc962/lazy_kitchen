@@ -3,11 +3,11 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-// import NestedForm from "stimulus-rails-nested-form"
+
 import NestedForm from "./nested_form"
 import PrimaryPictureUpload from './primary_picture_upload_controller'
 import GalleryPicturesUpload from './gallery_pictures_upload_controller'
-// import Sortable from "stimulus-sortable"
+
 import SortableList from './sortable_list'
 import Flash from './flash_controller'
 

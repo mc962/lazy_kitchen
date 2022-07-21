@@ -1,0 +1,6 @@
+<li class="result directory-item">
+  <% if result.image.item %>
+    <%= image_tag result.image.item, alt: result.image.alt, class: 'result-img' %>
+  <% end %>
+  <%= link_to result.title, send(:"#{result.reference.class.to_s.downcase}_path", result.reference), class: "result-link" %>
+</li>
