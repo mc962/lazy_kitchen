@@ -7,17 +7,11 @@ class Manage::StepsController < Manage::ApplicationController
   helper_method :render_frame_tab
 
   def edit
-    @step = Step.joins(:recipe).where(recipes: { slug: params[:recipe_id] }).find(params[:id])
-    authorize! @step
+    @steps = Step.joins(:recipe).where(recipes: {slug: params[:recipe_id]}).includes(:recipe)
+    @recipe = @steps.first.recipe
+    authorize! @recipe, with: RecipePolicy
 
-    # Expose needed nested models associated with main model for page
-    @recipe = @step.recipe
-
-    if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_recipe_step_path(params[:recipe_id], params[:id]))
-    else
-      render :edit
-    end
+    render :edit
   end
 
   def update

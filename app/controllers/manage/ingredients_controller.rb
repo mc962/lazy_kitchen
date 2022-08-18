@@ -6,6 +6,21 @@ class Manage::IngredientsController < Manage::ApplicationController
 
   helper_method :render_frame_tab
 
+  def index
+    @ingredients = Ingredient.joins(:recipes).where(steps: {id: params[:step_id]}).where(recipes: {slug: params[:recipe_id]})
+    recipe = @ingredients.first.recipes.first
+    authorize! recipe
+
+    render :index
+  end
+
+  def new
+    @ingredient = Ingredient.new
+    authorize!
+
+    render :edit
+  end
+
   def edit
     @ingredient = Ingredient.friendly.find(params[:id])
 

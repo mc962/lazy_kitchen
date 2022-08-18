@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class Manage::RecipesController < Manage::ApplicationController
-  include FormRenderable
   include Imageable
-
-  helper_method :render_frame_tab
+  include Tabbable
 
   def index
     @recipes = Recipe.owned(current_user.id).directory(params[:page])
@@ -24,11 +22,7 @@ class Manage::RecipesController < Manage::ApplicationController
     @recipe = Recipe.new
     authorize!
 
-    if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_recipes_path)
-    else
-      render :new
-    end
+    render :new
   end
 
   def create
@@ -47,14 +41,20 @@ class Manage::RecipesController < Manage::ApplicationController
   end
 
   def edit
-    @recipe = Recipe.friendly.find(params[:id])
+    @page_edit_type = edit_type(request.path)
+    if @page_edit_type == :steps
+      # Editing recipe steps
+      @recipe = Recipe.friendly.find(params[:recipe_id])
+    elsif @page_edit_type == :recipe
+      # Editing recipe information
+      @recipe = Recipe.friendly.find(params[:id])
+    else
+      raise "Unknown edit type #{@page_edit_type}"
+    end
+
     authorize! @recipe
 
-    if turbo_frame_request?
-      render_frame_tab(params[:tab], manage_recipe_path(@recipe))
-    else
-      render :edit
-    end
+    render :edit
   end
 
   def update

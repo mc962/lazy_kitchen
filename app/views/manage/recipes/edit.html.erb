@@ -1,4 +1,9 @@
 <h1 class="recipe-form-title">Edit Recipe: <%= @recipe.name %></h1>
 
-<%= render partial: 'application/manage/form', locals: {action: manage_recipe_path(@recipe), resource: @recipe, nav_resource: @recipe} %>
+<%= render partial: 'application/manage/nav', locals: {recipe: @recipe} %>
 
+<% if @page_edit_type == :recipe %>
+  <%= render partial: 'application/manage/recipes/information', locals: { action: :edit } %>
+<% elsif @page_edit_type == :steps %>
+  <%= render partial: 'application/manage/recipes/steps/all', locals: {action: :edit} %>
+<% end %>

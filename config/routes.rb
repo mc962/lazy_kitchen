@@ -16,8 +16,13 @@ Rails.application.routes.draw do
 
   namespace :manage do
     resources :recipes do
-      resources :steps do
-        resources :ingredients
+      # Editing a step's recipes
+      get '/steps/edit', to: 'recipes#edit', as: :edit_steps
+      # Editing an individual step, a step's ingredients
+      resources :steps, only: [:create, :edit, :update, :destroy] do
+        get '/ingredients/edit', to: 'ingredients#edit', as: :edit_ingredients
+        # Editing and individual ingredient
+        resources :ingredients, only: [:create, :edit, :update, :destroy]
       end
     end
 
